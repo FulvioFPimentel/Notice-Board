@@ -1,0 +1,14 @@
+INSERT INTO tb_meeting (date, presidency) VALUES (TIMESTAMP WITH TIME ZONE '2021-11-25T03:00:00Z', 'Leandro Brito');
+INSERT INTO tb_meeting (date, presidency) VALUES (TIMESTAMP WITH TIME ZONE '2021-11-30T03:00:00Z', 'Rodrigo Silva');
+
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ('Inicio', 'Julio Blecha', 1);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ('Fim', 'Edison Rol', 1);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ('Inicio', 'Evandro Pereira', 2);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ('Fim', 'Messias Pimentel', 2);
+
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (25, 'Os filhos ungidos de Jeová', '1 Pedro 2:9', 1);
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (79, 'Ensine-os a se manter firmes', 'Mateus 28:19-20', 1);
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (75, 'Estou aqui!', 'Isaías 6:8', 1);
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (105, 'Deus é amor', '1 João 4:7-8', 2);
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (8, 'Jeová é um refúgio', 'Salmo 91', 2);
+INSERT INTO tb_canticle (number, title, text, meeting_id) VALUES (83, 'De casa em casa', 'Atos 20:20', 2);

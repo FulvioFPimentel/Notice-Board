@@ -1,0 +1,36 @@
+package com.bigcrowd.noticeBoard.entities;
+
+import java.io.Serializable;
+
+public class Praying implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private int moment;
+	private String peable;
+	
+	public Praying() {	
+	}
+
+	public Praying(int moment, String peable) {
+		this.moment = moment;
+		this.peable = peable;
+	}
+
+	public int getMoment() {
+		return moment;
+	}
+
+	public void setMoment(int moment) {
+		this.moment = moment;
+	}
+
+	public String getPeable() {
+		return peable;
+	}
+
+	public void setPeable(String peable) {
+		this.peable = peable;
+	}
+	
+		
+}

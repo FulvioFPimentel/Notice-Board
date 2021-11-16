@@ -1,0 +1,16 @@
+package com.bigcrowd.noticeBoard.entities;
+
+import java.util.Date;
+
+public class Meeting {
+
+	private long id;
+	private Canticle canticleNum;
+	private String praying;
+	private String presidency;
+	private Date date;
+	
+	
+	
+	
+}

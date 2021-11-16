@@ -1,0 +1,9 @@
+package com.bigcrowd.noticeBoard.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bigcrowd.noticeBoard.entities.Canticle;
+
+public interface CanticleRepository extends JpaRepository<Canticle, Long> {
+
+}

@@ -1,0 +1,5 @@
+package com.bigcrowd.noticeBoard.controllers;
+
+public class PrayerController {
+
+}

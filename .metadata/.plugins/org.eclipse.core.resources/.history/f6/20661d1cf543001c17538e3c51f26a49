@@ -1,0 +1,68 @@
+package com.bigcrowd.noticeBoard.entities;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Meeting implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+
+	private Date date;
+	private String presidency;
+	
+	
+	private List<Canticle> canticles = new ArrayList<>();
+	
+	private List<Prayer> prayers = new ArrayList<>();
+
+
+	
+	
+	public Meeting() {
+	}
+
+	public Meeting(long id, String presidency, Date date, List<Canticle> canticles, List<Prayer> prayers) {
+
+		this.canticles = canticles;
+		this.prayers = prayers;
+		this.presidency = presidency;
+		this.date = date;
+	}
+
+
+	public List<Canticle> getCanticleNum() {
+		return canticles;
+	}
+
+	public void setCanticleNum(List<Canticle> canticles) {
+		this.canticles = canticles;
+	}
+
+	public List<Prayer> getPraying() {
+		return prayers;
+	}
+
+	public void setPraying(List<Prayer> prayers) {
+		this.prayers = prayers;
+	}
+
+	public String getPresidency() {
+		return presidency;
+	}
+
+	public void setPresidency(String presidency) {
+		this.presidency = presidency;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+		
+	
+}

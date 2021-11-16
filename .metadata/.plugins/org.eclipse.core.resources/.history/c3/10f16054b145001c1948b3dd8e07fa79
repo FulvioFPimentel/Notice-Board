@@ -1,0 +1,43 @@
+package com.bigcrowd.noticeBoard.entities;
+
+public class SubSession {
+	
+	private Long id;
+	private String subSession;
+	
+	private Session session;
+	
+	public SubSession() {
+	}
+
+	public SubSession(Long id, String subSession, Session session) {
+		this.id = id;
+		this.subSession = subSession;
+		this.session = session;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSubSession() {
+		return subSession;
+	}
+
+	public void setSubSession(String subSession) {
+		this.subSession = subSession;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	
+}

@@ -1,0 +1,10 @@
+INSERT INTO tb_meeting (date, presidency) VALUES (25/11/2021, "Leandro Brito");
+INSERT INTO tb_meeting (date, presidency) VALUES (30/11/2021, "Rodrigo Silva");
+
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ("Inicio", "Julio Blecha", 1);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ("Fim", "Edison Rol", 1);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ("Inicio", "Evandro Pereira", 2);
+INSERT INTO tb_prayer (moment, people, meeting_id) VALUES ("Fim", "Messias Pimentel", 2);
+
+INSERT INTO tb_canticle () VALUES ();
+

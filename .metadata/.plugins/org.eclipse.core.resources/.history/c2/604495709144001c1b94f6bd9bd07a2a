@@ -1,0 +1,19 @@
+package com.bigcrowd.noticeBoard.controllers;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.bigcrowd.noticeBoard.controllers.services.PrayerService;
+import com.bigcrowd.noticeBoard.entities.Prayer;
+
+public class PrayerController {
+	
+	private PrayerService prayerService;
+	
+	public ResponseEntity<List<Prayer>> findAll(){
+		List<Prayer> prayers = prayerService.findAll();
+		return ResponseEntity.ok().body(prayers);
+	}
+
+}

@@ -1,0 +1,105 @@
+package com.bigcrowd.noticeBoard.entities;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_meeting")
+public class Meeting implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private Date date;
+	private String presidency;
+	
+	@OneToMany(mappedBy = "meeting")
+	private List<Canticle> canticles = new ArrayList<>();
+	
+	private List<Prayer> prayers = new ArrayList<>();
+
+	public Meeting() {
+	}
+
+	public Meeting(long id, String presidency, Date date, List<Canticle> canticles, List<Prayer> prayers) {
+
+		this.canticles = canticles;
+		this.prayers = prayers;
+		this.presidency = presidency;
+		this.date = date;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Canticle> getCanticles() {
+		return canticles;
+	}
+
+	public void setCanticles(List<Canticle> canticles) {
+		this.canticles = canticles;
+	}
+
+	public List<Prayer> getPrayers() {
+		return prayers;
+	}
+
+	public void setPrayers(List<Prayer> prayers) {
+		this.prayers = prayers;
+	}
+
+	public String getPresidency() {
+		return presidency;
+	}
+
+	public void setPresidency(String presidency) {
+		this.presidency = presidency;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Meeting other = (Meeting) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+		
+	
+}

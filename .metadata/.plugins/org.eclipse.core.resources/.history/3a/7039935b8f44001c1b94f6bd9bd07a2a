@@ -1,0 +1,5 @@
+package com.bigcrowd.noticeBoard.controllers.services;
+
+public class CanticleService {
+
+}

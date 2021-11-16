@@ -1,0 +1,23 @@
+package com.bigcrowd.noticeBoard.controllers.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.bigcrowd.noticeBoard.entities.Prayer;
+import com.bigcrowd.noticeBoard.repositories.PrayerRepository;
+
+@Service
+public class PrayerService {
+	
+	@Autowired
+	private PrayerRepository prayerRepository;
+	
+	@Transactional(readOnly = true)
+	public List<Prayer> findAll() {
+		return prayerRepository.findAll();
+	}
+
+}

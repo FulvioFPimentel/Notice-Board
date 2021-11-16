@@ -1,0 +1,22 @@
+package com.bigcrowd.noticeBoard.controllers.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bigcrowd.noticeBoard.entities.Meeting;
+import com.bigcrowd.noticeBoard.repositories.MeetingRepository;
+
+@Service
+public class MeetingService {
+	
+	@Autowired
+	private MeetingRepository meetingRepository;
+	
+	
+	public List<Meeting> findAll() {
+		return meetingRepository.findAll();
+	}
+
+}

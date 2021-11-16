@@ -1,0 +1,43 @@
+package com.bigcrowd.noticeBoard.entities;
+
+import java.io.Serializable;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class Designation implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
+	private String designation;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "sub_session_id")
+	private SubSession subSession;
+	
+	public Designation() {
+	}
+
+	public Designation(Long id, String designation) {
+		this.id = id;
+		this.designation = designation;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	
+}

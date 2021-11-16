@@ -1,0 +1,36 @@
+package com.bigcrowd.noticeBoard.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bigcrowd.noticeBoard.controllers.services.MeetingService;
+import com.bigcrowd.noticeBoard.dto.MeetingAllDataDTO;
+import com.bigcrowd.noticeBoard.dto.MeetingDTO;
+
+@RestController
+@RequestMapping(value = "/meetings")
+public class MeetingController {
+	
+	@Autowired
+	private MeetingService meetingService;
+	
+	@GetMapping
+	public ResponseEntity<List<MeetingDTO>> findAll() {
+		List<MeetingDTO> meetings = meetingService.findAll();
+		return ResponseEntity.ok().body(meetings);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<MeetingAllDataDTO> findToDate(@PathVariable Long id){
+		MeetingAllDataDTO meeting = meetingService.findById(id);
+		return ResponseEntity.ok().body(meeting);
+		
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.bigcrowd.noticeBoard.controllers.services;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.bigcrowd.noticeBoard.entities.Meeting;
+import com.bigcrowd.noticeBoard.repositories.MeetingRepository;
+
+public class MeetingService {
+	
+	private MeetingRepository meetingRepository;
+	
+	public List<Meeting> findAll() {
+		List<Meeting> entities = meetingRepository.findAll();
+		return entities.stream().map(x -> new Meeting(x)).collect(Collectors.toList());
+	}
+
+}

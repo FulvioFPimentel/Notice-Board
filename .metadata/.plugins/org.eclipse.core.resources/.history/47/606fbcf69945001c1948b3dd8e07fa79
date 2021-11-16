@@ -1,0 +1,32 @@
+package com.bigcrowd.noticeBoard.dto;
+
+public class SessionDTO {
+	
+	private Long id;
+	private String sessionName;
+	
+	public SessionDTO() {
+	}
+	
+	public SessionDTO(Long id, String sessionName) {
+		this.id = id;
+		this.sessionName = sessionName;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSessionName() {
+		return sessionName;
+	}
+
+	public void setSessionName(String sessionName) {
+		this.sessionName = sessionName;
+	}
+	
+}
