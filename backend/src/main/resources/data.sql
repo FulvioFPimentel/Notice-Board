@@ -1,3 +1,24 @@
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Osvaldo', '18-98814-2547', '123456');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Leandro Brito', '18-98813-1487', '456789gp');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Rodrigo Silva', '18-98813-1585', '456789rs');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Messias Pimentel', '18-98813-8547', '456789mp');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Nair Pimentel', '18-98813-7412', '456789np');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Benedito Militão', '18-98813-9658', '456789bm');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Maria Jose', '18-98813-2255', '456789mj');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Eva Calicito', '18-98813-5847', '456789ev');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Vilma Brito', '18-98813-1254', '456789vb');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Valeria Rocha', '18-98813-2547', '456789vr');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Poliane Gato', '18-98813-5841', '456789pg');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Julio Blecha', '18-98813-3321', '456789jb');
+
+INSERT INTO tb_role (privilege) VALUES ('ROLE_OPERATOR');
+INSERT INTO tb_role (privilege) VALUES ('ROLE_ADMIN');
+
+INSERT INTO tb_person_role (person_id, role_id) VALUES (1, 1);
+INSERT INTO tb_person_role (person_id, role_id) VALUES (2, 2);
+INSERT INTO tb_person_role (person_id, role_id) VALUES (3, 2);
+INSERT INTO tb_person_role (person_id, role_id) VALUES (4, 2);
+
 INSERT INTO tb_meeting (date, presidency) VALUES (TIMESTAMP WITH TIME ZONE '2021-11-25', 'Leandro Brito');
 INSERT INTO tb_meeting (date, presidency) VALUES (TIMESTAMP WITH TIME ZONE '2021-11-30', 'Rodrigo Silva');
 
@@ -21,19 +42,6 @@ INSERT INTO tb_subsession (sub_session, session_id) VALUES ('Estudo bíblico', 2
 INSERT INTO tb_subsession (sub_session, session_id) VALUES ('Tome cuidado com as más companhias no trabalho', 3);
 INSERT INTO tb_subsession (sub_session, session_id) VALUES ('Encontre amigos onde menos espera', 3);
 INSERT INTO tb_subsession (sub_session, session_id) VALUES ('Estudo bíblico de congregação', 3);
-
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Osvaldo','Servo Ministerial', '18-98814-2547', '123456');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Leandro Brito','Ancião', '18-98813-1487', '456789gp');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Rodrigo Silva','Ancião', '18-98813-1585', '456789rs');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Messias Pimentel','Ancião', '18-98813-8547', '456789mp');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Nair Pimentel','Pioneira', '18-98813-7412', '456789np');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Benedito Militão','Servo Ministerial', '18-98813-9658', '456789bm');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Maria Jose','Pioneira', '18-98813-2255', '456789mj');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Eva Calicito','Pioneira', '18-98813-5847', '456789ev');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Vilma Brito','Pioneira', '18-98813-1254', '456789vb');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Valeria Rocha','Pioneira', '18-98813-2547', '456789vr');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Poliane Gato','Pioneira', '18-98813-5841', '456789pg');
-INSERT INTO tb_person (name, privilege, cell_phone, password) VALUES ('Julio Blecha','Pioneira', '18-98813-3321', '456789jb');
 
 INSERT INTO tb_subsession_person (subsession_id, person_id) VALUES (1, 1);
 INSERT INTO tb_subsession_person (subsession_id, person_id) VALUES (2, 6);

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bigcrowd.noticeBoard.controllers.services.PrayerService;
 import com.bigcrowd.noticeBoard.dto.PrayerDTO;
+import com.bigcrowd.noticeBoard.services.PrayerService;
 
 @RestController
 @RequestMapping(value = "/prayers")

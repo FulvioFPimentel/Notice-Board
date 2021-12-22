@@ -1,4 +1,0 @@
-spring.profiles.active=test
-
-spring.jpa.open-in-view=false
-spring.jpa.defer-datasource-initialization=true

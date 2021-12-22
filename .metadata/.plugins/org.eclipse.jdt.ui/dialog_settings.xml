@@ -32,9 +32,9 @@
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
 		<item key="DIALOG_X_ORIGIN" value="710"/>
 		<item key="DIALOG_Y_ORIGIN" value="76"/>
-		<item key="DIALOG_WIDTH" value="517"/>
-		<item key="DIALOG_HEIGHT" value="678"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_WIDTH" value="678"/>
+		<item key="DIALOG_HEIGHT" value="869"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="SourceActionDialog.methods">
 		<item key="VisibilityModifier" value="1"/>
@@ -52,9 +52,9 @@
 	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
 		<item key="DIALOG_X_ORIGIN" value="705"/>
 		<item key="DIALOG_Y_ORIGIN" value="64"/>
-		<item key="DIALOG_WIDTH" value="526"/>
-		<item key="DIALOG_HEIGHT" value="696"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_WIDTH" value="678"/>
+		<item key="DIALOG_HEIGHT" value="889"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="RefactoringWizard.preview">
 		<item key="width" value="600"/>
@@ -66,6 +66,7 @@
 		<item key="updateTextualMatches" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
+		<item key="renameSubpackages" value="true"/>
 	</section>
 	<section name="DialogBounds_GenerateHashCodeEqualsDialog">
 		<item key="DIALOG_X_ORIGIN" value="710"/>
@@ -73,5 +74,23 @@
 		<item key="DIALOG_WIDTH" value="516"/>
 		<item key="DIALOG_HEIGHT" value="594"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="DialogBounds_AddDelegateMethodsDialog">
+		<item key="DIALOG_X_ORIGIN" value="695"/>
+		<item key="DIALOG_Y_ORIGIN" value="159"/>
+		<item key="DIALOG_WIDTH" value="546"/>
+		<item key="DIALOG_HEIGHT" value="554"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="ProblemSeveritiesConfigurationBlock">
+		<item key="expanded0" value="false"/>
+		<item key="expanded1" value="false"/>
+		<item key="expanded2" value="false"/>
+		<item key="expanded3" value="true"/>
+		<item key="expanded4" value="false"/>
+		<item key="expanded5" value="false"/>
+		<item key="expanded6" value="false"/>
+		<item key="expanded7" value="false"/>
+		<item key="expanded8" value="false"/>
 	</section>
 </section>

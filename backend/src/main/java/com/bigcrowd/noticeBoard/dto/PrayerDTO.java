@@ -11,7 +11,7 @@ public class PrayerDTO implements Serializable {
 	private Long id;
 	private String moment;
 	
-	private PersonDTO person;
+	private String person;
 	
 	public PrayerDTO() {
 	}
@@ -21,9 +21,10 @@ public class PrayerDTO implements Serializable {
 		this.moment = moment;
 	}
 	
-	public PrayerDTO(Prayer prayers) {
+	public PrayerDTO(Prayer prayers, Person person) {
 		this.id = prayers.getId();
 		this.moment = prayers.getMoment();
+		this.person = person.getName();
 	}
 	
 	public Long getId() {
@@ -42,11 +43,11 @@ public class PrayerDTO implements Serializable {
 		this.moment = moment;
 	}
 
-	public PersonDTO getPerson() {
+	public String getPerson() {
 		return person;
 	}
 
-	public void setPerson(PersonDTO person) {
+	public void setPerson(String person) {
 		this.person = person;
 	}
 }

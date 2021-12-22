@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bigcrowd.noticeBoard.controllers.services.CanticleService;
 import com.bigcrowd.noticeBoard.dto.CanticleDTO;
+import com.bigcrowd.noticeBoard.services.CanticleService;
 
 @RestController
 @RequestMapping(value = "/canticles")

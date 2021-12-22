@@ -17,9 +17,7 @@ public class MeetingAllDataDTO {
 	private String presidency;
 	
 	private List<CanticleDTO> canticles = new ArrayList<>();
-	
 	private List<PrayerDTO> prayers = new ArrayList<>();
-	
 	private List<SessionDTO> sessions = new ArrayList<>();
 	
 	public MeetingAllDataDTO() {
@@ -40,10 +38,8 @@ public class MeetingAllDataDTO {
 	public MeetingAllDataDTO(Meeting meeting, List<Canticle> canticles, List<Prayer> prayers, List<Session> sessions) {
 		this(meeting);		
 		canticles.forEach(x -> 	this.canticles.add(new CanticleDTO(x)));
-		prayers.forEach(x -> this.prayers.add(new PrayerDTO(x)));
+		prayers.forEach(x -> this.prayers.add(new PrayerDTO(x, x.getPerson())));
 		sessions.forEach(x -> this.sessions.add(new SessionDTO(x, x.getSubSessions())));
-	
-		
 	}
 	
 	public Long getId() {
