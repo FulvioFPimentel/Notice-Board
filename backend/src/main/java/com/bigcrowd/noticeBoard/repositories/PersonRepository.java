@@ -8,6 +8,8 @@ import com.bigcrowd.noticeBoard.entities.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 	
+	
+	
 	Person findByName(String name);
 
 }

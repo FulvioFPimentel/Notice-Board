@@ -28,8 +28,8 @@ public class SubSession implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "session_id")
 	private Session session;
-	
-	@ManyToMany
+		
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_subsession_person",
 		joinColumns = @JoinColumn(name = "subsession_id"), 
 		inverseJoinColumns = @JoinColumn(name = "person_id"))
@@ -64,9 +64,6 @@ public class SubSession implements Serializable {
 		return session;
 	}
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
 
 	public List<Person> getPersons() {
 		return persons;

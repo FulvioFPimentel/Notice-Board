@@ -43,7 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		
-		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
+		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {			
 			http.headers().frameOptions().disable();
 		}
 		

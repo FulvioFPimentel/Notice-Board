@@ -57,6 +57,10 @@ public class Session implements Serializable {
 
 	public List<SubSession> getSubSessions() {
 		return SubSessions;
-	}	
-	
+	}
+
+	public Meeting getMeetings() {
+		return meeting;
+	}
+		
 }

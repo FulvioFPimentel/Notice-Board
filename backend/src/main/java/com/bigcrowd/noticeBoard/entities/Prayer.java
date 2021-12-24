@@ -71,6 +71,4 @@ public class Prayer implements Serializable{
 		this.meeting = meeting;
 	}
 	
-	
-	
 }

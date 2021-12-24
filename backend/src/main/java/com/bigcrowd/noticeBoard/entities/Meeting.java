@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,6 +36,9 @@ public class Meeting implements Serializable {
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Session> sessions = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "meeting")
+	private List<Designation> designations = new ArrayList<>();
 
 	public Meeting() {
 	}
@@ -79,6 +83,10 @@ public class Meeting implements Serializable {
 	
 	public List<Session> getSessions() {
 		return sessions;
+	}
+	
+	public List<Designation> getDesignations() {
+		return designations;
 	}
 
 	@Override
