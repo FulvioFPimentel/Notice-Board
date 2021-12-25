@@ -34,9 +34,10 @@ public class Session implements Serializable {
 	public Session() {
 	}
 
-	public Session(Long id, String session) {
+	public Session(Long id, String session, Meeting meeting) {
 		this.id = id;
 		this.session = session;
+		this.meeting = meeting;
 	}
 
 	public Long getId() {
@@ -61,6 +62,10 @@ public class Session implements Serializable {
 
 	public Meeting getMeetings() {
 		return meeting;
+	}
+	
+	public void setMeetings(Meeting meeting) {
+		this.meeting = meeting;
 	}
 		
 }

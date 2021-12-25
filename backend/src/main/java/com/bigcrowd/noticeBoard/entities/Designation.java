@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +25,9 @@ public class Designation implements Serializable{
 	private Long id;
 	private String designation;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "meeting_id")
-	private Meeting meeting;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "subsession_id")
+	private SubSession subsession;
 		
 	@ManyToMany
 	@JoinTable(name = "tb_designation_person",
@@ -38,9 +38,10 @@ public class Designation implements Serializable{
 	public Designation() {
 	}
 
-	public Designation(Long id, String designation) {
+	public Designation(Long id, String designation, SubSession subsession) {
 		this.id = id;
 		this.designation = designation;
+		this.subsession = subsession;
 	}
 
 	public Long getId() {
@@ -63,8 +64,16 @@ public class Designation implements Serializable{
 		return persons;
 	}
 	
-	public Meeting getMeeting() {
-		return meeting;
+	public SubSession getMeeting() {
+		return subsession;
+	}
+	
+	public SubSession getSubsession() {
+		return subsession;
+	}
+
+	public void setSubsession(SubSession subsession) {
+		this.subsession = subsession;
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bigcrowd.noticeBoard.entities.Person;
+import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.SubSession;
 
 public class SubSessionDTO implements Serializable {
@@ -13,7 +13,7 @@ public class SubSessionDTO implements Serializable {
 	private Long id;
 	private String subSession;
 	
-	private List<PersonDTO> persons = new ArrayList<>(); 
+	private List<DesignationDTO> designations = new ArrayList<>(); 
 
 	public SubSessionDTO() {
 	}
@@ -23,10 +23,10 @@ public class SubSessionDTO implements Serializable {
 		this.subSession = subSession;
 	}
 	
-	public SubSessionDTO(SubSession subSessions, List<Person> persons) {
+	public SubSessionDTO(SubSession subSessions, List<Designation> designations) {
 		this.id = subSessions.getId();
 		this.subSession = subSessions.getSubSession();
-		persons.forEach(x -> this.persons.add(new PersonDTO(x)));
+		designations.forEach(x -> this.designations.add(new DesignationDTO(x, x.getPersons())));
 	}
 
 	public Long getId() {
@@ -45,8 +45,8 @@ public class SubSessionDTO implements Serializable {
 		this.subSession = subSession;
 	}
 
-	public List<PersonDTO> getPersons() {
-		return persons;
+	public List<DesignationDTO> getDesignations() {
+		return designations;
 	}
 	
 }

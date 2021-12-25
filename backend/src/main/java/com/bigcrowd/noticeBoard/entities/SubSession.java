@@ -10,9 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,13 +27,10 @@ public class SubSession implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "session_id")
 	private Session session;
-		
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_subsession_person",
-		joinColumns = @JoinColumn(name = "subsession_id"), 
-		inverseJoinColumns = @JoinColumn(name = "person_id"))
-	private List<Person> persons = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "subsession")
+	private List<Designation> designations = new ArrayList<>();
+		
 	public SubSession() {
 	}
 
@@ -64,9 +60,12 @@ public class SubSession implements Serializable {
 		return session;
 	}
 
+	public void setSession(Session session) {
+		this.session = session;
+	}
 
-	public List<Person> getPersons() {
-		return persons;
+	public List<Designation> getDesignations() {
+		return designations;
 	}
 	
 }

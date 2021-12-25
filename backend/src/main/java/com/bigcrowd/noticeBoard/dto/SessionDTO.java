@@ -13,7 +13,7 @@ public class SessionDTO implements Serializable{
 	private Long id;
 	private String session;
 	
-	private List<SubSessionDTO> SubSession = new ArrayList<>();
+	private List<SubSessionDTO> subSession = new ArrayList<>();
 	
 	public SessionDTO() {
 	}
@@ -23,10 +23,10 @@ public class SessionDTO implements Serializable{
 		this.session = session;
 	}
 	
-	public SessionDTO(Session sessions, List<SubSession> SubSession) {
+	public SessionDTO(Session sessions, List<SubSession> subSession) {
 		this.id = sessions.getId();
 		this.session = sessions.getSession();
-		SubSession.forEach(x -> this.SubSession.add(new SubSessionDTO(x, x.getPersons())));		
+		subSession.forEach(x -> this.subSession.add(new SubSessionDTO(x, x.getDesignations())));		
 	}
 	
 	public Long getId() {
@@ -46,11 +46,7 @@ public class SessionDTO implements Serializable{
 	}
 
 	public List<SubSessionDTO> getSubSession() {
-		return SubSession;
-	}
-
-	public void setSubSession(List<SubSessionDTO> subSession) {
-		SubSession = subSession;
+		return subSession;
 	}
 	
 }

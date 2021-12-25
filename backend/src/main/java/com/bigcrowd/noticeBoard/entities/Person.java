@@ -34,10 +34,7 @@ public class Person implements UserDetails, Serializable {
 	private String name;
 	private String cellPhone;
 	private String password;
-	
-	@ManyToMany(mappedBy = "persons")
-	private List<SubSession> subSessions = new ArrayList<>();
-	
+		
 	@ManyToMany(mappedBy = "persons")
 	private List<Designation> designations = new ArrayList<>();
 	
