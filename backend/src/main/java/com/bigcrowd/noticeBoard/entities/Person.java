@@ -38,6 +38,9 @@ public class Person implements UserDetails, Serializable {
 	@ManyToMany(mappedBy = "persons")
 	private List<Designation> designations = new ArrayList<>();
 	
+	@ManyToMany(mappedBy = "persons")
+	private Set<Support> supports = new HashSet<>();
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_person_role",
 		joinColumns = @JoinColumn(name = "person_id"),
@@ -45,6 +48,11 @@ public class Person implements UserDetails, Serializable {
 	private Set<Role> roles = new HashSet<>();
 	
 	public Person() {
+	}
+	
+	public Person(Long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public Person(Long id, String name, String cellPhone, String password) {
@@ -88,6 +96,10 @@ public class Person implements UserDetails, Serializable {
 	
 	public List<Designation> getDesignations() {
 		return designations;
+	}
+
+	public Set<Support> getSupports() {
+		return supports;
 	}
 
 	@Override

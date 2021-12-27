@@ -22,9 +22,10 @@ public class MeetingDTO implements Serializable{
 	}
 	
 	public MeetingDTO(Meeting meeting) {
-		this.id = meeting.getId();
-		this.date = meeting.getDate();
-		this.presidency = meeting.getPresidency();
+		id = meeting.getId();
+		date = meeting.getDate();
+		presidency = meeting.getPresidency().getName();
+		
 	}
 
 	public Long getId() {

@@ -32,7 +32,6 @@ public class MeetingAllDataDTO {
 	public MeetingAllDataDTO(Meeting meeting) {
 		this.id = meeting.getId();
 		this.date = meeting.getDate();
-		this.presidency = meeting.getPresidency();
 	}
 	
 	public MeetingAllDataDTO(Meeting meeting, List<Canticle> canticles, List<Prayer> prayers, List<Session> sessions) {

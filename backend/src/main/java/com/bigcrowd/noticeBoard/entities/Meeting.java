@@ -5,12 +5,16 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -25,7 +29,12 @@ public class Meeting implements Serializable {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
-	private String presidency;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "tb_meeting_presidency",
+		joinColumns = @JoinColumn(name = "meeting_id", referencedColumnName = "id"),
+		inverseJoinColumns = @JoinColumn(name = "presidency_id", referencedColumnName = "id"))
+	private Presidency presidency;
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Canticle> canticles = new ArrayList<>();
@@ -36,12 +45,13 @@ public class Meeting implements Serializable {
 	@OneToMany(mappedBy = "meeting")
 	private List<Session> sessions = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "meeting")
+	private List<Support> supports = new ArrayList<>();
+	
 	public Meeting() {
 	}
 
-	public Meeting(Long id, String presidency, Instant date) {
-
-		this.presidency = presidency;
+	public Meeting(Long id, Instant date) {
 		this.date = date;
 	}
 
@@ -51,14 +61,6 @@ public class Meeting implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getPresidency() {
-		return presidency;
-	}
-
-	public void setPresidency(String presidency) {
-		this.presidency = presidency;
 	}
 
 	public Instant getDate() {
@@ -81,6 +83,14 @@ public class Meeting implements Serializable {
 		return sessions;
 	}
 	
+	public Presidency getPresidency() {
+		return presidency;
+	}
+
+	public List<Support> getSupports() {
+		return supports;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

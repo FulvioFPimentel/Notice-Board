@@ -1,8 +1,8 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,39 +13,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_designation")
-public class Designation implements Serializable{
+@Table(name = "tb_support")
+public class Support implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String designation;
+	private String work;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "subsession_id")
-	private SubSession subsession;
+	@JoinColumn(name = "meeting_id")
+	private Meeting meeting;
 	
-	@OneToOne(mappedBy = "designation")
-	private Presidency presidency;
-		
 	@ManyToMany
-	@JoinTable(name = "tb_designation_person",
-		joinColumns = @JoinColumn(name = "designation_id"), 
+	@JoinTable(name = "tb_support_person",
+		joinColumns = @JoinColumn(name = "support_id"), 
 		inverseJoinColumns = @JoinColumn(name = "person_id"))
-	private List<Person> persons = new ArrayList<>();
+	private Set<Person> persons = new HashSet<>();
 	
-	public Designation() {
+	public Support() {
 	}
-
-	public Designation(Long id, String designation, SubSession subsession) {
+	
+	public Support (Long id, String work, Meeting meeting, Set<Person> persons) {
 		this.id = id;
-		this.designation = designation;
-		this.subsession = subsession;
+		this.work = work;
+		this.meeting = meeting;
+		this.persons = persons;
 	}
 
 	public Long getId() {
@@ -56,29 +53,27 @@ public class Designation implements Serializable{
 		this.id = id;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public String getWork() {
+		return work;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setWork(String work) {
+		this.work = work;
 	}
 
-	public List<Person> getPersons() {
+	public Meeting getMeeting() {
+		return meeting;
+	}
+
+	public void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
+	}
+
+	public Set<Person> getPersons() {
 		return persons;
 	}
 	
-	public SubSession getMeeting() {
-		return subsession;
-	}
 	
-	public SubSession getSubsession() {
-		return subsession;
-	}
-
-	public void setSubsession(SubSession subsession) {
-		this.subsession = subsession;
-	}
 
 	@Override
 	public int hashCode() {
@@ -96,7 +91,7 @@ public class Designation implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Designation other = (Designation) obj;
+		Support other = (Support) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -104,5 +99,5 @@ public class Designation implements Serializable{
 			return false;
 		return true;
 	}
-		
+
 }

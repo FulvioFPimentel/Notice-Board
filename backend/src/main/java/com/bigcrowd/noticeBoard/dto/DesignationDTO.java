@@ -19,6 +19,11 @@ public class DesignationDTO {
 		this.persons = persons;
 	}
 	
+	public DesignationDTO(Designation designation) {
+		this.id = designation.getId();
+		this.designation = designation.getDesignation();
+	}
+	
 	public DesignationDTO(Designation designation, List<Person> persons) {
 		this.id = designation.getId();
 		this.designation = designation.getDesignation();
