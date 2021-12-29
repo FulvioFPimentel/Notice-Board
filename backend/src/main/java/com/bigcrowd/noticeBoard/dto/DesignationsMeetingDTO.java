@@ -9,11 +9,11 @@ public class DesignationsMeetingDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private String designation;
-	
 	private Instant date;
 	private String session;
 	private String subSession;
+	
+	private String designation;
 	
 	public DesignationsMeetingDTO(Long id, String designation, Instant date, String session, String subSession) {
 		this.id = id;

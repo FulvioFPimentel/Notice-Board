@@ -40,5 +40,12 @@ public class MeetingService {
 		Meeting entity = meeting.orElseThrow(() -> new NullPointerException("Entity not Found"));
 		return new MeetingAllDataDTO(entity, entity.getCanticles(), entity.getPrayers(), entity.getSessions());
 	}
+	
+	public MeetingDTO insert(MeetingDTO dto) {
+		Meeting meeting = new Meeting();
+		meeting.setDate(dto.getDate());
+		meeting = meetingRepository.save(meeting);
+		return new MeetingDTO(meeting);
+	}
 
 }

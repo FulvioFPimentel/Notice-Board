@@ -10,21 +10,18 @@ public class MeetingDTO implements Serializable{
 	
 	private Long id;
 	private Instant date;
-	private String presidency;
 	
 	public MeetingDTO() {
 	}
 
-	public MeetingDTO(Long id, Instant date, String presidency) {
+	public MeetingDTO(Long id, Instant date) {
 		this.id = id;
 		this.date = date;
-		this.presidency = presidency;
 	}
 	
 	public MeetingDTO(Meeting meeting) {
 		id = meeting.getId();
 		date = meeting.getDate();
-		presidency = meeting.getPresidency().getName();
 		
 	}
 
@@ -42,14 +39,6 @@ public class MeetingDTO implements Serializable{
 
 	public void setDate(Instant date) {
 		this.date = date;
-	}
-
-	public String getPresidency() {
-		return presidency;
-	}
-
-	public void setPresidency(String presidency) {
-		this.presidency = presidency;
 	}
 	
 }
