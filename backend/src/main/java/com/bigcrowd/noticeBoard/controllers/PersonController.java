@@ -25,11 +25,12 @@ public class PersonController {
 		PersonSupportsDTO persons = personService.findSupportById(id);
 		return ResponseEntity.ok().body(persons);
 	}
-	
+		
 	@GetMapping(value = "/{id}/designations")
 	public ResponseEntity<PersonDesignationDTO> findDesignationById(@PathVariable Long id) throws NotFoundException {
 		PersonDesignationDTO persons = personService.findDesignationById(id);
 		return ResponseEntity.ok().body(persons);
 	}
+
 
 }

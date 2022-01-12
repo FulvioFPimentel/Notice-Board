@@ -3,9 +3,10 @@ package com.bigcrowd.noticeBoard.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,17 +32,17 @@ public class Meeting implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "tb_meeting_presidency",
-		joinColumns = @JoinColumn(name = "meeting_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name = "presidency_id", referencedColumnName = "id"))
+	@OneToOne(mappedBy = "meeting")
 	private Presidency presidency;
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Canticle> canticles = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "meeting")
-	private List<Prayer> prayers = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "tb_meeting_prayer", 
+		joinColumns = @JoinColumn(name = "meeting_id"), 
+		inverseJoinColumns = @JoinColumn(name = "prayer_id"))
+	private Set<Prayer> prayers = new HashSet<>();
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Session> sessions = new ArrayList<>();
@@ -51,8 +53,10 @@ public class Meeting implements Serializable {
 	public Meeting() {
 	}
 
-	public Meeting(Long id, Instant date) {
+	public Meeting(Long id, Instant date, Presidency presidency) {
+		this.id = id;
 		this.date = date;
+		this.presidency = presidency;
 	}
 
 	public Long getId() {
@@ -75,7 +79,7 @@ public class Meeting implements Serializable {
 		return canticles;
 	}
 
-	public List<Prayer> getPrayers() {
+	public Set<Prayer> getPrayers() {
 		return prayers;
 	}
 	
@@ -86,11 +90,15 @@ public class Meeting implements Serializable {
 	public Presidency getPresidency() {
 		return presidency;
 	}
+	
+	public void setPresidency(Presidency presidency) {
+		this.presidency = presidency;
+	}
 
 	public List<Support> getSupports() {
 		return supports;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

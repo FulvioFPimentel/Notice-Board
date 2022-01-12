@@ -1,24 +1,22 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_designation")
-public class Designation implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Designation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,25 +25,15 @@ public class Designation implements Serializable{
 	private String designation;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "subsession_id")
-	private SubSession subsession;
-	
-	@OneToOne(mappedBy = "designation")
-	private Presidency presidency;
+	@JoinColumn(name = "person_id")
+	private Person person;
 		
-	@ManyToMany
-	@JoinTable(name = "tb_designation_person",
-		joinColumns = @JoinColumn(name = "designation_id"), 
-		inverseJoinColumns = @JoinColumn(name = "person_id"))
-	private List<Person> persons = new ArrayList<>();
-	
 	public Designation() {
 	}
 
-	public Designation(Long id, String designation, SubSession subsession) {
+	public Designation(Long id, String designation) {
 		this.id = id;
 		this.designation = designation;
-		this.subsession = subsession;
 	}
 
 	public Long getId() {
@@ -56,28 +44,20 @@ public class Designation implements Serializable{
 		this.id = id;
 	}
 
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 	public String getDesignation() {
 		return designation;
 	}
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
-	}
-
-	public List<Person> getPersons() {
-		return persons;
-	}
-	
-	public SubSession getMeeting() {
-		return subsession;
-	}
-	
-	public SubSession getSubsession() {
-		return subsession;
-	}
-
-	public void setSubsession(SubSession subsession) {
-		this.subsession = subsession;
 	}
 
 	@Override

@@ -26,7 +26,16 @@ public class PersonService implements UserDetailsService {
 	
 	@Autowired
 	private PersonRepository personRepository;
-
+	/*
+	@Autowired
+	private PrayerRepository prayerRepository;
+	
+	@Autowired
+	private PresidencyRepository presidencyRepository;
+	
+	@Autowired
+	private ParticipantRepository participantRepository;
+*/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Person person = personRepository.findByName(username);
@@ -45,10 +54,10 @@ public class PersonService implements UserDetailsService {
 		return new PersonSupportsDTO(persons, persons.getSupports());
 	}
 	
+	@Transactional(readOnly = true)
 	public PersonDesignationDTO findDesignationById(Long id) throws NotFoundException {
 		Optional<Person> obj = personRepository.findDesignationById(id);
 		Person persons = obj.orElseThrow(() -> new NotFoundException("Entity not found"));
-		return new PersonDesignationDTO(persons, persons.getDesignations());
+		return new PersonDesignationDTO(persons, persons.getDesignations());	
 	}
-		
 }

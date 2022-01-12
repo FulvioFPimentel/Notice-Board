@@ -13,22 +13,19 @@ public class PersonDesignationDTO implements Serializable {
 	private Long id;
 	private String name;
 	
-	private List<DesignationsMeetingDTO> designations = new ArrayList<>();
-	
-	public PersonDesignationDTO() {}
+	private List<DesignationsMeetingDTO> designation = new ArrayList<>();
 
-	public PersonDesignationDTO(Long id, String name, List<DesignationsMeetingDTO> designations) {
+	public PersonDesignationDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
-		this.designations = designations;
 	}
 	
-	public PersonDesignationDTO(Person person, List<Designation> designations) {
+	public PersonDesignationDTO(Person person, List<Designation> designation) {
 		id = person.getId();
 		name = person.getName();
-		designations.forEach(x -> this.designations.add(new DesignationsMeetingDTO(x)));
+		designation.forEach(x -> this.designation.add(new DesignationsMeetingDTO(x)));
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -45,12 +42,8 @@ public class PersonDesignationDTO implements Serializable {
 		this.name = name;
 	}
 
-	public List<DesignationsMeetingDTO> getDesignations() {
-		return designations;
+	public List<DesignationsMeetingDTO> getDesignation() {
+		return designation;
 	}
-
-	public void setDesignations(List<DesignationsMeetingDTO> designations) {
-		this.designations = designations;
-	}	
 
 }

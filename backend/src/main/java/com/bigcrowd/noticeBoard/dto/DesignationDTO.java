@@ -1,22 +1,18 @@
 package com.bigcrowd.noticeBoard.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 import com.bigcrowd.noticeBoard.entities.Designation;
-import com.bigcrowd.noticeBoard.entities.Person;
 
-public class DesignationDTO {
+public abstract class DesignationDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String designation;
 		
-	private List<PersonDTO> persons = new ArrayList<>();
-
-	public DesignationDTO(Long id, String designation, List<PersonDTO> persons) {
+	public DesignationDTO(Long id, String list) {
 		this.id = id;
-		this.designation = designation;
-		this.persons = persons;
+		this.designation = list;
 	}
 	
 	public DesignationDTO(Designation designation) {
@@ -24,12 +20,6 @@ public class DesignationDTO {
 		this.designation = designation.getDesignation();
 	}
 	
-	public DesignationDTO(Designation designation, List<Person> persons) {
-		this.id = designation.getId();
-		this.designation = designation.getDesignation();
-		persons.forEach(x -> this.persons.add(new PersonDTO(x)));
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -44,10 +34,6 @@ public class DesignationDTO {
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
-	}
-
-	public List<PersonDTO> getPersons() {
-		return persons;
 	}
 
 }

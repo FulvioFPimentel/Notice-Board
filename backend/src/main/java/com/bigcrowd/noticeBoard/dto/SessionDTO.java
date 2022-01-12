@@ -26,7 +26,7 @@ public class SessionDTO implements Serializable{
 	public SessionDTO(Session sessions, List<SubSession> subSession) {
 		this.id = sessions.getId();
 		this.session = sessions.getSession();
-		subSession.forEach(x -> this.subSession.add(new SubSessionDTO(x, x.getDesignations())));		
+		subSession.forEach(x -> this.subSession.add(new SubSessionDTO(x, x.getParticipants())));
 	}
 	
 	public Long getId() {

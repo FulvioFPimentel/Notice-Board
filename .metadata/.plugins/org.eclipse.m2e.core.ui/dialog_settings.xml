@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\workspaces\JW_Workspace\noticeBoard"/>
 			<item value="C:\workspaces\WorkspaceJW\noticeBoard\backend"/>
 		</list>
 		<list key="projectNameTemplate">

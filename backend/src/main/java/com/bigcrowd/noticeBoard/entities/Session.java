@@ -60,12 +60,12 @@ public class Session implements Serializable {
 		return SubSessions;
 	}
 
-	public Meeting getMeetings() {
+	public Meeting getMeeting() {
 		return meeting;
 	}
-	
-	public void setMeetings(Meeting meeting) {
+
+	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
 	}
-		
+
 }

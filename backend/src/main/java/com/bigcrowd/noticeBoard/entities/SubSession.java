@@ -23,18 +23,18 @@ public class SubSession implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String subSession;
-	
+		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "session_id")
 	private Session session;
 	
 	@OneToMany(mappedBy = "subsession")
-	private List<Designation> designations = new ArrayList<>();
+	private List<Participant> participants = new ArrayList<>();
 		
 	public SubSession() {
 	}
 
-	public SubSession(Long id, String subSession, Session session) {
+	public SubSession(Long id, String subSession, Meeting meeting, Session session) {
 		this.id = id;
 		this.subSession = subSession;
 		this.session = session;
@@ -64,8 +64,10 @@ public class SubSession implements Serializable {
 		this.session = session;
 	}
 
-	public List<Designation> getDesignations() {
-		return designations;
+	public List<Participant> getParticipants() {
+		return participants;
 	}
+	
+	
 	
 }

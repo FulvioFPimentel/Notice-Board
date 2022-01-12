@@ -20,5 +20,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	@Query("SELECT obj FROM Person obj JOIN FETCH obj.designations WHERE obj.id = :id")
 	Optional<Person> findDesignationById(Long id);
-
+		
 }

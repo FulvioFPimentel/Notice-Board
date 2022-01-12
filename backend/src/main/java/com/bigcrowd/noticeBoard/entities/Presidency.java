@@ -1,51 +1,33 @@
 package com.bigcrowd.noticeBoard.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_presidency")
-public class Presidency implements Serializable{
+public class Presidency extends Designation {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
-	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "designation_id", referencedColumnName = "id")
-	private Designation designation;
-	
-	@OneToOne(mappedBy = "presidency")
+	@JoinColumn(name = "meeting_id", referencedColumnName = "id")
 	private Meeting meeting;
-	
+		
 	public Presidency() {}
-	
-	public Presidency(Long id, String name) {
-		this.id = id;
-		this.name = name;
+
+	public Presidency(Long id, String designation, Meeting meeting) {
+		super(id, designation);
+		this.meeting = meeting;
 	}
-	
-	public Long getId() {
-		return id;
+
+	public Meeting getMeeting() {
+		return meeting;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setMeeting(Meeting meeting) {
+		this.meeting = meeting;
 	}
 
 }

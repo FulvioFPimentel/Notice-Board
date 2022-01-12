@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -34,8 +35,8 @@ public class Person implements UserDetails, Serializable {
 	private String name;
 	private String cellPhone;
 	private String password;
-		
-	@ManyToMany(mappedBy = "persons")
+			
+	@OneToMany(mappedBy = "person")
 	private List<Designation> designations = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "persons")
@@ -94,12 +95,16 @@ public class Person implements UserDetails, Serializable {
 		this.password = password;
 	}
 	
+	public Set<Support> getSupports() {
+		return supports;
+	}
+
 	public List<Designation> getDesignations() {
 		return designations;
 	}
 
-	public Set<Support> getSupports() {
-		return supports;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 	@Override

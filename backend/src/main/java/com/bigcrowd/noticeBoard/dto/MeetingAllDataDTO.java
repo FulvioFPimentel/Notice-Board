@@ -2,7 +2,9 @@ package com.bigcrowd.noticeBoard.dto;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.bigcrowd.noticeBoard.entities.Canticle;
 import com.bigcrowd.noticeBoard.entities.Meeting;
@@ -11,19 +13,18 @@ import com.bigcrowd.noticeBoard.entities.Session;
 
 public class MeetingAllDataDTO {
 	
-	
 	private Long id;
 	private Instant date;
 	private String presidency;
 	
 	private List<CanticleDTO> canticles = new ArrayList<>();
-	private List<PrayerDTO> prayers = new ArrayList<>();
+	private Set<PrayerDTO> prayers = new HashSet<>();
 	private List<SessionDTO> sessions = new ArrayList<>();
 	
 	public MeetingAllDataDTO() {
 	}
 
-	public MeetingAllDataDTO(Long id, Instant date, String presidency, List<Canticle> canticles, List<Prayer> prayers) {
+	public MeetingAllDataDTO(Long id, Instant date, String presidency) {
 		this.id = id;
 		this.date = date;
 		this.presidency = presidency;
@@ -32,9 +33,10 @@ public class MeetingAllDataDTO {
 	public MeetingAllDataDTO(Meeting meeting) {
 		this.id = meeting.getId();
 		this.date = meeting.getDate();
+		this.presidency = meeting.getPresidency().getPerson().getName();
 	}
 	
-	public MeetingAllDataDTO(Meeting meeting, List<Canticle> canticles, List<Prayer> prayers, List<Session> sessions) {
+	public MeetingAllDataDTO(Meeting meeting, List<Canticle> canticles, Set<Prayer> prayers, List<Session> sessions) {
 		this(meeting);		
 		canticles.forEach(x -> 	this.canticles.add(new CanticleDTO(x)));
 		prayers.forEach(x -> this.prayers.add(new PrayerDTO(x, x.getPerson())));
@@ -73,11 +75,11 @@ public class MeetingAllDataDTO {
 		this.canticles = canticles;
 	}
 
-	public List<PrayerDTO> getPrayers() {
+	public Set<PrayerDTO> getPrayers() {
 		return prayers;
 	}
 
-	public void setPrayers(List<PrayerDTO> prayers) {
+	public void setPrayers(Set<PrayerDTO> prayers) {
 		this.prayers = prayers;
 	}
 
