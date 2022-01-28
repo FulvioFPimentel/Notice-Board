@@ -1,10 +1,8 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -35,13 +32,7 @@ public class Person implements UserDetails, Serializable {
 	private String name;
 	private String cellPhone;
 	private String password;
-			
-	@OneToMany(mappedBy = "person")
-	private List<Designation> designations = new ArrayList<>();
-	
-	@ManyToMany(mappedBy = "persons")
-	private Set<Support> supports = new HashSet<>();
-	
+				
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_person_role",
 		joinColumns = @JoinColumn(name = "person_id"),
@@ -93,14 +84,6 @@ public class Person implements UserDetails, Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public Set<Support> getSupports() {
-		return supports;
-	}
-
-	public List<Designation> getDesignations() {
-		return designations;
 	}
 
 	public Set<Role> getRoles() {

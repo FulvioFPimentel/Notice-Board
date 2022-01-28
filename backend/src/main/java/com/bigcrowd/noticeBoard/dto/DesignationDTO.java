@@ -4,36 +4,30 @@ import java.io.Serializable;
 
 import com.bigcrowd.noticeBoard.entities.Designation;
 
-public abstract class DesignationDTO implements Serializable {
+public class DesignationDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	private String designation;
-		
-	public DesignationDTO(Long id, String list) {
-		this.id = id;
-		this.designation = list;
-	}
+	private String assignment;
+	private String person;
 	
 	public DesignationDTO(Designation designation) {
-		this.id = designation.getId();
-		this.designation = designation.getDesignation();
+		assignment = designation.getAssignment().getTask();
+		person = designation.getPerson().getName();
 	}
 	
-	public Long getId() {
-		return id;
+	public String getAssignment() {
+		return assignment;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setAssignment(String assignment) {
+		this.assignment = assignment;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public String getPerson() {
+		return person;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setPerson(String person) {
+		this.person = person;
 	}
-
 }

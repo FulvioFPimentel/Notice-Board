@@ -19,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "tb_meeting")
 public class Meeting implements Serializable {
@@ -38,22 +37,26 @@ public class Meeting implements Serializable {
 	@OneToMany(mappedBy = "meeting")
 	private List<Canticle> canticles = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "meeting")
+	private List<Prayer> prayers = new ArrayList<>();
+		
 	@ManyToMany
-	@JoinTable(name = "tb_meeting_prayer", 
-		joinColumns = @JoinColumn(name = "meeting_id"), 
-		inverseJoinColumns = @JoinColumn(name = "prayer_id"))
-	private Set<Prayer> prayers = new HashSet<>();
+	@JoinTable(name = "tb_meeting_session",
+		joinColumns = @JoinColumn(name = "meeting_id"),
+		inverseJoinColumns = @JoinColumn(name = "session_id"))
+	private Set<Session> sessions = new HashSet<>();
 	
-	@OneToMany(mappedBy = "meeting")
-	private List<Session> sessions = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "meeting")
-	private List<Support> supports = new ArrayList<>();
-	
+	@ManyToMany
+	@JoinTable(name = "tb_meeting_subsession",
+		joinColumns = @JoinColumn(name = "meeting_id"),
+		inverseJoinColumns = @JoinColumn(name = "subsession_id"))
+	private Set<SubSession> subsessions = new HashSet<>();
+		
 	public Meeting() {
 	}
 
 	public Meeting(Long id, Instant date, Presidency presidency) {
+		super();
 		this.id = id;
 		this.date = date;
 		this.presidency = presidency;
@@ -74,31 +77,27 @@ public class Meeting implements Serializable {
 	public void setDate(Instant date) {
 		this.date = date;
 	}
-	
-	public List<Canticle> getCanticles() {
-		return canticles;
-	}
 
-	public Set<Prayer> getPrayers() {
-		return prayers;
-	}
-	
-	public List<Session> getSessions() {
-		return sessions;
-	}
-	
 	public Presidency getPresidency() {
 		return presidency;
 	}
-	
+
 	public void setPresidency(Presidency presidency) {
 		this.presidency = presidency;
 	}
 
-	public List<Support> getSupports() {
-		return supports;
+	public List<Prayer> getPrayers() {
+		return prayers;
 	}
-	
+
+	public List<Canticle> getCanticles() {
+		return canticles;
+	}
+
+	public Set<Session> getSessions() {
+		return sessions;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

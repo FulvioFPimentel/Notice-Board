@@ -1,18 +1,22 @@
 package com.bigcrowd.noticeBoard.dto;
 
-import com.bigcrowd.noticeBoard.entities.Person;
+import java.io.Serializable;
+
 import com.bigcrowd.noticeBoard.entities.Prayer;
 
-public class PrayerDTO extends DesignationDTO {
+public class PrayerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String moment;
-	private String person;
+	private DesignationDTO designation;
 	
-	public PrayerDTO(Prayer prayer, Person person) {
-		super(prayer);
+	public PrayerDTO(String moment) {
+		this.moment = moment;
+	}
+	
+	public PrayerDTO(Prayer prayer) {
 		moment = prayer.getMoment();
-		this.person = person.getName();
+		designation = new DesignationDTO(prayer.getDesignation());
 	}
 
 	public String getMoment() {
@@ -23,11 +27,11 @@ public class PrayerDTO extends DesignationDTO {
 		this.moment = moment;
 	}
 
-	public String getPerson() {
-		return person;
+	public DesignationDTO getDesignation() {
+		return designation;
 	}
 
-	public void setPerson(String person) {
-		this.person = person;
+	public void setDesignation(DesignationDTO designation) {
+		this.designation = designation;
 	}
 }

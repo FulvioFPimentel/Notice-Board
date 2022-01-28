@@ -3,7 +3,6 @@ package com.bigcrowd.noticeBoard.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,26 +18,22 @@ public class Canticle implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private int number;
 	private String title;
-	private String text;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "meeting_id")
 	private Meeting meeting;
 	
 	public Canticle() {
 	}
 
-	public Canticle(Long id, int number, String title, String text) {
+	public Canticle(Long id, int number, String title) {
 		this.id = id;
 		this.number = number;
 		this.title = title;
-		this.text = text;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -61,14 +56,6 @@ public class Canticle implements Serializable{
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 	
 }

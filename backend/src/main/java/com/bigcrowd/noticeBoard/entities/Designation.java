@@ -1,39 +1,64 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_designation")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Designation implements Serializable{
+public class Designation implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String designation;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "assignment_id")
+	private Assignment assignment;
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private Person person;
-		
+	
+	@ManyToMany(mappedBy = "designations")
+	private Set<SubSession> subsessions = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "designations")
+	private Set<Support> supports = new HashSet<>();
+	
+	@OneToOne(mappedBy = "designation")
+	private Prayer prayer;	
+	
+	@OneToOne(mappedBy = "designation")
+	private Presidency presidency;
+	
+	
 	public Designation() {
 	}
 
-	public Designation(Long id, String designation) {
+	public Designation(Long id, Assignment assignment, Person person) {
 		this.id = id;
-		this.designation = designation;
+		this.assignment = assignment;
+		this.person = person;
+	}
+	
+	public Designation(Long id, Assignment assignment, Person person, Prayer prayer, Presidency presidency) {
+		this.id = id;
+		this.assignment = assignment;
+		this.person = person;
+		this.prayer = prayer;
+		this.presidency = presidency;
 	}
 
 	public Long getId() {
@@ -44,6 +69,14 @@ public abstract class Designation implements Serializable{
 		this.id = id;
 	}
 
+	public Assignment getAssignment() {
+		return assignment;
+	}
+
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
+	}
+
 	public Person getPerson() {
 		return person;
 	}
@@ -52,12 +85,24 @@ public abstract class Designation implements Serializable{
 		this.person = person;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public Set<SubSession> getSubsessions() {
+		return subsessions;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public Prayer getPrayer() {
+		return prayer;
+	}
+
+	public void setPrayer(Prayer prayer) {
+		this.prayer = prayer;
+	}
+
+	public Presidency getPresidency() {
+		return presidency;
+	}
+
+	public void setPresidency(Presidency presidency) {
+		this.presidency = presidency;
 	}
 
 	@Override

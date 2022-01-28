@@ -1,8 +1,8 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,20 +24,21 @@ public class Session implements Serializable {
 	private Long id;
 	private String session;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "meeting_id")
-	private Meeting meeting;
+	@ManyToMany(mappedBy = "sessions")
+	private Set<Meeting> meetings = new HashSet<>();
 	
-	@OneToMany(mappedBy = "session")
-	private List<SubSession> SubSessions = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_session_subsession",
+			joinColumns = @JoinColumn(name = "session_id"),
+			inverseJoinColumns = @JoinColumn(name = "subsession_id"))
+	private Set<SubSession> subsessions = new HashSet<>();
 	
 	public Session() {
 	}
 
-	public Session(Long id, String session, Meeting meeting) {
+	public Session(Long id, String session) {
 		this.id = id;
 		this.session = session;
-		this.meeting = meeting;
 	}
 
 	public Long getId() {
@@ -56,16 +57,8 @@ public class Session implements Serializable {
 		this.session = session;
 	}
 
-	public List<SubSession> getSubSessions() {
-		return SubSessions;
+	public Set<SubSession> getSubsessions() {
+		return subsessions;
 	}
-
-	public Meeting getMeeting() {
-		return meeting;
-	}
-
-	public void setMeeting(Meeting meeting) {
-		this.meeting = meeting;
-	}
-
+	
 }

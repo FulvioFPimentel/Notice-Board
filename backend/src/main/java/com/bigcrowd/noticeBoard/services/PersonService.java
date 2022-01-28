@@ -1,7 +1,5 @@
 package com.bigcrowd.noticeBoard.services;
 
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.bigcrowd.noticeBoard.dto.PersonDesignationDTO;
-import com.bigcrowd.noticeBoard.dto.PersonSupportsDTO;
 import com.bigcrowd.noticeBoard.entities.Person;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
-
-import javassist.NotFoundException;
 
 
 @Service
@@ -26,16 +19,7 @@ public class PersonService implements UserDetailsService {
 	
 	@Autowired
 	private PersonRepository personRepository;
-	/*
-	@Autowired
-	private PrayerRepository prayerRepository;
 	
-	@Autowired
-	private PresidencyRepository presidencyRepository;
-	
-	@Autowired
-	private ParticipantRepository participantRepository;
-*/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Person person = personRepository.findByName(username);
@@ -47,17 +31,4 @@ public class PersonService implements UserDetailsService {
 		return person;
 	}
 	
-	@Transactional(readOnly = true)
-	public PersonSupportsDTO findSupportById(Long id) throws NotFoundException {
-		Optional<Person> obj = personRepository.findSupportById(id);
-		Person persons = obj.orElseThrow(() -> new NotFoundException("Entity not found"));
-		return new PersonSupportsDTO(persons, persons.getSupports());
-	}
-	
-	@Transactional(readOnly = true)
-	public PersonDesignationDTO findDesignationById(Long id) throws NotFoundException {
-		Optional<Person> obj = personRepository.findDesignationById(id);
-		Person persons = obj.orElseThrow(() -> new NotFoundException("Entity not found"));
-		return new PersonDesignationDTO(persons, persons.getDesignations());	
-	}
 }

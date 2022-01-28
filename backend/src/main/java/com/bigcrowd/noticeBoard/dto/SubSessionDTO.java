@@ -1,47 +1,39 @@
 package com.bigcrowd.noticeBoard.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import com.bigcrowd.noticeBoard.entities.Participant;
+import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.SubSession;
 
 public class SubSessionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	private String subSession;
+	private String subsession;
+	private Set<DesignationDTO> designations = new HashSet<>();
 	
-	private List<ParticipantDTO> ParticipantDTO = new ArrayList<>(); 
-
-	public SubSessionDTO() {
+	public SubSessionDTO() {}
+	
+	public SubSessionDTO(SubSession subsession) {
+		this.subsession = subsession.getSubSession();
 	}
 	
-	public SubSessionDTO(SubSession subSessions, List<Participant> Participant) {
-		this.id = subSessions.getId();
-		this.subSession = subSessions.getSubSession();
-		Participant.forEach(x -> this.ParticipantDTO.add(new ParticipantDTO(x, x.getPerson())));
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public SubSessionDTO(SubSession subsession, Set<Designation> designations) {
+		this(subsession);
+		designations.forEach(x -> this.designations.add(new DesignationDTO(x)));
 	}
 
 	public String getSubSession() {
-		return subSession;
+		return subsession;
 	}
 
 	public void setSubSession(String subSession) {
-		this.subSession = subSession;
+		this.subsession = subSession;
 	}
 
-	public List<ParticipantDTO> getParticipant() {
-		return ParticipantDTO;
+	public Set<DesignationDTO> getDesignations() {
+		return designations;
 	}
-	
+
 }

@@ -1,32 +1,20 @@
 package com.bigcrowd.noticeBoard.dto;
 
+import java.io.Serializable;
+
 import com.bigcrowd.noticeBoard.entities.Person;
 
-public class PersonDTO {
+public class PersonDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	private Long id;
 	private String name;
 	
-	public PersonDTO() {
-	}
-
-	public PersonDTO(Long id, String name) {
-		super();
-		this.id = id;
+	public PersonDTO(String name) {
 		this.name = name;
 	}
 	
 	public PersonDTO(Person person) {
-		this.id = person.getId();
-		this.name = person.getName();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		name = person.getName();
 	}
 
 	public String getName() {
@@ -36,5 +24,4 @@ public class PersonDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

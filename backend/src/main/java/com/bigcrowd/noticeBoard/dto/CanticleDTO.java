@@ -4,31 +4,26 @@ import java.io.Serializable;
 
 import com.bigcrowd.noticeBoard.entities.Canticle;
 
-public class CanticleDTO implements Serializable {
+public class CanticleDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private int number;
-	private String title;
-	private String text;
+	private Integer number;
+	private String title;	
 	
-	public CanticleDTO() {
-	}
-
-	public CanticleDTO(Long id, int number, String title, String text) {
+	public CanticleDTO(Long id, Integer number, String title) {
+		super();
 		this.id = id;
 		this.number = number;
 		this.title = title;
-		this.text = text;
 	}
 	
-	public CanticleDTO(Canticle canticles) {
-		this.id = canticles.getId();
-		this.number = canticles.getNumber();
-		this.title = canticles.getTitle();
-		this.text = canticles.getText();
+	public CanticleDTO(Canticle canticle) {
+		id = canticle.getId();
+		number = canticle.getNumber();
+		title = canticle.getTitle();
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -37,11 +32,11 @@ public class CanticleDTO implements Serializable {
 		this.id = id;
 	}
 
-	public int getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 
@@ -52,13 +47,5 @@ public class CanticleDTO implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
+	
 }

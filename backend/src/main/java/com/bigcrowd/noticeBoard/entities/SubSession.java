@@ -1,8 +1,8 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,22 +22,28 @@ public class SubSession implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String subSession;
-		
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "session_id")
-	private Session session;
 	
-	@OneToMany(mappedBy = "subsession")
-	private List<Participant> participants = new ArrayList<>();
+	private String subSession;
+	
+	@ManyToMany(mappedBy = "subsessions")
+	private Set<Session> sessions = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "subsessions")
+	private Set<Meeting> meetings  = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_subsession_designation",
+			joinColumns = @JoinColumn(name = "subsession_id"),
+			inverseJoinColumns = @JoinColumn(name = "designation_id"))
+	private Set<Designation> designations = new HashSet<>();
 		
 	public SubSession() {
 	}
 
-	public SubSession(Long id, String subSession, Meeting meeting, Session session) {
+	public SubSession(Long id, String subSession) {
+		super();
 		this.id = id;
 		this.subSession = subSession;
-		this.session = session;
 	}
 
 	public Long getId() {
@@ -56,18 +62,16 @@ public class SubSession implements Serializable {
 		this.subSession = subSession;
 	}
 
-	public Session getSession() {
-		return session;
+	public Set<Session> getSessions() {
+		return sessions;
 	}
 
-	public void setSession(Session session) {
-		this.session = session;
+	public Set<Meeting> getMeetings() {
+		return meetings;
 	}
 
-	public List<Participant> getParticipants() {
-		return participants;
+	public Set<Designation> getDesignations() {
+		return designations;
 	}
-	
-	
-	
+
 }
