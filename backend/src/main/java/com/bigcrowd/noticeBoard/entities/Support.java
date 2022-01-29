@@ -36,6 +36,20 @@ public class Support implements Serializable {
 		
 	public Support() {
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Set<Designation> getDesignations() {
+		return designations;
+	}
 
 	public Support(Meeting meeting) {
 		this.meeting = meeting;
