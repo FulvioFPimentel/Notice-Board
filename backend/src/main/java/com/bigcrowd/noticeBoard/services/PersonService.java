@@ -11,9 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.PersonAllDTO;
+import com.bigcrowd.noticeBoard.dto.PersonDesignationsDTO;
+import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Person;
+import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
 
 
@@ -25,7 +29,8 @@ public class PersonService implements UserDetailsService {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	//private DesignationRepository designationRepository;
+	@Autowired
+	private DesignationRepository designationRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -43,11 +48,13 @@ public class PersonService implements UserDetailsService {
 		return persons.stream().map(x -> new PersonAllDTO(x, x.getRoles())).collect(Collectors.toList());
 	}
 	
-	public PersonAllDTO findById(Long id) {
+	@Transactional(readOnly = true)
+	public PersonDesignationsDTO findById(Long id) {
 		Optional<Person> obj = personRepository.findById(id);
 		Person person = obj.get();
-		//List<Designation> designations = designationRepository.findAllById(id);
-		return new PersonAllDTO(person, person.getRoles());
+		List<Designation> designations = designationRepository.findAllByPerson(person);
+		designations.forEach(x -> x.getSubsessions().forEach(y -> System.out.println(y.getSubSession())));
+		return new PersonDesignationsDTO(person, designations);
 	}
 	
 }

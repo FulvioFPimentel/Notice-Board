@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bigcrowd.noticeBoard.dto.PersonAllDTO;
+import com.bigcrowd.noticeBoard.dto.PersonDesignationsDTO;
 import com.bigcrowd.noticeBoard.services.PersonService;
 
 @RestController
@@ -26,8 +27,8 @@ public class PersonController {
 	}
 	
 	@GetMapping(value = "/{id}/designations")
-	public ResponseEntity<PersonAllDTO> findById(@PathVariable Long id){
-		PersonAllDTO person = personService.findById(id);
+	public ResponseEntity<PersonDesignationsDTO> findById(@PathVariable Long id){
+		PersonDesignationsDTO person = personService.findById(id);
 		return ResponseEntity.ok().body(person);
 	}
 

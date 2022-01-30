@@ -27,7 +27,7 @@ public class PersonAllDTO implements Serializable{
 		name = person.getName();
 		cellPhone = person.getCellPhone();
 		roles.forEach(x ->  this.roles.add(new RoleDTO(x)));
-	}
+	}	
 
 	public Long getId() {
 		return id;
