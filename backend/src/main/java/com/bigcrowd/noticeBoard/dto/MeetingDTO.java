@@ -23,8 +23,9 @@ public class MeetingDTO implements Serializable {
 	private List<PrayerDTO> prayers = new ArrayList<>();
 	private Set<SessionDTO> sessions = new HashSet<>();
 	
+	public MeetingDTO() {}
+	
 	public MeetingDTO(Long id, Instant date) {
-		super();
 		this.id = id;
 		this.date = date;
 	}

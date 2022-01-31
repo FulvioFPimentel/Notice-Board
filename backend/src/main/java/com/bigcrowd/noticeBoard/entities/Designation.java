@@ -89,6 +89,10 @@ public class Designation implements Serializable{
 		return subsessions;
 	}
 
+	public Set<Support> getSupports() {
+		return supports;
+	}
+
 	public Prayer getPrayer() {
 		return prayer;
 	}

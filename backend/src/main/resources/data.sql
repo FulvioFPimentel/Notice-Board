@@ -88,20 +88,20 @@ INSERT INTO tb_assignment (task, field) VALUES ('Principal', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Ajudante', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Presidente', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Dirigente', 'participação');
+INSERT INTO tb_assignment (task, field) VALUES ('Oração', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Video', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Audio', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Indicador', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Microfone', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Leitor', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Comentários', 'Suporte');
-INSERT INTO tb_assignment (task, field) VALUES ('Oração', 'participação');
 
 INSERT INTO tb_support (meeting_id) VALUES (1);
 INSERT INTO tb_support (meeting_id) VALUES (2);
 
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (1, 1);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (6, 2);
-INSERT INTO tb_designation (assignment_id, person_id) VALUES (2, 6);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (2, 7);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (3, 9);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (4, 10);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (3, 11);
@@ -133,12 +133,12 @@ INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (6,
 INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (6, 9);
 INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (7, 12);
 INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (8, 10);
-INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (9, 17);
+INSERT INTO tb_subsession_designation (subsession_id, designation_id) VALUES (9, 16);
 
 INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 9);
 INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 10);
 INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 11);
-INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 12);
+INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 17);
 
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 1, 13);
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 1, 14);

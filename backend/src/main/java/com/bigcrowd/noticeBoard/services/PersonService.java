@@ -53,7 +53,6 @@ public class PersonService implements UserDetailsService {
 		Optional<Person> obj = personRepository.findById(id);
 		Person person = obj.get();
 		List<Designation> designations = designationRepository.findAllByPerson(person);
-		designations.forEach(x -> x.getSubsessions().forEach(y -> System.out.println(y.getSubSession())));
 		return new PersonDesignationsDTO(person, designations);
 	}
 	
