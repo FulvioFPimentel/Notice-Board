@@ -29,8 +29,6 @@
     <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.net.URI"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.support.ServletUriComponentsBuilder"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.dto.PrayerDTO"/>
     <fullyQualifiedTypeName name="org.apache.commons.codec.digest.XXHash32"/>
     <fullyQualifiedTypeName name="javax.persistence.InheritanceType"/>
@@ -41,15 +39,19 @@
     <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Assignment"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Person"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Session"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="java.util.LinkedHashSet"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Role"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.SubSession"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="java.net.URI"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.support.ServletUriComponentsBuilder"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Assignment"/>
+    <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
 </qualifiedTypeNameHistroy>
