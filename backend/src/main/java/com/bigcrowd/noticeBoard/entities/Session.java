@@ -1,7 +1,7 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -25,13 +25,13 @@ public class Session implements Serializable {
 	private String session;
 	
 	@ManyToMany(mappedBy = "sessions")
-	private Set<Meeting> meetings = new HashSet<>();
+	private Set<Meeting> meetings = new LinkedHashSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_session_subsession",
 			joinColumns = @JoinColumn(name = "session_id"),
 			inverseJoinColumns = @JoinColumn(name = "subsession_id"))
-	private Set<SubSession> subsessions = new HashSet<>();
+	private Set<SubSession> subsessions = new LinkedHashSet<>();
 	
 	public Session() {
 	}
@@ -60,5 +60,29 @@ public class Session implements Serializable {
 	public Set<SubSession> getSubsessions() {
 		return subsessions;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Session other = (Session) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}	
 }

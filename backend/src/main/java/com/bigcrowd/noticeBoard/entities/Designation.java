@@ -2,6 +2,7 @@ package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Designation implements Serializable{
 	private Person person;
 	
 	@ManyToMany(mappedBy = "designations")
-	private Set<SubSession> subsessions = new HashSet<>();
+	private Set<SubSession> subsessions = new LinkedHashSet<>();
 	
 	@ManyToMany(mappedBy = "designations")
 	private Set<Support> supports = new HashSet<>();

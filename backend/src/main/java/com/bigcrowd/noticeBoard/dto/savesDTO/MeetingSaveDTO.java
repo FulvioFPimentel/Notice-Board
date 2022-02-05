@@ -2,6 +2,8 @@ package com.bigcrowd.noticeBoard.dto.savesDTO;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Presidency;
@@ -13,7 +15,7 @@ public class MeetingSaveDTO  implements Serializable{
 	private Instant date;
 	private PresidencySaveDTO presidency;
 	
-	//private List<Canticle> canticles = new ArrayList<>();
+	private List<CanticleSaveDTO> canticles = new ArrayList<>();
 	//private List<Prayer> prayers = new ArrayList<>();
 	//private Set<Session> sessions = new HashSet<>();
 	//private Set<SubSession> subsessions = new HashSet<>();
@@ -54,5 +56,9 @@ public class MeetingSaveDTO  implements Serializable{
 
 	public void setPresidency(PresidencySaveDTO presidency) {
 		this.presidency = presidency;
+	}
+
+	public List<CanticleSaveDTO> getCanticles() {
+		return canticles;
 	}
 }

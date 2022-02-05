@@ -1,8 +1,9 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,16 +27,16 @@ public class SubSession implements Serializable {
 	private String subSession;
 	
 	@ManyToMany(mappedBy = "subsessions")
-	private Set<Session> sessions = new HashSet<>();
+	private Set<Session> sessions = new LinkedHashSet<>();
 	
 	@ManyToMany(mappedBy = "subsessions")
-	private Set<Meeting> meetings  = new HashSet<>();
+	private Set<Meeting> meetings  = new TreeSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_subsession_designation",
 			joinColumns = @JoinColumn(name = "subsession_id"),
 			inverseJoinColumns = @JoinColumn(name = "designation_id"))
-	private Set<Designation> designations = new HashSet<>();
+	private Set<Designation> designations = new LinkedHashSet<>();
 		
 	public SubSession() {
 	}
@@ -74,4 +75,28 @@ public class SubSession implements Serializable {
 		return designations;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SubSession other = (SubSession) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }

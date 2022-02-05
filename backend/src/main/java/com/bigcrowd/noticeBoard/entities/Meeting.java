@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,8 +37,12 @@ public class Meeting implements Serializable {
 	@OneToOne(mappedBy = "meeting")
 	private Presidency presidency;
 	
-	@OneToMany(mappedBy = "meeting")
-	private List<Canticle> canticles = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_meeting_canticle",
+		joinColumns = @JoinColumn(name = "meeting_id"),
+		inverseJoinColumns = @JoinColumn(name = "canticle_id")
+	)
+	private Set<Canticle> canticles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Prayer> prayers = new ArrayList<>();
@@ -44,13 +51,13 @@ public class Meeting implements Serializable {
 	@JoinTable(name = "tb_meeting_session",
 		joinColumns = @JoinColumn(name = "meeting_id"),
 		inverseJoinColumns = @JoinColumn(name = "session_id"))
-	private Set<Session> sessions = new HashSet<>();
+	private Set<Session> sessions = new LinkedHashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_meeting_subsession",
 		joinColumns = @JoinColumn(name = "meeting_id"),
 		inverseJoinColumns = @JoinColumn(name = "subsession_id"))
-	private Set<SubSession> subsessions = new HashSet<>();
+	private Set<SubSession> subsessions = new TreeSet<>();
 		
 	public Meeting() {
 	}
@@ -90,7 +97,7 @@ public class Meeting implements Serializable {
 		return prayers;
 	}
 
-	public List<Canticle> getCanticles() {
+	public Set<Canticle> getCanticles() {
 		return canticles;
 	}
 

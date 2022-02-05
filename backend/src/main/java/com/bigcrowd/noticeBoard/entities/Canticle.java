@@ -1,13 +1,14 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +22,8 @@ public class Canticle implements Serializable{
 	private int number;
 	private String title;
 	
-	@ManyToOne
-	@JoinColumn(name = "meeting_id")
-	private Meeting meeting;
+	@ManyToMany(mappedBy = "canticles")
+	private Set<Meeting> meetings = new HashSet<>();
 	
 	public Canticle() {
 	}
@@ -57,5 +57,8 @@ public class Canticle implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
+	public Set<Meeting> getMeetings() {
+		return meetings;
+	}
 }

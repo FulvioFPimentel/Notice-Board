@@ -22,7 +22,7 @@ public class MeetingController {
 	
 	@Autowired
 	private MeetingService service;
-	
+		
 	@GetMapping
 	public ResponseEntity<List<MeetingDTO>> findAll(){
 		List<MeetingDTO> meetings = service.findAllMeetings();
@@ -30,12 +30,11 @@ public class MeetingController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<MeetingSaveDTO> insert(@RequestBody MeetingSaveDTO dto){
+	public ResponseEntity<MeetingSaveDTO> insert(@RequestBody MeetingSaveDTO dto){		
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
-
 	}
 	
 }

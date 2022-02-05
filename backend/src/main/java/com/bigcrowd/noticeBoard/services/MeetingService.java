@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.MeetingDTO;
+import com.bigcrowd.noticeBoard.dto.savesDTO.CanticleSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.MeetingSaveDTO;
 import com.bigcrowd.noticeBoard.entities.Assignment;
+import com.bigcrowd.noticeBoard.entities.Canticle;
 import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Person;
 import com.bigcrowd.noticeBoard.entities.Presidency;
 import com.bigcrowd.noticeBoard.repositories.AssignmentRepository;
+import com.bigcrowd.noticeBoard.repositories.CanticleRepository;
 import com.bigcrowd.noticeBoard.repositories.MeetingRepository;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
 import com.bigcrowd.noticeBoard.repositories.PresidencyRepository;
@@ -33,6 +36,9 @@ public class MeetingService {
 	 
 	@Autowired
 	private PresidencyRepository presidencyRepository; 
+	
+	@Autowired
+	private CanticleRepository canticleRepository;
 	
 	@Transactional(readOnly = true)
 	public List<MeetingDTO> findAllMeetings(){
@@ -56,6 +62,11 @@ public class MeetingService {
 		presidency.setDesignation(designation);	
 		presidency.setMeeting(meeting);
 		presidency = presidencyRepository.saveAndFlush(presidency);
+		
+		for(CanticleSaveDTO cDto:  dto.getCanticles()) {
+			Canticle canticle = canticleRepository.getById(cDto.getId());
+			meeting.getCanticles().add(canticle);
+		}
 		
 		meeting.setDate(dto.getDate());
 		meeting.setPresidency(presidency);
