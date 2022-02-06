@@ -3,6 +3,7 @@ package com.bigcrowd.noticeBoard.dto.savesDTO;
 import java.io.Serializable;
 
 import com.bigcrowd.noticeBoard.entities.Designation;
+import com.bigcrowd.noticeBoard.entities.Prayer;
 
 public class DesignationSaveDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -12,10 +13,9 @@ public class DesignationSaveDTO implements Serializable{
 	private PersonSaveDTO person;
 	
 	//private Set<SubSession> subsessions = new HashSet<>();
-	
 	//private Set<Support> supports = new HashSet<>();
 
-	//private Prayer prayer;	
+	private Prayer prayer;	
 	private PresidencySaveDTO presidency;
 		
 	public DesignationSaveDTO(Long id, AssignmentSaveDTO assignment, PersonSaveDTO person,
@@ -52,5 +52,13 @@ public class DesignationSaveDTO implements Serializable{
 	
 	public PresidencySaveDTO getPresidency() {
 		return presidency;
+	}
+
+	public Prayer getPrayer() {
+		return prayer;
+	}
+
+	public void setPrayer(Prayer prayer) {
+		this.prayer = prayer;
 	}
 }

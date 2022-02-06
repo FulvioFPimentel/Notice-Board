@@ -16,7 +16,7 @@ public class MeetingSaveDTO  implements Serializable{
 	private PresidencySaveDTO presidency;
 	
 	private List<CanticleSaveDTO> canticles = new ArrayList<>();
-	//private List<Prayer> prayers = new ArrayList<>();
+	private List<PrayerSaveDTO> prayers = new ArrayList<>();
 	//private Set<Session> sessions = new HashSet<>();
 	//private Set<SubSession> subsessions = new HashSet<>();
 		
@@ -60,5 +60,9 @@ public class MeetingSaveDTO  implements Serializable{
 
 	public List<CanticleSaveDTO> getCanticles() {
 		return canticles;
+	}
+
+	public List<PrayerSaveDTO> getPrayers() {
+		return prayers;
 	}
 }
