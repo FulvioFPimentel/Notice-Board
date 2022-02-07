@@ -3,7 +3,6 @@ package com.bigcrowd.noticeBoard.entities;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +29,7 @@ public class SubSession implements Serializable {
 	private Set<Session> sessions = new LinkedHashSet<>();
 	
 	@ManyToMany(mappedBy = "subsessions")
-	private Set<Meeting> meetings  = new TreeSet<>();
+	private Set<Meeting> meetings  = new LinkedHashSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_subsession_designation",

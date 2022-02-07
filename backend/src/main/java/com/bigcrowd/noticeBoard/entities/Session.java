@@ -61,6 +61,10 @@ public class Session implements Serializable {
 		return subsessions;
 	}
 
+	public Set<Meeting> getMeetings() {
+		return meetings;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

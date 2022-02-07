@@ -3,7 +3,9 @@ package com.bigcrowd.noticeBoard.dto.savesDTO;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Presidency;
@@ -17,8 +19,8 @@ public class MeetingSaveDTO  implements Serializable{
 	
 	private List<CanticleSaveDTO> canticles = new ArrayList<>();
 	private List<PrayerSaveDTO> prayers = new ArrayList<>();
-	//private Set<Session> sessions = new HashSet<>();
-	//private Set<SubSession> subsessions = new HashSet<>();
+	private Set<SessionSaveDTO> sessions = new HashSet<>();
+	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
 		
 	public MeetingSaveDTO() {
 	}
@@ -64,5 +66,13 @@ public class MeetingSaveDTO  implements Serializable{
 
 	public List<PrayerSaveDTO> getPrayers() {
 		return prayers;
+	}
+
+	public Set<SessionSaveDTO> getSessions() {
+		return sessions;
+	}
+
+	public Set<SubSessionSaveDTO> getSubsessions() {
+		return subsessions;
 	}
 }

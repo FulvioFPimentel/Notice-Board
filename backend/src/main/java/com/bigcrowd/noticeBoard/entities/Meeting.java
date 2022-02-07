@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,7 +56,7 @@ public class Meeting implements Serializable {
 	@JoinTable(name = "tb_meeting_subsession",
 		joinColumns = @JoinColumn(name = "meeting_id"),
 		inverseJoinColumns = @JoinColumn(name = "subsession_id"))
-	private Set<SubSession> subsessions = new TreeSet<>();
+	private Set<SubSession> subsessions = new LinkedHashSet<>();
 		
 	public Meeting() {
 	}
@@ -103,6 +102,10 @@ public class Meeting implements Serializable {
 
 	public Set<Session> getSessions() {
 		return sessions;
+	}
+
+	public Set<SubSession> getSubsessions() {
+		return subsessions;
 	}
 
 	@Override

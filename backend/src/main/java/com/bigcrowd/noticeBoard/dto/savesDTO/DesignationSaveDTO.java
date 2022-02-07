@@ -1,6 +1,8 @@
 package com.bigcrowd.noticeBoard.dto.savesDTO;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Prayer;
@@ -12,7 +14,7 @@ public class DesignationSaveDTO implements Serializable{
 	private AssignmentSaveDTO assignment;
 	private PersonSaveDTO person;
 	
-	//private Set<SubSession> subsessions = new HashSet<>();
+	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
 	//private Set<Support> supports = new HashSet<>();
 
 	private Prayer prayer;	
@@ -60,5 +62,9 @@ public class DesignationSaveDTO implements Serializable{
 
 	public void setPrayer(Prayer prayer) {
 		this.prayer = prayer;
+	}
+
+	public Set<SubSessionSaveDTO> getSubsessions() {
+		return subsessions;
 	}
 }
