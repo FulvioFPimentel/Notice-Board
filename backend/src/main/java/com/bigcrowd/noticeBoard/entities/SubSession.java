@@ -5,37 +5,25 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_subsession")
 public class SubSession implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String subSession;
 	
-	@ManyToMany(mappedBy = "subsessions")
-	private Set<Session> sessions = new LinkedHashSet<>();
-	
-	@ManyToMany(mappedBy = "subsessions")
-	private Set<Meeting> meetings  = new LinkedHashSet<>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_subsession_designation",
-			joinColumns = @JoinColumn(name = "subsession_id"),
-			inverseJoinColumns = @JoinColumn(name = "designation_id"))
-	private Set<Designation> designations = new LinkedHashSet<>();
+	@OneToMany(mappedBy = "id.subsession")
+	private Set<Segmentation> segmentations = new LinkedHashSet<>();
 		
 	public SubSession() {
 	}
@@ -60,18 +48,6 @@ public class SubSession implements Serializable {
 
 	public void setSubSession(String subSession) {
 		this.subSession = subSession;
-	}
-
-	public Set<Session> getSessions() {
-		return sessions;
-	}
-
-	public Set<Meeting> getMeetings() {
-		return meetings;
-	}
-
-	public Set<Designation> getDesignations() {
-		return designations;
 	}
 
 	@Override

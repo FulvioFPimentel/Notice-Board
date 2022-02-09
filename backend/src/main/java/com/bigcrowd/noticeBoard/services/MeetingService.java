@@ -9,11 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.MeetingDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.CanticleSaveDTO;
-import com.bigcrowd.noticeBoard.dto.savesDTO.DesignationSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.MeetingSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.PrayerSaveDTO;
-import com.bigcrowd.noticeBoard.dto.savesDTO.SessionSaveDTO;
-import com.bigcrowd.noticeBoard.dto.savesDTO.SubSessionSaveDTO;
 import com.bigcrowd.noticeBoard.entities.Assignment;
 import com.bigcrowd.noticeBoard.entities.Canticle;
 import com.bigcrowd.noticeBoard.entities.Designation;
@@ -21,17 +18,12 @@ import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Person;
 import com.bigcrowd.noticeBoard.entities.Prayer;
 import com.bigcrowd.noticeBoard.entities.Presidency;
-import com.bigcrowd.noticeBoard.entities.Session;
-import com.bigcrowd.noticeBoard.entities.SubSession;
 import com.bigcrowd.noticeBoard.repositories.AssignmentRepository;
 import com.bigcrowd.noticeBoard.repositories.CanticleRepository;
-import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
 import com.bigcrowd.noticeBoard.repositories.MeetingRepository;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
 import com.bigcrowd.noticeBoard.repositories.PrayerRepository;
 import com.bigcrowd.noticeBoard.repositories.PresidencyRepository;
-import com.bigcrowd.noticeBoard.repositories.SessionRepository;
-import com.bigcrowd.noticeBoard.repositories.SubSessionRepository;
 
 @Service
 public class MeetingService {
@@ -54,19 +46,19 @@ public class MeetingService {
 	@Autowired
 	private PrayerRepository prayerRepository; 
 	
-	@Autowired
-	private SubSessionRepository subSessionRepository; 
+	//@Autowired
+	//private SubSessionRepository subSessionRepository; 
 	
-	@Autowired
-	private SessionRepository sessionRepository;
+	//@Autowired
+	//private SessionRepository sessionRepository;
 	
-	@Autowired
-	private DesignationRepository designationRepository;
+	//@Autowired
+	//private DesignationRepository designationRepository;
 	
 	@Transactional(readOnly = true)
 	public List<MeetingDTO> findAllMeetings(){
 		List<Meeting> entity = repository.findAll();
-		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSessions())).collect(Collectors.toList());
+		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
 	}
 	
 	@Transactional
@@ -107,35 +99,9 @@ public class MeetingService {
 			meeting.getPrayers().add(prayer);
 		}
 		
-		for(SessionSaveDTO sDto: dto.getSessions()) {
-			Session session = sessionRepository.getById(sDto.getId());
-			session.setSession(sDto.getSession());
+		//for(SessionSaveDTO sDto: dto.getSessions()) {
 			
-			for(SubSessionSaveDTO ssDto: sDto.getSubsessions()) {
-								
-				SubSession subsession = subSessionRepository.getById(ssDto.getId());
-				subsession.setSubSession(ssDto.getSubSession());
-				
-				for(DesignationSaveDTO dDto: ssDto.getDesignations()) {
-					
-					Assignment subSessionAssignment = assignmentRepository.getById(dDto.getAssignment().getId());
-					Person subSessionPerson = personRepository.getById(dDto.getPerson().getId());
-					Designation subSessionDesignation = new Designation();
-					subSessionDesignation.setAssignment(subSessionAssignment);
-					subSessionDesignation.setPerson(subSessionPerson);
-					subsession.getMeetings().add(meeting);
-					subsession.getSessions().add(session);
-					
-					subSessionDesignation = designationRepository.saveAndFlush(subSessionDesignation);
-					subsession.getDesignations().add(subSessionDesignation);		
-				}
-				
-				session.getMeetings().add(meeting);
-				session.getSubsessions().add(subsession);
-				meeting.getSubsessions().add(subsession);
-			}
-			meeting.getSessions().add(session);
-		}
+		//}
 		
 		
 		meeting.setDate(dto.getDate());

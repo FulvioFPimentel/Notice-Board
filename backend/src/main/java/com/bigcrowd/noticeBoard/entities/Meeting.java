@@ -39,24 +39,14 @@ public class Meeting implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_meeting_canticle",
 		joinColumns = @JoinColumn(name = "meeting_id"),
-		inverseJoinColumns = @JoinColumn(name = "canticle_id")
-	)
+		inverseJoinColumns = @JoinColumn(name = "canticle_id"))
 	private Set<Canticle> canticles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Prayer> prayers = new ArrayList<>();
-		
-	@ManyToMany
-	@JoinTable(name = "tb_meeting_session",
-		joinColumns = @JoinColumn(name = "meeting_id"),
-		inverseJoinColumns = @JoinColumn(name = "session_id"))
-	private Set<Session> sessions = new LinkedHashSet<>();
 	
-	@ManyToMany
-	@JoinTable(name = "tb_meeting_subsession",
-		joinColumns = @JoinColumn(name = "meeting_id"),
-		inverseJoinColumns = @JoinColumn(name = "subsession_id"))
-	private Set<SubSession> subsessions = new LinkedHashSet<>();
+	@OneToMany(mappedBy = "id.meeting")
+	private Set<Segmentation> segmentations = new LinkedHashSet<>();
 		
 	public Meeting() {
 	}
@@ -99,13 +89,9 @@ public class Meeting implements Serializable {
 	public Set<Canticle> getCanticles() {
 		return canticles;
 	}
-
-	public Set<Session> getSessions() {
-		return sessions;
-	}
-
-	public Set<SubSession> getSubsessions() {
-		return subsessions;
+	
+	public Set<Segmentation> getSegmentations() {
+		return segmentations;
 	}
 
 	@Override

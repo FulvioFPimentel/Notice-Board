@@ -5,13 +5,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,15 +20,9 @@ public class Session implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String session;
-	
-	@ManyToMany(mappedBy = "sessions")
-	private Set<Meeting> meetings = new LinkedHashSet<>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_session_subsession",
-			joinColumns = @JoinColumn(name = "session_id"),
-			inverseJoinColumns = @JoinColumn(name = "subsession_id"))
-	private Set<SubSession> subsessions = new LinkedHashSet<>();
+		
+	@OneToMany(mappedBy = "id.session")
+	private Set<Segmentation> segmentations = new LinkedHashSet<>();
 	
 	public Session() {
 	}
@@ -57,12 +48,8 @@ public class Session implements Serializable {
 		this.session = session;
 	}
 
-	public Set<SubSession> getSubsessions() {
-		return subsessions;
-	}
-
-	public Set<Meeting> getMeetings() {
-		return meetings;
+	public Set<Segmentation> getSegmentations() {
+		return segmentations;
 	}
 
 	@Override

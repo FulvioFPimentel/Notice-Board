@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.bigcrowd.noticeBoard.entities.Segmentation;
 import com.bigcrowd.noticeBoard.entities.Session;
-import com.bigcrowd.noticeBoard.entities.SubSession;
 
 public class SessionDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -23,11 +23,12 @@ public class SessionDTO implements Serializable{
 	public SessionDTO(Session session) {
 		this.id = session.getId();
 		this.session = session.getSession();
+		
 	}
 	
-	public SessionDTO(Session session, Set<SubSession> subsessions) {
+	public SessionDTO(Session session, Set<Segmentation> Segmentations) {
 		this(session);
-		subsessions.forEach(x -> this.subsessions.add(new SubSessionDTO(x, x.getDesignations())));
+		Segmentations.forEach(x -> this.subsessions.add(new SubSessionDTO(x.getId().getSubsession())));
 	}
 
 	public Long getId() {

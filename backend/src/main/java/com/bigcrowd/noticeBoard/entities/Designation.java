@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,8 +33,14 @@ public class Designation implements Serializable{
 	@JoinColumn(name = "person_id")
 	private Person person;
 	
-	@ManyToMany(mappedBy = "designations")
-	private Set<SubSession> subsessions = new LinkedHashSet<>();
+	@ManyToMany
+	@JoinTable(name = "tb_designation_subsession",
+		joinColumns = @JoinColumn(name = "designation_id"),
+		inverseJoinColumns = {
+				@JoinColumn(name = "meeting_id"),
+				@JoinColumn(name = "session_id"),
+				@JoinColumn(name = "subsession_id")})
+	private Set<Segmentation> segmentations = new LinkedHashSet<>();
 	
 	@ManyToMany(mappedBy = "designations")
 	private Set<Support> supports = new HashSet<>();
@@ -86,8 +93,8 @@ public class Designation implements Serializable{
 		this.person = person;
 	}
 
-	public Set<SubSession> getSubsessions() {
-		return subsessions;
+	public Set<Segmentation> getSegmentations() {
+		return segmentations;
 	}
 
 	public Set<Support> getSupports() {

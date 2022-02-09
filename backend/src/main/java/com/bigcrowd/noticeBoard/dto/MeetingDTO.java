@@ -10,7 +10,7 @@ import java.util.Set;
 import com.bigcrowd.noticeBoard.entities.Canticle;
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Prayer;
-import com.bigcrowd.noticeBoard.entities.Session;
+import com.bigcrowd.noticeBoard.entities.Segmentation;
 
 public class MeetingDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +22,7 @@ public class MeetingDTO implements Serializable {
 	private Set<CanticleDTO> canticles = new HashSet<>();
 	private List<PrayerDTO> prayers = new ArrayList<>();
 	private Set<SessionDTO> sessions = new HashSet<>();
+
 	
 	public MeetingDTO() {}
 	
@@ -36,12 +37,11 @@ public class MeetingDTO implements Serializable {
 		presidency = new PresidencyDTO(meeting.getPresidency());	
 	}
 	
-	public MeetingDTO(Meeting meeting, Set<Canticle> canticles, List<Prayer> prayers, Set<Session> sessions) {
+	public MeetingDTO(Meeting meeting, Set<Canticle> canticles, List<Prayer> prayers, Set<Segmentation> Segmentations) {
 		this(meeting);
 		canticles.forEach(x -> this.canticles.add(new CanticleDTO(x)));
 		prayers.forEach(x -> this.prayers.add(new PrayerDTO(x)));
-		sessions.forEach(x -> this.sessions.add(new SessionDTO(x, x.getSubsessions())));
-		
+		Segmentations.forEach(x -> this.sessions.add(new SessionDTO(x.getId().getSession(), Segmentations)));
 	}
 	
 	public Long getId() {

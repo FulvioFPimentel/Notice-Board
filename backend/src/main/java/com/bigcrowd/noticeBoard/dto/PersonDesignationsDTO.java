@@ -26,7 +26,7 @@ public class PersonDesignationsDTO implements Serializable{
 				this.designations.add(new DesignationsSupportDTO(x));
 			}
 			
-			if(!x.getSubsessions().isEmpty()) {
+			if(!x.getSegmentations().isEmpty()) {
 				this.designations.add(new DesignationsSubSessionDTO(x));
 			}
 			

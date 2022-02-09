@@ -26,7 +26,6 @@ public class SubSessionSaveDTO implements Serializable {
 	}
 	
 	public SubSessionSaveDTO(SubSession subsession) {
-		id = subsession.getId();
 		subSession = subsession.getSubSession();
 	}
 

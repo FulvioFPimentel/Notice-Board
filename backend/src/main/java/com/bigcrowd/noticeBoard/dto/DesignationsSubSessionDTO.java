@@ -20,11 +20,12 @@ public class DesignationsSubSessionDTO extends ListDesignationDTO {
 
 	public DesignationsSubSessionDTO(Designation designations) {
 		super(designations);
-		designations.getSubsessions().forEach(x ->
-			x.getMeetings().forEach(y -> date = y.getDate()));
-		designations.getSubsessions().forEach(x -> 
-			x.getSessions().forEach(y -> session = y.getSession()));
-		designations.getSubsessions().forEach(y -> subsession = y.getSubSession());
+		designations.getSegmentations().forEach(x -> 
+		date = x.getId().getMeeting().getDate());
+		designations.getSegmentations().forEach(x -> 
+		session = x.getId().getSession().getSession());
+		designations.getSegmentations().forEach(y -> 
+		subsession = y.getId().getSubsession().getSubSession());
 	}	
 
 	public Instant getDate() {
