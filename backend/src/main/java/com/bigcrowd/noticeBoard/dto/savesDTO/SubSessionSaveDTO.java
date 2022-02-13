@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.SubSession;
 
 public class SubSessionSaveDTO implements Serializable {
@@ -14,6 +15,9 @@ public class SubSessionSaveDTO implements Serializable {
 	
 	private Set<SessionSaveDTO> sessions = new LinkedHashSet<>();
 	private Set<MeetingSaveDTO> meetings  = new LinkedHashSet<>();
+	
+	private Set<SegmantationSaveDTO> segmantations = new LinkedHashSet<>();
+	
 	private Set<DesignationSaveDTO> designations = new LinkedHashSet<>();
 		
 	public SubSessionSaveDTO() {
@@ -26,7 +30,14 @@ public class SubSessionSaveDTO implements Serializable {
 	}
 	
 	public SubSessionSaveDTO(SubSession subsession) {
+		id = subsession.getId();
 		subSession = subsession.getSubSession();
+	}
+	
+	public SubSessionSaveDTO(SubSession subsession, Set<Designation> designations) {
+		id = subsession.getId();
+		subSession = subsession.getSubSession();
+		designations.forEach(x -> this.designations.add(new DesignationSaveDTO(x.getId(),x.getAssignment(), x.getPerson() )));
 	}
 
 	public Long getId() {
@@ -55,6 +66,10 @@ public class SubSessionSaveDTO implements Serializable {
 
 	public Set<DesignationSaveDTO> getDesignations() {
 		return designations;
+	}
+
+	public Set<SegmantationSaveDTO> getSegmantations() {
+		return segmantations;
 	}
 
 	@Override

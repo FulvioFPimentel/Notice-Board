@@ -50,6 +50,10 @@ public class SubSession implements Serializable {
 		this.subSession = subSession;
 	}
 
+	public Set<Segmentation> getSegmentations() {
+		return segmentations;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

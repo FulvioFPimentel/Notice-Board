@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.bigcrowd.noticeBoard.entities.Assignment;
 import com.bigcrowd.noticeBoard.entities.Designation;
+import com.bigcrowd.noticeBoard.entities.Person;
 import com.bigcrowd.noticeBoard.entities.Prayer;
 
 public class DesignationSaveDTO implements Serializable{
@@ -20,12 +22,10 @@ public class DesignationSaveDTO implements Serializable{
 	private Prayer prayer;	
 	private PresidencySaveDTO presidency;
 		
-	public DesignationSaveDTO(Long id, AssignmentSaveDTO assignment, PersonSaveDTO person,
-			PresidencySaveDTO presidency) {
+	public DesignationSaveDTO(Long id, Assignment assignment, Person person) {
 		this.id = id;
-		this.assignment = assignment;
-		this.person = person;
-		this.presidency = presidency;
+		this.assignment = new AssignmentSaveDTO(assignment);
+		this.person = new PersonSaveDTO(person);
 	}
 
 	public DesignationSaveDTO(Designation designation) {

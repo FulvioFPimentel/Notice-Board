@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.bigcrowd.noticeBoard.entities.Session;
+
 public class SessionSaveDTO  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -19,6 +21,11 @@ public class SessionSaveDTO  implements Serializable {
 	public SessionSaveDTO(Long id, String session) {
 		this.id = id;
 		this.session = session;
+	}
+	
+	public SessionSaveDTO(Session session) {
+		id = session.getId();
+		this.session = session.getSession();
 	}
 	
 	public Long getId() {

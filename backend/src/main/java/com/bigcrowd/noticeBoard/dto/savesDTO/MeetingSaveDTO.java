@@ -30,6 +30,11 @@ public class MeetingSaveDTO  implements Serializable{
 		this.date = date;
 	}
 	
+	public MeetingSaveDTO(Meeting meeting) {
+		this.id = meeting.getId();
+		this.date = meeting.getDate();
+	}
+	
 	public MeetingSaveDTO(Meeting meeting, Presidency presidency) {
 		this.id = meeting.getId();
 		this.date = meeting.getDate();

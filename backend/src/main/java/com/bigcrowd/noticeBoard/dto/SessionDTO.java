@@ -23,12 +23,16 @@ public class SessionDTO implements Serializable{
 	public SessionDTO(Session session) {
 		this.id = session.getId();
 		this.session = session.getSession();
-		
 	}
 	
-	public SessionDTO(Session session, Set<Segmentation> Segmentations) {
+	public SessionDTO(Session session, Set<Segmentation> segmentations) {
 		this(session);
-		Segmentations.forEach(x -> this.subsessions.add(new SubSessionDTO(x.getId().getSubsession())));
+			
+		for (Segmentation seg: segmentations) {
+			if(session.getId() == seg.getId().getSession().getId()) {
+				this.subsessions.add(new SubSessionDTO(seg.getId().getSubsession(), seg.getDesignations()));
+			}
+		}
 	}
 
 	public Long getId() {
