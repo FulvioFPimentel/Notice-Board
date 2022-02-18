@@ -46,6 +46,34 @@ public class SupportService {
 	}
 	
 	@Transactional
+	public SupportSaveDTO update(Long id, SupportSaveDTO dto) {
+
+			
+			Support support = supportRepository.getById(id);
+
+			support.setMeeting(support.getMeeting());
+			
+			for(DesignationSaveDTO desig: dto.getDesignations()) {
+				
+				Designation designation = designationRepository.getById(desig.getId());
+				Assignment assignment = assignmentRepository.getById(desig.getAssignment().getId());
+				
+				Person person = personRepository.getById(desig.getPerson().getId());
+				
+				designation.setId(desig.getId());
+				designation.setAssignment(assignment);
+				designation.setPerson(person);
+				
+				designation = designationRepository.saveAndFlush(designation);
+				support.getDesignations().add(designation);
+			}
+			
+			support = supportRepository.saveAndFlush(support);
+			return new SupportSaveDTO(support, support.getDesignations());
+	}
+	
+	
+	@Transactional
 	public SupportDTO saveSupport(SupportSaveDTO dto) {
 		
 		Meeting meeting = meetingRepository.getById(dto.getMeetingId());

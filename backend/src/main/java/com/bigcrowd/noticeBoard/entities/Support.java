@@ -59,6 +59,6 @@ public class Support implements Serializable {
 
 	public void setMeeting(Meeting meeting) {
 		this.meeting = meeting;
-	}	
+	}
 	
 }

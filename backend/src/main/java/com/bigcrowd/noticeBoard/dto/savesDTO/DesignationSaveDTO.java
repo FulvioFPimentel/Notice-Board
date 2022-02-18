@@ -17,7 +17,7 @@ public class DesignationSaveDTO implements Serializable{
 	private PersonSaveDTO person;
 	
 	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
-	//private Set<Support> supports = new HashSet<>();
+	private Set<SupportSaveDTO> supports = new HashSet<>();
 
 	private Prayer prayer;	
 	private PresidencySaveDTO presidency;
@@ -66,5 +66,9 @@ public class DesignationSaveDTO implements Serializable{
 
 	public Set<SubSessionSaveDTO> getSubsessions() {
 		return subsessions;
+	}
+
+	public Set<SupportSaveDTO> getSupports() {
+		return supports;
 	}
 }

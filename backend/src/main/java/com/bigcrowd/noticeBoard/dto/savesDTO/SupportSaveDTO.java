@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.bigcrowd.noticeBoard.entities.Designation;
-import com.bigcrowd.noticeBoard.entities.Meeting;
+import com.bigcrowd.noticeBoard.entities.Support;
 
 public class SupportSaveDTO {
 
+	private Long id;
 	private Long meetingId;
 	
 	private Set<DesignationSaveDTO> designations = new HashSet<>();
@@ -15,11 +16,19 @@ public class SupportSaveDTO {
 	public SupportSaveDTO() {
 	}
 	
-	public SupportSaveDTO(Meeting meetingId, Set<Designation> designations) {
-		this.meetingId = meetingId.getId();
+	public SupportSaveDTO(Support support, Set<Designation> designations) {
+		id = support.getId(); 
+		meetingId = support.getMeeting().getId();
 		designations.forEach(x -> this.designations.add(new DesignationSaveDTO(x.getId(), x.getAssignment(), x.getPerson())));
 	}
-	
+		
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getMeetingId() {
 		return meetingId;
@@ -31,7 +40,5 @@ public class SupportSaveDTO {
 
 	public Set<DesignationSaveDTO> getDesignations() {
 		return designations;
-	}
-	
-	
+	}	
 }
