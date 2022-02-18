@@ -12,31 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.bigcrowd.noticeBoard.dto.SupportDTO;
-import com.bigcrowd.noticeBoard.dto.savesDTO.SupportSaveDTO;
-import com.bigcrowd.noticeBoard.services.SupportService;
+import com.bigcrowd.noticeBoard.dto.AssignmentInfoDTO;
+import com.bigcrowd.noticeBoard.services.AssignmentService;
 
 @RestController
-@RequestMapping(value = "/supports")
-public class SupportController {
+@RequestMapping(value = "/assignments")
+public class AssignmentController {
 	
 	@Autowired
-	private SupportService supportService;
+	private AssignmentService assignmentService;
 	
 	@GetMapping
-	public ResponseEntity<List<SupportDTO>> findAll(){
-		List<SupportDTO> supports = supportService.findAllSupports();
-		return ResponseEntity.ok().body(supports);
+	public ResponseEntity<List<AssignmentInfoDTO>> findAll(){
+		List<AssignmentInfoDTO> assignment = assignmentService.findAll();
+		return ResponseEntity.ok().body(assignment);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SupportDTO> save(@RequestBody SupportSaveDTO dto) {
-		SupportDTO entity = supportService.saveSupport(dto);
+	public ResponseEntity<AssignmentInfoDTO> save(@RequestBody AssignmentInfoDTO dto) {
+		dto = assignmentService.save(dto);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(entity.getId()).toUri();
-		return ResponseEntity.created(uri).body(entity);
+				.path("{/id}")
+				.buildAndExpand(dto.getId()).toUri();
+		return ResponseEntity.created(uri).body(dto);
 	}
 
 }

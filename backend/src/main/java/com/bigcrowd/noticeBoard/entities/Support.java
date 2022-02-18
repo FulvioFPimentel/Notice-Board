@@ -41,8 +41,6 @@ public class Support implements Serializable {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}

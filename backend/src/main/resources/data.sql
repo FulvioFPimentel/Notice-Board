@@ -102,7 +102,6 @@ INSERT INTO tb_assignment (task, field) VALUES ('Leitor', 'Suporte');
 INSERT INTO tb_assignment (task, field) VALUES ('Comentários', 'Suporte');
 
 INSERT INTO tb_support (meeting_id) VALUES (1);
-INSERT INTO tb_support (meeting_id) VALUES (2);
 
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (1, 1);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (6, 2);
@@ -112,7 +111,7 @@ INSERT INTO tb_designation (assignment_id, person_id) VALUES (4, 10);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (3, 11);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (4, 10);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (1, 12);
-INSERT INTO tb_designation (assignment_id, person_id) VALUES (7, 2);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (13, 1);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (8, 3);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (9, 4);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (10, 5);
@@ -160,5 +159,4 @@ INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 1, 
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 1, 14);
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 2, 15);
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 2, 16);
-
 

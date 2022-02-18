@@ -137,10 +137,7 @@ public class MeetingService {
 						subDesignation.setAssignment(subAssignment);
 						subDesignation.getSegmentations().add(segmantation);
 						
-						subDesignation = designationRepository.saveAndFlush(subDesignation);
-						
-						
-								
+						subDesignation = designationRepository.saveAndFlush(subDesignation);		
 					}
 
 					meeting.getSegmentations().add(segmantation);
