@@ -60,7 +60,6 @@ public class SupportService {
 				
 				Person person = personRepository.getById(desig.getPerson().getId());
 				
-				designation.setId(desig.getId());
 				designation.setAssignment(assignment);
 				designation.setPerson(person);
 				

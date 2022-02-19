@@ -10,16 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.PersonAllDTO;
 import com.bigcrowd.noticeBoard.dto.PersonDesignationsDTO;
+import com.bigcrowd.noticeBoard.dto.savesDTO.PersonSaveDTO;
 import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Person;
+import com.bigcrowd.noticeBoard.entities.Role;
 import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
-
+import com.bigcrowd.noticeBoard.repositories.RoleRepository;
 
 @Service
 public class PersonService implements UserDetailsService {
@@ -30,7 +33,13 @@ public class PersonService implements UserDetailsService {
 	private PersonRepository personRepository;
 	
 	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private DesignationRepository designationRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,4 +65,20 @@ public class PersonService implements UserDetailsService {
 		return new PersonDesignationsDTO(person, designations);
 	}
 	
+	@Transactional
+	public PersonAllDTO savePerson(PersonSaveDTO dto) {
+		Person person = new Person ();
+		
+		person.setName(dto.getName());
+		person.setCellPhone(dto.getCellPhone());
+		person.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
+		Role role = roleRepository.getById(3L);
+				
+		person.getRoles().add(role);
+		person = personRepository.saveAndFlush(person);	
+		
+		return new PersonAllDTO(person, person.getRoles());
+	}
+		
 }

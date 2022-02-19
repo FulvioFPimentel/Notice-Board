@@ -11,6 +11,8 @@ public class RoleDTO {
 		this.id = id;
 		this.privilege = privilege;
 	}
+	
+	public RoleDTO () {}
 
 	public RoleDTO(Role role) {
 		id = role.getId();

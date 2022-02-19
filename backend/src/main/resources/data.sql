@@ -16,6 +16,7 @@ INSERT INTO tb_person (name, cell_phone, password) VALUES ('Eva da Silva', '18-8
 
 INSERT INTO tb_role (privilege) VALUES ('ROLE_OPERATOR');
 INSERT INTO tb_role (privilege) VALUES ('ROLE_ADMIN');
+INSERT INTO tb_role (privilege) VALUES ('ROLE_USER');
 
 INSERT INTO tb_person_role (person_id, role_id) VALUES (1, 2);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (2, 2);
