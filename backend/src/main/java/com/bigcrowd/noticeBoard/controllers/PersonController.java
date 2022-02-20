@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import com.bigcrowd.noticeBoard.dto.savesDTO.PersonSaveDTO;
 import com.bigcrowd.noticeBoard.services.PersonService;
 
 @RestController
-@RequestMapping(value = "/person")
+@RequestMapping(value = "/persons")
 public class PersonController {
 	
 	@Autowired
@@ -37,7 +38,7 @@ public class PersonController {
 		return ResponseEntity.ok().body(person);
 	}
 
-	@PostMapping
+	@PostMapping(value = "/create")
 	public ResponseEntity<PersonAllDTO> savePerson(@RequestBody PersonSaveDTO dto) {
 		PersonAllDTO entity = personService.savePerson(dto);
 		URI uri = ServletUriComponentsBuilder.
@@ -45,5 +46,17 @@ public class PersonController {
 				.path("/{id}")
 				.buildAndExpand(entity.getId()).toUri();
 		return ResponseEntity.created(uri).body(entity);
+	}
+	
+	@PutMapping(value = "/user/{id}")
+	public ResponseEntity<PersonSaveDTO> update(@PathVariable Long id, @RequestBody PersonSaveDTO dto) {
+		dto = personService.updatePerson(id, dto);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	@PutMapping(value = "/admin/{id}")
+	public ResponseEntity<PersonSaveDTO> updateRole(@PathVariable Long id, @RequestBody PersonSaveDTO dto) {
+		dto = personService.updatePersonRole(id, dto);
+		return ResponseEntity.ok().body(dto);
 	}
 }

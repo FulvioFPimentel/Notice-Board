@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.PersonAllDTO;
 import com.bigcrowd.noticeBoard.dto.PersonDesignationsDTO;
+import com.bigcrowd.noticeBoard.dto.RoleDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.PersonSaveDTO;
 import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Person;
@@ -79,6 +80,38 @@ public class PersonService implements UserDetailsService {
 		person = personRepository.saveAndFlush(person);	
 		
 		return new PersonAllDTO(person, person.getRoles());
+	}
+	
+	public PersonSaveDTO updatePerson(Long id, PersonSaveDTO dto) {
+		Person person = personRepository.getById(id);
+		
+		System.out.println(person.getName());
+		
+		person.setName(dto.getName());
+		person.setCellPhone(dto.getCellPhone());
+		person.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
+		person = personRepository.saveAndFlush(person);
+		
+		return new PersonSaveDTO(person);
+	}
+	
+	public PersonSaveDTO updatePersonRole(Long id, PersonSaveDTO dto) {
+		Person person = personRepository.getById(id);
+		
+		person.setName(dto.getName());
+		person.setCellPhone(dto.getCellPhone());
+		person.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
+		person.getRoles().clear();
+		for(RoleDTO roles: dto.getRoles()) {
+			Role role = roleRepository.getById(roles.getId());			
+			role = roleRepository.saveAndFlush(role);
+			person.getRoles().add(role);
+		}
+		
+		person = personRepository.saveAndFlush(person);
+		return new PersonSaveDTO(person);
 	}
 		
 }
