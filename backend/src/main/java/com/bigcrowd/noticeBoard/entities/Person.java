@@ -156,4 +156,13 @@ public class Person implements UserDetails, Serializable {
 		return true;
 	}
 	
+	public boolean hasRole(String roleName) {
+		for(Role role: roles) {
+			if(role.getPrivilege().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

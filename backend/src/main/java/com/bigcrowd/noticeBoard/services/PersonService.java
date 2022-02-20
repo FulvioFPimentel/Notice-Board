@@ -31,6 +31,9 @@ public class PersonService implements UserDetailsService {
 	private static Logger logger = LoggerFactory.getLogger(PersonService.class);
 	
 	@Autowired
+	private AuthService authService;
+	
+	@Autowired
 	private PersonRepository personRepository;
 	
 	@Autowired
@@ -97,6 +100,7 @@ public class PersonService implements UserDetailsService {
 	}
 	
 	public PersonSaveDTO updatePersonRole(Long id, PersonSaveDTO dto) {
+		authService.validateSelfOrAdmin(id);
 		Person person = personRepository.getById(id);
 		
 		person.setName(dto.getName());

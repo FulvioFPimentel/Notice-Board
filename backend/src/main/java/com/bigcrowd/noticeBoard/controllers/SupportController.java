@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.bigcrowd.noticeBoard.dto.SupportDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.SupportSaveDTO;
 import com.bigcrowd.noticeBoard.services.SupportService;
+import com.bigcrowd.noticeBoard.services.exceptions.ControllerNotFoundException;
 
 @RestController
 @RequestMapping(value = "/supports")
@@ -33,19 +34,31 @@ public class SupportController {
 	
 	@PostMapping
 	public ResponseEntity<SupportDTO> save(@RequestBody SupportSaveDTO dto) {
-		SupportDTO entity = supportService.saveSupport(dto);
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(entity.getId()).toUri();
-		return ResponseEntity.created(uri).body(entity);
+		try {
+			SupportDTO entity = supportService.saveSupport(dto);
+			URI uri = ServletUriComponentsBuilder
+					.fromCurrentRequest()
+					.path("/{id}")
+					.buildAndExpand(entity.getId()).toUri();
+			return ResponseEntity.created(uri).body(entity);
+			
+		} catch (RuntimeException e) {
+			throw new ControllerNotFoundException("Not Found");
+		}
+		
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<SupportSaveDTO> update(@PathVariable Long id, @RequestBody SupportSaveDTO dto){
 		
-		dto = supportService.update(id, dto);
-		return ResponseEntity.ok().body(dto);
+		try {
+			dto = supportService.update(id, dto);
+			return ResponseEntity.ok().body(dto);
+		} catch(RuntimeException e) {
+			throw new ControllerNotFoundException("Not Found");
+		}
+		
+
 	}
 
 }
