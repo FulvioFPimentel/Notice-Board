@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -21,11 +22,12 @@ public class MeetingSaveDTO  implements Serializable{
 	private List<PrayerSaveDTO> prayers = new ArrayList<>();
 	private Set<SessionSaveDTO> sessions = new HashSet<>();
 	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
+	private Set<SegmantationSaveDTO> segmentations = new LinkedHashSet<>();
 		
 	public MeetingSaveDTO() {
 	}
 
-	public MeetingSaveDTO(Long id, Instant date) {
+	public MeetingSaveDTO(Long id, Instant date, Set<SegmantationSaveDTO> segmentations) {
 		this.id = id;
 		this.date = date;
 	}
@@ -79,5 +81,9 @@ public class MeetingSaveDTO  implements Serializable{
 
 	public Set<SubSessionSaveDTO> getSubsessions() {
 		return subsessions;
+	}
+
+	public Set<SegmantationSaveDTO> getSegmentations() {
+		return segmentations;
 	}
 }

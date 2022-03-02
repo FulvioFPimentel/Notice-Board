@@ -74,6 +74,7 @@ public class MeetingService {
 		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
 	}
 	
+	
 	@Transactional
 	public MeetingSaveDTO insert(MeetingSaveDTO dto) {
 	
@@ -113,14 +114,11 @@ public class MeetingService {
 		}
 		
 		for(SessionSaveDTO sDto: dto.getSessions()) {
-			
 			Session session = sessionRepository.getById(sDto.getId());
 			
 			for (SubSessionSaveDTO ssDto: sDto.getSubsessions()) {
-				
 				SubSession subsession = subSessionRepository.getById(ssDto.getId());
 				
-
 					Segmentation segmantation = new Segmentation();
 					segmantation.setMeeting(meeting);
 					segmantation.setSession(session);
@@ -132,11 +130,9 @@ public class MeetingService {
 						Assignment subAssignment = assignmentRepository.getById(dDto.getAssignment().getId());		
 						
 						Designation subDesignation = new Designation();
-						
 						subDesignation.setPerson(subPerson);
 						subDesignation.setAssignment(subAssignment);
 						subDesignation.getSegmentations().add(segmantation);
-						
 						subDesignation = designationRepository.saveAndFlush(subDesignation);		
 					}
 
@@ -144,12 +140,103 @@ public class MeetingService {
 			}
 		}
 		
-		
 		meeting.setDate(dto.getDate());
 		meeting.setPresidency(presidency);
-		
 		meeting = repository.saveAndFlush(meeting);
 		return new MeetingSaveDTO(meeting, presidency);
+	}
+	
+	
+	@Transactional
+	public MeetingSaveDTO update(Long id, MeetingSaveDTO dto) {
+		
+		Meeting meeting = repository.getById(id);
+		
+		Assignment assignment = assignmentRepository.getById(dto.getPresidency().getDesignation().getAssignment().getId());
+		Person person = personRepository.getById(dto.getPresidency().getDesignation().getPerson().getId());
+		
+		Designation desigPresidency = designationRepository.getById(meeting.getPresidency().getId());
+		desigPresidency.setAssignment(assignment);
+		desigPresidency.setPerson(person);
+		desigPresidency = designationRepository.saveAndFlush(desigPresidency);
+				
+		meeting.getCanticles().clear();
+		for(CanticleSaveDTO cDto:  dto.getCanticles()) {
+			Canticle canticle = canticleRepository.getById(cDto.getId());
+			canticle = canticleRepository.saveAndFlush(canticle);
+			meeting.getCanticles().add(canticle);
+		}
+		
+		meeting.getPrayers().clear();
+		for(PrayerSaveDTO pDto: dto.getPrayers()) {
+			Assignment prayerAssignment = assignmentRepository.getById(pDto.getDesignation().getAssignment().getId());
+			Person prayerPerson = personRepository.getById(pDto.getDesignation().getPerson().getId());
+			
+			Designation prayerDesignation = designationRepository.getById(pDto.getDesignation().getId());
+			prayerDesignation.setAssignment(prayerAssignment);
+			prayerDesignation.setPerson(prayerPerson);
+			
+			Prayer prayer = prayerRepository.getById(pDto.getId());
+			prayer.setMoment(pDto.getMoment());
+			prayer.setDesignation(prayerDesignation);
+			prayer.setMeeting(meeting);
+			prayer = prayerRepository.saveAndFlush(prayer);
+			meeting.getPrayers().add(prayer);
+		}
+		
+
+		long sessionID = 0;
+		
+		for(SessionSaveDTO sDTO: dto.getSessions()) {
+			for(Segmentation s: meeting.getSegmentations()) {
+				
+				if(sDTO.getId() == s.getSession().getId()) {
+					if(sessionID == 0 || sessionID != sDTO.getId()) {
+						Session session = sessionRepository.getById(s.getSession().getId());
+						sessionID = sDTO.getId();
+						session.setSession(sDTO.getSession());
+						session = sessionRepository.saveAndFlush(session);
+					}
+				}
+			}
+			
+			for (SubSessionSaveDTO ssDTO: sDTO.getSubsessions()) {
+				for(Segmentation s: meeting.getSegmentations()) {
+					
+					if(ssDTO.getId() == s.getSubSession().getId()) {
+						
+						SubSession subsession = subSessionRepository.getById(s.getSubSession().getId());
+						subsession.setSubSession(ssDTO.getSubSession());
+						subsession = subSessionRepository.saveAndFlush(subsession);
+					}
+				}
+				
+				for(DesignationSaveDTO dDTO: ssDTO.getDesignations()) {
+					long designationID = 0;
+					for(Segmentation s: meeting.getSegmentations()) {
+						
+						for(Designation desig: s.getDesignations()) {
+							if(designationID != dDTO.getId() && desig.getId() == dDTO.getId()) {
+								
+								Designation designation = designationRepository.getById(desig.getId());
+								
+								Person personDesig = personRepository.getById(dDTO.getPerson().getId());
+								Assignment assignmentDesig = assignmentRepository.getById(dDTO.getAssignment().getId());
+								
+								designation.setPerson(personDesig);
+								designation.setAssignment(assignmentDesig);
+								designation = designationRepository.saveAndFlush(designation);
+							}
+						}
+					}	
+				}
+			}
+		}
+		
+				
+		meeting.setDate(dto.getDate());
+		meeting = repository.saveAndFlush(meeting);
+		return new MeetingSaveDTO(meeting);
 	}
 		
 }

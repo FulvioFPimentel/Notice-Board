@@ -45,7 +45,6 @@ public class SupportController {
 		} catch (RuntimeException e) {
 			throw new ControllerNotFoundException("Not Found");
 		}
-		
 	}
 	
 	@PutMapping(value = "/{id}")
@@ -57,8 +56,5 @@ public class SupportController {
 		} catch(RuntimeException e) {
 			throw new ControllerNotFoundException("Not Found");
 		}
-		
-
 	}
-
 }

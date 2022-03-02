@@ -27,6 +27,18 @@ public class Segmentation {
 		this.designations = designations;
 	}
 	
+	public Meeting getMeeting() {
+		return id.getMeeting();
+	}
+	
+	public Session getSession() {
+		return id.getSession();
+	}
+	
+	public SubSession getSubSession() {
+		return id.getSubsession();
+	}
+	
 	public void setMeeting(Meeting meeting) {
 		id.setMeeting(meeting);
 	}

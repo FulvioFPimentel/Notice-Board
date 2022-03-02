@@ -7,6 +7,7 @@ import com.bigcrowd.noticeBoard.entities.Prayer;
 public class PrayerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
 	private String moment;
 	private DesignationDTO designation;
 	
@@ -15,8 +16,17 @@ public class PrayerDTO implements Serializable {
 	}
 	
 	public PrayerDTO(Prayer prayer) {
+		id = prayer.getId();
 		moment = prayer.getMoment();
 		designation = new DesignationDTO(prayer.getDesignation());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getMoment() {

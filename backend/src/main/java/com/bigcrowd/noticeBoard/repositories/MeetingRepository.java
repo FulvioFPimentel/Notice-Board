@@ -7,6 +7,10 @@ import com.bigcrowd.noticeBoard.entities.Meeting;
 
 @Repository
 public interface MeetingRepository extends JpaRepository<Meeting ,Long> {
+	
+	
+	//@Query("SELECT obj FROM Meeting obj WHERE obj.id.meeting = :meeting")
+	//List<Meeting> findBySegmentation(Meeting meeting);
 
 	
 }

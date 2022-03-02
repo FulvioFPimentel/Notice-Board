@@ -12,7 +12,6 @@ public class CanticleDTO implements Serializable{
 	private String title;	
 	
 	public CanticleDTO(Long id, Integer number, String title) {
-		super();
 		this.id = id;
 		this.number = number;
 		this.title = title;

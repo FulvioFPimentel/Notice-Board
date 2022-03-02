@@ -10,12 +10,14 @@ import com.bigcrowd.noticeBoard.entities.SubSession;
 public class SubSessionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
 	private String subsession;
 	private Set<DesignationDTO> designations = new HashSet<>();
 	
 	public SubSessionDTO() {}
 	
 	public SubSessionDTO(SubSession subsession) {
+		id = subsession.getId();
 		this.subsession = subsession.getSubSession();
 	}
 	
@@ -24,7 +26,15 @@ public class SubSessionDTO implements Serializable {
 		designations.forEach(x -> this.designations.add(new DesignationDTO(x)));
 	}
 
-	public String getSubSession() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSubsession() {
 		return subsession;
 	}
 

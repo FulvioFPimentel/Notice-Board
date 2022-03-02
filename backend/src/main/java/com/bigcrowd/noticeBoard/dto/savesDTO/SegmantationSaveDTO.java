@@ -14,10 +14,10 @@ public class SegmantationSaveDTO {
 	
 	private Set<DesignationSaveDTO> designations = new LinkedHashSet<>();
 
-	public SegmantationSaveDTO(MeetingSaveDTO meetingDTO, SessionSaveDTO sessionDTO, SubSessionSaveDTO subSessionDTO) {
+	public SegmantationSaveDTO(MeetingSaveDTO meetingDTO, SessionSaveDTO sessions, SubSessionSaveDTO subsessions) {
 		this.meetingDTO = meetingDTO;
-		this.sessionDTO = sessionDTO;
-		this.subSessionDTO = subSessionDTO;
+		this.sessionDTO = sessions;
+		this.subSessionDTO = subsessions;
 	}
 	
 	public SegmantationSaveDTO(Segmentation segmentation, Set<Designation> designation) {

@@ -88,8 +88,6 @@ public class PersonService implements UserDetailsService {
 	public PersonSaveDTO updatePerson(Long id, PersonSaveDTO dto) {
 		Person person = personRepository.getById(id);
 		
-		System.out.println(person.getName());
-		
 		person.setName(dto.getName());
 		person.setCellPhone(dto.getCellPhone());
 		person.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -116,6 +114,5 @@ public class PersonService implements UserDetailsService {
 		
 		person = personRepository.saveAndFlush(person);
 		return new PersonSaveDTO(person);
-	}
-		
+	}	
 }
