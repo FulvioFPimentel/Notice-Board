@@ -74,7 +74,6 @@ public class MeetingService {
 		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
 	}
 	
-	
 	@Transactional
 	public MeetingSaveDTO insert(MeetingSaveDTO dto) {
 	
@@ -146,7 +145,6 @@ public class MeetingService {
 		return new MeetingSaveDTO(meeting, presidency);
 	}
 	
-	
 	@Transactional
 	public MeetingSaveDTO update(Long id, MeetingSaveDTO dto) {
 		
@@ -155,11 +153,17 @@ public class MeetingService {
 		Assignment assignment = assignmentRepository.getById(dto.getPresidency().getDesignation().getAssignment().getId());
 		Person person = personRepository.getById(dto.getPresidency().getDesignation().getPerson().getId());
 		
-		Designation desigPresidency = designationRepository.getById(meeting.getPresidency().getId());
+		Designation desigPresidency = designationRepository.getById(meeting.getPresidency().getDesignation().getId());
+		
 		desigPresidency.setAssignment(assignment);
 		desigPresidency.setPerson(person);
 		desigPresidency = designationRepository.saveAndFlush(desigPresidency);
-				
+		
+		Presidency presidency = presidencyRepository.getById(meeting.getPresidency().getId());
+		presidency.setMeeting(meeting);
+		presidency.setDesignation(desigPresidency);
+		presidency = presidencyRepository.saveAndFlush(presidency);
+			
 		meeting.getCanticles().clear();
 		for(CanticleSaveDTO cDto:  dto.getCanticles()) {
 			Canticle canticle = canticleRepository.getById(cDto.getId());
@@ -184,7 +188,6 @@ public class MeetingService {
 			meeting.getPrayers().add(prayer);
 		}
 		
-
 		long sessionID = 0;
 		
 		for(SessionSaveDTO sDTO: dto.getSessions()) {
@@ -204,7 +207,6 @@ public class MeetingService {
 				for(Segmentation s: meeting.getSegmentations()) {
 					
 					if(ssDTO.getId() == s.getSubSession().getId()) {
-						
 						SubSession subsession = subSessionRepository.getById(s.getSubSession().getId());
 						subsession.setSubSession(ssDTO.getSubSession());
 						subsession = subSessionRepository.saveAndFlush(subsession);
@@ -219,7 +221,6 @@ public class MeetingService {
 							if(designationID != dDTO.getId() && desig.getId() == dDTO.getId()) {
 								
 								Designation designation = designationRepository.getById(desig.getId());
-								
 								Person personDesig = personRepository.getById(dDTO.getPerson().getId());
 								Assignment assignmentDesig = assignmentRepository.getById(dDTO.getAssignment().getId());
 								
@@ -232,11 +233,9 @@ public class MeetingService {
 				}
 			}
 		}
-		
-				
+			
 		meeting.setDate(dto.getDate());
 		meeting = repository.saveAndFlush(meeting);
 		return new MeetingSaveDTO(meeting);
-	}
-		
+	}	
 }
