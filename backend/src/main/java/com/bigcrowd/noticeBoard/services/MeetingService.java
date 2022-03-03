@@ -237,5 +237,11 @@ public class MeetingService {
 		meeting.setDate(dto.getDate());
 		meeting = repository.saveAndFlush(meeting);
 		return new MeetingSaveDTO(meeting);
+	}
+	
+	
+
+	public void delete(Long id) {
+		
 	}	
 }
