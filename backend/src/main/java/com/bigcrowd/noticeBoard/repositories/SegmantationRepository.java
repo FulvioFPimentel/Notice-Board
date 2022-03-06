@@ -15,11 +15,11 @@ import com.bigcrowd.noticeBoard.entities.SubSession;
 @Repository
 public interface SegmantationRepository extends JpaRepository<Segmentation, SegmentationPK>{
 	
-	@Query("SELECT obj FROM Segmentation obj WHERE "
+	@Query("DELETE FROM Segmentation obj WHERE "
 			+ "(obj.id.meeting = :meetingId) AND"
 			+ "(obj.id.session = :sessionId) AND"
 			+ "(obj.id.subsession = :subsessionId)")
-	Segmentation findSegmentationById(Meeting meetingId, Session sessionId, SubSession subsessionId);
+	Segmentation deleteSegmentationById(Long meetingId, Long sessionId, Long subsessionId);
 	
 	@Query("SELECT obj FROM Segmentation obj WHERE obj.id.meeting = :meetingId")
 	List<Segmentation> findByMeeting(Meeting meetingId);

@@ -124,6 +124,19 @@ INSERT INTO tb_designation (assignment_id, person_id) VALUES (11, 7);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (5, 1);
 INSERT INTO tb_designation (assignment_id, person_id) VALUES (5, 2);
 
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (1, 1);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (6, 2);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (2, 7);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (3, 9);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (4, 10);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (3, 11);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (1, 4);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (6, 3);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (13, 1);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (8, 3);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (5, 2);
+INSERT INTO tb_designation (assignment_id, person_id) VALUES (5, 1);
+
 INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (1 ,1 ,1, 1);
 INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (2 ,1 ,1, 2);
 INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (3 ,1 ,1, 3);
@@ -135,18 +148,18 @@ INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, s
 INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (9 ,1 ,3, 7);
 INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (10 ,1 ,3, 8);
 
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (1 ,2 ,1, 9);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (2 ,2 ,1, 2);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (3 ,2 ,1, 3);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (4 ,2 ,2, 4);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (5 ,2 ,2, 4);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (4 ,2 ,2, 10);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (5 ,2 ,2, 10);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (4 ,2 ,2, 11);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (5 ,2 ,2, 11);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (7 ,2 ,3, 12);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (8 ,2 ,3, 13);
-INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (1 ,2 ,3, 8);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (20 ,2 ,1, 9);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (21 ,2 ,1, 2);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (22 ,2 ,1, 3);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (23 ,2 ,2, 4);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (24 ,2 ,2, 4);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (25 ,2 ,2, 10);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (26 ,2 ,2, 10);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (27 ,2 ,2, 11);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (28 ,2 ,2, 11);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (29 ,2 ,3, 12);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (30 ,2 ,3, 13);
+INSERT INTO tb_designation_subsession (designation_id, meeting_id, session_id, subsession_id) VALUES (31 ,2 ,3, 8);
 
 INSERT INTO tb_presidency (designation_id, meeting_id) VALUES (18, 1);
 INSERT INTO tb_presidency (designation_id, meeting_id) VALUES (19, 2);

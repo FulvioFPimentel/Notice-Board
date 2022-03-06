@@ -49,4 +49,8 @@ public class AssignmentService {
 		assignment.setTask(dto.getTask());
 		assignment.setField(dto.getField());
 	}
+
+	public void deleteAssignment(Long id) {	
+		assignmentRepository.deleteById(id);
+	}
 }

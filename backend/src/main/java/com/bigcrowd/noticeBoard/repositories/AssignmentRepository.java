@@ -7,5 +7,6 @@ import com.bigcrowd.noticeBoard.entities.Assignment;
 
 @Repository
 public interface AssignmentRepository extends JpaRepository<Assignment, Long>{
+	
 
 }

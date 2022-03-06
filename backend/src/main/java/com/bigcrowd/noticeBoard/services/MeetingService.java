@@ -239,9 +239,24 @@ public class MeetingService {
 		return new MeetingSaveDTO(meeting);
 	}
 	
-	
-
 	public void delete(Long id) {
+		try {
+			
+			Meeting meeting = repository.getById(id);
+			
+			List<Segmentation> seg = segmentationRepository.findByMeeting(meeting);
+	
+			for(Segmentation s: seg) {
+				for(Designation des: s.getDesignations()) {					
+					designationRepository.deleteById(des.getId());
+				} 
+			}
+			
+			// repository.deleteById(id);
+			
+		} catch(RuntimeException e) {
+			e.getMessage();
+		}
 		
 	}	
 }

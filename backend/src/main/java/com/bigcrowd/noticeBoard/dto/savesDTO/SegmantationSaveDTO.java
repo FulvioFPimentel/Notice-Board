@@ -56,5 +56,47 @@ public class SegmantationSaveDTO {
 	public SubSessionSaveDTO getSubSessionDTO() {
 		return subSessionDTO;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((designations == null) ? 0 : designations.hashCode());
+		result = prime * result + ((meetingDTO == null) ? 0 : meetingDTO.hashCode());
+		result = prime * result + ((sessionDTO == null) ? 0 : sessionDTO.hashCode());
+		result = prime * result + ((subSessionDTO == null) ? 0 : subSessionDTO.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SegmantationSaveDTO other = (SegmantationSaveDTO) obj;
+		if (designations == null) {
+			if (other.designations != null)
+				return false;
+		} else if (!designations.equals(other.designations))
+			return false;
+		if (meetingDTO == null) {
+			if (other.meetingDTO != null)
+				return false;
+		} else if (!meetingDTO.equals(other.meetingDTO))
+			return false;
+		if (sessionDTO == null) {
+			if (other.sessionDTO != null)
+				return false;
+		} else if (!sessionDTO.equals(other.sessionDTO))
+			return false;
+		if (subSessionDTO == null) {
+			if (other.subSessionDTO != null)
+				return false;
+		} else if (!subSessionDTO.equals(other.subSessionDTO))
+			return false;
+		return true;
+	}	
 }

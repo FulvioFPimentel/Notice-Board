@@ -46,10 +46,9 @@ public class MeetingController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<MeetingSaveDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
 }
