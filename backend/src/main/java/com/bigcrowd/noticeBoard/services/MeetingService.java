@@ -244,16 +244,29 @@ public class MeetingService {
 			
 			Meeting meeting = repository.getById(id);
 			
+			designationRepository.deleteById(meeting.getPresidency().getDesignation().getId());
+			//presidencyRepository.deleteById(meeting.getPresidency().getId());
+			
+			for(Prayer prayer: meeting.getPrayers()) {
+				designationRepository.deleteById(prayer.getDesignation().getId());
+				prayerRepository.deleteById(prayer.getId());
+			}
+			meeting.getCanticles().clear();
+			meeting.getPrayers().clear();
+			
+			
 			List<Segmentation> seg = segmentationRepository.findByMeeting(meeting);
-	
+			
 			for(Segmentation s: seg) {
-				for(Designation des: s.getDesignations()) {					
+				for(Designation des: s.getDesignations()) {		
 					designationRepository.deleteById(des.getId());
-				} 
+				}
 			}
 			
+			segmentationRepository.deleteSegmentation(meeting);
 			// repository.deleteById(id);
 			
+						
 		} catch(RuntimeException e) {
 			e.getMessage();
 		}

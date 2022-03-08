@@ -29,5 +29,8 @@ public interface SegmantationRepository extends JpaRepository<Segmentation, Segm
 	
 	@Query("SELECT obj FROM Segmentation obj WHERE obj.id.subsession = :subsessionId")
 	Segmentation findBySubSession(SubSession subsessionId);
+	
+	@Query("DELETE FROM Segmentation obj WHERE obj.id.meeting = :meetingId")
+	void deleteSegmentation(Meeting meetingId);
 
 }
