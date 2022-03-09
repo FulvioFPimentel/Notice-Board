@@ -1,5 +1,6 @@
 package com.bigcrowd.noticeBoard.services;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,8 +27,9 @@ import com.bigcrowd.noticeBoard.repositories.PersonRepository;
 import com.bigcrowd.noticeBoard.repositories.RoleRepository;
 
 @Service
-public class PersonService implements UserDetailsService {
-	
+public class PersonService implements UserDetailsService, Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private static Logger logger = LoggerFactory.getLogger(PersonService.class);
 	
 	@Autowired

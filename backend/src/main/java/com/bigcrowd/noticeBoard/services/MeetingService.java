@@ -1,5 +1,6 @@
 package com.bigcrowd.noticeBoard.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -249,14 +250,25 @@ public class MeetingService {
 			
 			Meeting meeting = repository.getById(id);
 			
+			for(Support sub: meeting.getSupports()) {
+				
+				List<Designation> desig = new ArrayList<>();
+				sub.getDesignations().forEach(x -> desig.add(x));
+				
+				sub.getDesignations().clear();
+				for(Designation des: desig) {
+					designationRepository.delete(designationRepository.getById(des.getId()));
+				}
+				supportRepository.deleteById(sub.getId());
+			} 
+			
 			for(Prayer prayer: meeting.getPrayers()) {
 				designationRepository.deleteById(prayer.getDesignation().getId());
 				prayerRepository.deleteById(prayer.getId());
 			}
 			meeting.getCanticles().clear();
 			meeting.getPrayers().clear();
-			
-			
+						
 			List<Segmentation> seg = segmentationRepository.findByMeeting(meeting);
 			
 			for(Segmentation s: seg) {
@@ -265,20 +277,12 @@ public class MeetingService {
 				}
 				segmentationRepository.deleteById(s.getId());
 			}
-			
-			designationRepository.deleteById(meeting.getPresidency().getMeeting().getPresidency().getId());
+				
+			designationRepository.deleteById(meeting.getPresidency().getDesignation().getId());
 			presidencyRepository.deleteById(meeting.getPresidency().getId());
 			
-			List<Support> support = supportRepository.findSupportByMeeting(meeting);
-				for(Support sup: support) {
-					sup.getDesignations().clear();
-					supportRepository.deleteById(sup.getId());
-				}
-
-			
 			repository.deleteById(id);
-			
-						
+							
 		} catch(RuntimeException e) {
 			e.getMessage();
 		}

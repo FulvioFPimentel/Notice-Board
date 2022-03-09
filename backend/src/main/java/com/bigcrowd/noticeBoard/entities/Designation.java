@@ -51,7 +51,6 @@ public class Designation implements Serializable{
 	@OneToOne(mappedBy = "designation")
 	private Presidency presidency;
 	
-	
 	public Designation() {
 	}
 

@@ -22,7 +22,7 @@ import com.bigcrowd.noticeBoard.services.MeetingService;
 @RestController
 @RequestMapping(value = "/meetings")
 public class MeetingController {
-		
+			
 	@Autowired
 	private MeetingService service;
 	
@@ -46,7 +46,7 @@ public class MeetingController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@DeleteMapping(path = "/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<MeetingSaveDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
