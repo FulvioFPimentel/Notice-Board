@@ -45,6 +45,9 @@ public class Meeting implements Serializable {
 	@OneToMany(mappedBy = "meeting")
 	private List<Prayer> prayers = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "meeting")
+	private List<Support> supports = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "id.meeting")
 	private Set<Segmentation> segmentations = new LinkedHashSet<>();
 		
@@ -84,6 +87,10 @@ public class Meeting implements Serializable {
 
 	public List<Prayer> getPrayers() {
 		return prayers;
+	}
+	
+	public List<Support> getSupports() {
+		return supports;
 	}
 
 	public Set<Canticle> getCanticles() {

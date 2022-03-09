@@ -24,6 +24,7 @@ import com.bigcrowd.noticeBoard.entities.Presidency;
 import com.bigcrowd.noticeBoard.entities.Segmentation;
 import com.bigcrowd.noticeBoard.entities.Session;
 import com.bigcrowd.noticeBoard.entities.SubSession;
+import com.bigcrowd.noticeBoard.entities.Support;
 import com.bigcrowd.noticeBoard.repositories.AssignmentRepository;
 import com.bigcrowd.noticeBoard.repositories.CanticleRepository;
 import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
@@ -34,6 +35,7 @@ import com.bigcrowd.noticeBoard.repositories.PresidencyRepository;
 import com.bigcrowd.noticeBoard.repositories.SegmantationRepository;
 import com.bigcrowd.noticeBoard.repositories.SessionRepository;
 import com.bigcrowd.noticeBoard.repositories.SubSessionRepository;
+import com.bigcrowd.noticeBoard.repositories.SupportRepository;
 
 @Service
 public class MeetingService {
@@ -67,6 +69,9 @@ public class MeetingService {
 	
 	@Autowired
 	private SegmantationRepository segmentationRepository;
+	
+	@Autowired
+	private SupportRepository supportRepository; 
 	
 	@Transactional(readOnly = true)
 	public List<MeetingDTO> findAllMeetings(){
@@ -244,9 +249,6 @@ public class MeetingService {
 			
 			Meeting meeting = repository.getById(id);
 			
-			designationRepository.deleteById(meeting.getPresidency().getDesignation().getId());
-			//presidencyRepository.deleteById(meeting.getPresidency().getId());
-			
 			for(Prayer prayer: meeting.getPrayers()) {
 				designationRepository.deleteById(prayer.getDesignation().getId());
 				prayerRepository.deleteById(prayer.getId());
@@ -261,10 +263,20 @@ public class MeetingService {
 				for(Designation des: s.getDesignations()) {		
 					designationRepository.deleteById(des.getId());
 				}
+				segmentationRepository.deleteById(s.getId());
 			}
 			
-			segmentationRepository.deleteSegmentation(meeting);
-			// repository.deleteById(id);
+			designationRepository.deleteById(meeting.getPresidency().getMeeting().getPresidency().getId());
+			presidencyRepository.deleteById(meeting.getPresidency().getId());
+			
+			List<Support> support = supportRepository.findSupportByMeeting(meeting);
+				for(Support sup: support) {
+					sup.getDesignations().clear();
+					supportRepository.deleteById(sup.getId());
+				}
+
+			
+			repository.deleteById(id);
 			
 						
 		} catch(RuntimeException e) {
