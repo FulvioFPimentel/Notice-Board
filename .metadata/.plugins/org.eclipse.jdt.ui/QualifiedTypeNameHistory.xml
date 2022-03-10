@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.HashSet"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="org.hibernate.cfg.Environment"/>
     <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
@@ -37,7 +36,6 @@
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.dto.savesDTO.DesignationSaveDTO"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Assignment"/>
-    <fullyQualifiedTypeName name="java.net.URI"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.support.ServletUriComponentsBuilder"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
@@ -52,7 +50,6 @@
     <fullyQualifiedTypeName name="java.time.Instant"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.services.exceptions.ControllerNotFoundException"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Session"/>
     <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.repositories.AssignmentRepository"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.repositories.MeetingRepository"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="javassist.NotFoundException"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Session"/>
+    <fullyQualifiedTypeName name="java.net.URI"/>
 </qualifiedTypeNameHistroy>

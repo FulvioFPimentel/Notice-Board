@@ -20,7 +20,7 @@ public class MeetingSaveDTO  implements Serializable{
 	
 	private List<CanticleSaveDTO> canticles = new ArrayList<>();
 	private List<PrayerSaveDTO> prayers = new ArrayList<>();
-	private Set<SessionSaveDTO> sessions = new HashSet<>();
+	private List<SessionSaveDTO> sessions = new ArrayList<>();
 	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
 	private Set<SegmantationSaveDTO> segmentations = new LinkedHashSet<>();
 		
@@ -75,7 +75,7 @@ public class MeetingSaveDTO  implements Serializable{
 		return prayers;
 	}
 
-	public Set<SessionSaveDTO> getSessions() {
+	public List<SessionSaveDTO> getSessions() {
 		return sessions;
 	}
 

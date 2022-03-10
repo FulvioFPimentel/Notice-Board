@@ -118,11 +118,25 @@ public class MeetingService {
 			meeting.getPrayers().add(prayer);
 		}
 		
+		Session session;
 		for(SessionSaveDTO sDto: dto.getSessions()) {
-			Session session = sessionRepository.getById(sDto.getId());
+			if(sDto.getId() == null) {
+				session = new Session();
+				session.setSession(sDto.getSession());
+				sessionRepository.saveAndFlush(session);
+			} else {
+				session = sessionRepository.getById(sDto.getId());
+			}
 			
 			for (SubSessionSaveDTO ssDto: sDto.getSubsessions()) {
-				SubSession subsession = subSessionRepository.getById(ssDto.getId());
+				SubSession subsession;
+				if(ssDto.getId() == null) {
+					subsession = new SubSession();
+					subsession.setSubSession(ssDto.getSubSession());
+					subSessionRepository.saveAndFlush(subsession);
+				} else {
+					subsession = subSessionRepository.getById(ssDto.getId());
+				}
 				
 					Segmentation segmantation = new Segmentation();
 					segmantation.setMeeting(meeting);
@@ -277,7 +291,7 @@ public class MeetingService {
 				}
 				segmentationRepository.deleteById(s.getId());
 			}
-				
+			
 			designationRepository.deleteById(meeting.getPresidency().getDesignation().getId());
 			presidencyRepository.deleteById(meeting.getPresidency().getId());
 			
