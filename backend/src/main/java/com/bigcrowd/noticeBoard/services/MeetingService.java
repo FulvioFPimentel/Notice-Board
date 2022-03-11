@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -78,6 +80,12 @@ public class MeetingService {
 	public List<MeetingDTO> findAllMeetings(){
 		List<Meeting> entity = repository.findAll();
 		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<MeetingDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Meeting> meeting = repository.findAll(pageRequest);
+		return meeting.map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations()));
 	}
 	
 	@Transactional
