@@ -174,3 +174,4 @@ INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 1, 14)
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 2, 15);
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 2, 16);
 
+INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'Testemunhas de Jeová — Quem somos nós?', 'Mesmo vindo de centenas de grupos étnicos e falando centenas de idiomas, somos unidos pelos mesmos objetivos. Acima de tudo, queremos honrar a Jeová, o Deus da Bíblia e o Criador de todas as coisas. Fazemos o nosso melhor para imitar a Jesus Cristo e temos orgulho de ser chamados cristãos. Todos nós dedicamos tempo à obra de ensinar as pessoas sobre a Bíblia e o Reino de Deus. Visto que damos testemunho, ou falamos, sobre Jeová Deus e seu Reino, somos conhecidos como Testemunhas de Jeová.');
