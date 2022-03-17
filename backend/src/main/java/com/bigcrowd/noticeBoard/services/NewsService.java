@@ -22,4 +22,16 @@ public class NewsService {
 		return news.map(x -> new NewsDTO(x));
 	}
 	
+	public NewsDTO insert(NewsDTO dto) {
+		
+		News news = new News();
+		
+		news.setDate(dto.getDate());
+		news.setTitle(dto.getTitle());
+		news.setNews(dto.getNews());
+		
+		news = newsRepository.saveAndFlush(news);
+		
+		return new NewsDTO(news);
+	}
 }
