@@ -23,15 +23,29 @@ public class NewsService {
 	}
 	
 	public NewsDTO insert(NewsDTO dto) {
-		
 		News news = new News();
+		dtoToEntity(news, dto);
+		news = newsRepository.saveAndFlush(news);
+		return new NewsDTO(news);
+	}
+	
+	public NewsDTO update(Long id, NewsDTO dto) {
+		
+		News news = newsRepository.getById(id);
+		dtoToEntity(news, dto);
+		news = newsRepository.save(news);
+		return new NewsDTO(news);
+	}
+	
+	public void dtoToEntity(News news, NewsDTO dto) {
 		
 		news.setDate(dto.getDate());
 		news.setTitle(dto.getTitle());
 		news.setNews(dto.getNews());
-		
-		news = newsRepository.saveAndFlush(news);
-		
-		return new NewsDTO(news);
 	}
+	
+	public void delete(Long id) {
+		newsRepository.deleteById(id);
+	}
+	
 }
