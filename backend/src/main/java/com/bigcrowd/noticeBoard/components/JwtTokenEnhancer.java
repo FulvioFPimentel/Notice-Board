@@ -24,8 +24,6 @@ public class JwtTokenEnhancer implements TokenEnhancer {
 		
 		Person person = personRepository.findByName(authentication.getName());
 		
-		System.out.println(person.getName());
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("userName", person.getName());
 		map.put("userId", person.getId());

@@ -44,6 +44,9 @@ import com.bigcrowd.noticeBoard.repositories.SupportRepository;
 public class MeetingService {
 	
 	@Autowired
+	private AuthService authService;
+	
+	@Autowired
 	private MeetingRepository repository;
 	
 	@Autowired
@@ -90,9 +93,9 @@ public class MeetingService {
 	
 	@Transactional
 	public MeetingSaveDTO insert(MeetingSaveDTO dto) {
-	
+		authService.validateAdmin();
+		
 		Meeting meeting = new Meeting();
-	
 		Assignment assignment = assignmentRepository.getById(dto.getPresidency().getDesignation().getAssignment().getId());
 		Person person = personRepository.getById(dto.getPresidency().getDesignation().getPerson().getId());
 		
@@ -176,6 +179,7 @@ public class MeetingService {
 	@Transactional
 	public MeetingSaveDTO update(Long id, MeetingSaveDTO dto) {
 		
+		authService.validateAdmin();
 		Meeting meeting = repository.getById(id);
 		
 		Assignment assignment = assignmentRepository.getById(dto.getPresidency().getDesignation().getAssignment().getId());
@@ -268,6 +272,7 @@ public class MeetingService {
 	}
 	
 	public void delete(Long id) {
+		authService.validateAdmin();
 		try {
 			
 			Meeting meeting = repository.getById(id);

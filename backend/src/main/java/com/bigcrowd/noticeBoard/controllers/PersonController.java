@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,5 +59,11 @@ public class PersonController {
 	public ResponseEntity<PersonSaveDTO> updateRole(@PathVariable Long id, @RequestBody PersonSaveDTO dto) {
 		dto = personService.updatePersonRole(id, dto);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<PersonSaveDTO> delete(@PathVariable Long id) {
+		personService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

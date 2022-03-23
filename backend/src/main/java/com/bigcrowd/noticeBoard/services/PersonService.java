@@ -80,13 +80,13 @@ public class PersonService implements UserDetailsService, Serializable {
 		person.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
 		Role role = roleRepository.getById(3L);
-				
-		person.getRoles().add(role);
-		person = personRepository.saveAndFlush(person);	
 		
+		person.getRoles().add(role);
+		person = personRepository.saveAndFlush(person);
 		return new PersonAllDTO(person, person.getRoles());
 	}
 	
+	@Transactional
 	public PersonSaveDTO updatePerson(Long id, PersonSaveDTO dto) {
 		Person person = personRepository.getById(id);
 		
@@ -99,6 +99,7 @@ public class PersonService implements UserDetailsService, Serializable {
 		return new PersonSaveDTO(person);
 	}
 	
+	@Transactional
 	public PersonSaveDTO updatePersonRole(Long id, PersonSaveDTO dto) {
 		authService.validateSelfOrAdmin(id);
 		Person person = personRepository.getById(id);
@@ -117,4 +118,11 @@ public class PersonService implements UserDetailsService, Serializable {
 		person = personRepository.saveAndFlush(person);
 		return new PersonSaveDTO(person);
 	}	
+	
+	
+	@Transactional
+	public void delete(Long id) {
+			authService.validateAdmin();
+			personRepository.deleteById(id);	
+	}
 }
