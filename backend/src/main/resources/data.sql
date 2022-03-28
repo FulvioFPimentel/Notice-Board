@@ -1,6 +1,6 @@
 INSERT INTO tb_person (name, cell_phone, password) VALUES ('Leandro Brito','18-9854-7285', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-INSERT INTO tb_person (name, cell_phone, password) VALUES ('Messias Pimentel', '18-9854-7451', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
-INSERT INTO tb_person (name, cell_phone, password) VALUES ('Rodrigo Silva', '18-9996-2564', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Messias Pimentel','18-9854-7451','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_person (name, cell_phone, password) VALUES ('Rodrigo Silva', '18-9996-2564','$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 INSERT INTO tb_person (name, cell_phone, password) VALUES ('Evandro de Souza', '18-9558-6874', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 INSERT INTO tb_person (name, cell_phone, password) VALUES ('Osvado Pereira', '18-9572-6325', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 INSERT INTO tb_person (name, cell_phone, password) VALUES ('Jose militão', '18-9857-4123', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
@@ -16,7 +16,7 @@ INSERT INTO tb_person (name, cell_phone, password) VALUES ('Eva da Silva', '18-8
 
 INSERT INTO tb_role (privilege) VALUES ('ROLE_OPERATOR');
 INSERT INTO tb_role (privilege) VALUES ('ROLE_ADMIN');
-INSERT INTO tb_role (privilege) VALUES ('ROLE_USER');
+INSERT INTO tb_role (privilege) VALUES ('ROLE_USER') ;
 
 INSERT INTO tb_person_role (person_id, role_id) VALUES (1, 2);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (2, 2);
@@ -175,3 +175,4 @@ INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 2, 
 INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 2, 16);
 
 INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'Testemunhas de Jeová — Quem somos nós?', 'Mesmo vindo de centenas de grupos étnicos e falando centenas de idiomas, somos unidos pelos mesmos objetivos. Acima de tudo, queremos honrar a Jeová, o Deus da Bíblia e o Criador de todas as coisas. Fazemos o nosso melhor para imitar a Jesus Cristo e temos orgulho de ser chamados cristãos. Todos nós dedicamos tempo à obra de ensinar as pessoas sobre a Bíblia e o Reino de Deus. Visto que damos testemunho, ou falamos, sobre Jeová Deus e seu Reino, somos conhecidos como Testemunhas de Jeová.');
+

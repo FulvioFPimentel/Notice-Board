@@ -27,7 +27,7 @@ public class ControllersExceptionHandler {
 	}
 	
 	@ExceptionHandler(ForbiddenException.class)
-	public ResponseEntity<StandardError> forbiddenException(ForbiddenException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> forbiddenException(ForbiddenException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.FORBIDDEN;
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());

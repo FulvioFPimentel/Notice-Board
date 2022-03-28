@@ -54,6 +54,7 @@ public class PersonService implements UserDetailsService, Serializable {
 			logger.error(" not found: " + username);	
 			throw new UsernameNotFoundException("Name not found");
 		}
+		
 		logger.info("Person found: " + username);
 		return person;
 	}
