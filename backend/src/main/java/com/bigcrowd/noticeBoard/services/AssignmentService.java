@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bigcrowd.noticeBoard.dto.AssignmentInfoDTO;
 import com.bigcrowd.noticeBoard.entities.Assignment;
 import com.bigcrowd.noticeBoard.repositories.AssignmentRepository;
+import com.bigcrowd.noticeBoard.services.exceptions.DatabaseException;
 
 @Service
 public class AssignmentService {
@@ -51,6 +53,12 @@ public class AssignmentService {
 	}
 
 	public void deleteAssignment(Long id) {	
-		assignmentRepository.deleteById(id);
+		
+		
+		try {
+			assignmentRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
 	}
 }

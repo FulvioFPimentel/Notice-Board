@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +27,8 @@ import com.bigcrowd.noticeBoard.entities.Role;
 import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
 import com.bigcrowd.noticeBoard.repositories.PersonRepository;
 import com.bigcrowd.noticeBoard.repositories.RoleRepository;
+import com.bigcrowd.noticeBoard.services.exceptions.ControllerNotFoundException;
+import com.bigcrowd.noticeBoard.services.exceptions.DatabaseException;
 
 @Service
 public class PersonService implements UserDetailsService, Serializable {
@@ -89,6 +93,7 @@ public class PersonService implements UserDetailsService, Serializable {
 	
 	@Transactional
 	public PersonSaveDTO updatePerson(Long id, PersonSaveDTO dto) {
+		authService.validateUser(id);
 		Person person = personRepository.getById(id);
 		
 		person.setName(dto.getName());
@@ -120,10 +125,14 @@ public class PersonService implements UserDetailsService, Serializable {
 		return new PersonSaveDTO(person);
 	}	
 	
-	
-	@Transactional
 	public void delete(Long id) {
-			authService.validateAdmin();
-			personRepository.deleteById(id);	
+		
+		try {
+			personRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ControllerNotFoundException("Id not found " + id);
+		}  catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
 	}
 }

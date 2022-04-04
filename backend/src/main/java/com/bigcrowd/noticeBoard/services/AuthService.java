@@ -1,7 +1,5 @@
 package com.bigcrowd.noticeBoard.services;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.common.exceptions.UnauthorizedClientException;
@@ -18,7 +16,6 @@ public class AuthService {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	
 	@Transactional(readOnly = true)
 	public Person authenticated() {
 		try {
@@ -28,9 +25,10 @@ public class AuthService {
 			throw new UnauthorizedClientException("Invalid user");
 		}
 	}
-	
+		
 	public void validateSelfOrAdmin(Long userId) {
 		Person person = authenticated();
+			
 		if(!person.getId().equals(userId) && !person.hasRole("ROLE_ADMIN")) {
 			throw new ForbiddenException("Access denied");
 		}
@@ -39,6 +37,14 @@ public class AuthService {
 	public void validateAdmin() {
 		Person person = authenticated();
 		if(!person.hasRole("ROLE_ADMIN")) {
+			throw new ForbiddenException("Access denied");
+		}
+	}
+	
+	public void validateUser(Long userId) {
+		Person person = authenticated();
+		System.out.println(person.getName());
+		if(!person.getId().equals(userId)) {
 			throw new ForbiddenException("Access denied");
 		}
 	}

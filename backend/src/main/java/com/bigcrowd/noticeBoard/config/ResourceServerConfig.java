@@ -31,7 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**"};
 	
-	private static final String[] OPERATOR = {"/meetings/**", "/assignments/**", "/persons/user/**", "/news/**"};
+	private static final String[] OPERATOR = {"/meetings/**", "/assignments/**", "persons/admin/**", "/news/**", "/supports/**"};
 	
 	private static final String[] ADMIN = {"/role/**", "/person/**", "/persons/admin/**"};
 	
@@ -43,14 +43,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		
-		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {			
+		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {	
 			http.headers().frameOptions().disable();
 		}
 		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, OPERATOR).permitAll()
-		.antMatchers(OPERATOR).hasAnyRole("OPERATOR", "ADMIN")
+		.antMatchers(HttpMethod.GET, OPERATOR).hasAnyRole("OPERATOR", "ADMIN")
+		.antMatchers(OPERATOR).hasAnyRole("ADMIN")
 		.antMatchers(ADMIN).hasRole("ADMIN")
 		.anyRequest().authenticated();
 		
