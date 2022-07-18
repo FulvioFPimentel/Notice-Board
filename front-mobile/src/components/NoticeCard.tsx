@@ -2,20 +2,23 @@ import { ThemeProvider } from '@react-navigation/native';
 import React from 'react';
 import { theme, text } from '../styles'
 import { View, Text } from 'react-native'
+import { DateDay, DateMonth, DateYear } from './DateType';
 
 export interface NoticeProps {
-    id: Number,
-    date: String,
-    title: String,
-    news: String,
+    id: number,
+    date: string,
+    title: string,
+    news: string,
 }
 
 const NoticeCard: React.FC<NoticeProps> = ({id, date, title, news}) => {
+
+
     return (
         <View style={theme.noticeContainer}>
 
             <Text style={text.noticeDate}>
-                {date}
+                {DateDay(date)}/{DateMonth(date)}/{DateYear(date)}
             </Text>
 
             <Text style={text.noticeTitle}>

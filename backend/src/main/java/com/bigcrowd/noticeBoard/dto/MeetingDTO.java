@@ -16,6 +16,7 @@ public class MeetingDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	private String title;
 	private Instant date;
 	private PresidencyDTO presidency;
 	
@@ -26,13 +27,15 @@ public class MeetingDTO implements Serializable {
 	
 	public MeetingDTO() {}
 	
-	public MeetingDTO(Long id, Instant date) {
+	public MeetingDTO(Long id, String title, Instant date) {
 		this.id = id;
+		this.title = title;
 		this.date = date;
 	}
 	
 	public MeetingDTO(Meeting meeting) {
 		id = meeting.getId();
+		title = meeting.getTitle();
 		date = meeting.getDate();
 		presidency = new PresidencyDTO(meeting.getPresidency());	
 	}
@@ -50,6 +53,14 @@ public class MeetingDTO implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Instant getDate() {

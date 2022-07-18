@@ -34,8 +34,8 @@ INSERT INTO tb_person_role (person_id, role_id) VALUES (13, 1);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (14, 1);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (15, 1);
 
-INSERT INTO tb_meeting (date) VALUES (TIMESTAMP WITH TIME ZONE '2022-01-30T19:30:00Z');
-INSERT INTO tb_meeting (date) VALUES (TIMESTAMP WITH TIME ZONE '2022-02-07T19:00:00Z');
+INSERT INTO tb_meeting (title, date) VALUES ('1 SAMUEL 23-24', TIMESTAMP WITH TIME ZONE '2022-01-30T19:30:00Z');
+INSERT INTO tb_meeting (title, date) VALUES ('Discurso Publico', TIMESTAMP WITH TIME ZONE '2022-02-07T19:00:00Z');
 
 INSERT INTO tb_session (session) VALUES ('TESOUROS DA PALAVRA DE DEUS');
 INSERT INTO tb_session (session) VALUES ('FAÇA SEU MELHOR NO MINISTERIO');
@@ -176,4 +176,5 @@ INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 2, 16)
 
 INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'Testemunhas de Jeová — Quem somos nós?', 'Mesmo vindo de centenas de grupos étnicos e falando centenas de idiomas, somos unidos pelos mesmos objetivos. Acima de tudo, queremos honrar a Jeová, o Deus da Bíblia e o Criador de todas as coisas. Fazemos o nosso melhor para imitar a Jesus Cristo e temos orgulho de ser chamados cristãos. Todos nós dedicamos tempo à obra de ensinar as pessoas sobre a Bíblia e o Reino de Deus. Visto que damos testemunho, ou falamos, sobre Jeová Deus e seu Reino, somos conhecidos como Testemunhas de Jeová.');
 INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'CONGREGAÇÃO: AVANHANDAVA', 'É com prazer que lhes escrevo sobre a próxima visita que farei a vossa Congregação, nas datas de 12 a 17 de abril de 2022. Para que esta venha a ser mais uma semana espiritualmente reanimadora para todos, como diz Romanos 1: 11-12 “para nos encorajarmos mutuamente”, sugiro que cada irmão na Congregação observe os seguinteslembretes como incentivo, Seria apreciável que cada irmão considerasse a possibilidade de serem pioneiros auxiliares durante o mês da visita. Lembrando que poderão optar pelo requisito de 30 horas. Aqueles que puderem fazer arranjos nesse sentido serão uma fonte de estímulo para a Congregação e para nós durante a semana da visita.');
+INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'Aumento da inflação no mundo inteiro — O que a Bíblia diz?', '“A economia mundial está novamente em perigo.” Foi isso o que o presidente do Grupo Banco Mundial disse num relatório de junho de 2022. Ele também mencionou: “Desta vez estamos enfrentando ao mesmo tempo alta na inflação e queda no crescimento [da economia].” Já o Fundo Monetário Internacional disse: “Os preços dos combustíveis e dos alimentos aumentaram rapidamente, atingindo com mais força as populações vulneráveis em países de baixa renda.” A Bíblia nos ajuda a entender por que estamos enfrentando problemas econômicos tão desafiadores, como podemos lidar com eles e mostra que existe uma solução definitiva para esses problemas.');
 

@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
 
 const colors = {
@@ -28,12 +29,9 @@ const fontsFamilyType = {
 const theme = StyleSheet.create({
     container: {
         flex: 1,
-        width: "100%",
-        height: 450,
-        justifyContent: "center",
-        alignItems: "center",
+        width: deviceWidth,
+        height: deviceHeight,
         backgroundColor: colors.bodyGray,
-        padding: 11,
     },
 
     card: {
@@ -68,6 +66,24 @@ const theme = StyleSheet.create({
         marginHorizontal: 10,
         marginTop: 11,
         alignItems: "flex-end",
+    },
+
+    meetingsContainer: {
+        width: "95%",
+        backgroundColor: colors.white,
+        borderRadius: 8,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 1,
+            height: 4,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        padding: 15,
+        marginHorizontal: 10,
+        marginTop: 11,
+        alignItems: "flex-start",
     },
     
 });
@@ -118,6 +134,7 @@ const text = StyleSheet.create({
     noticeDate: {
         marginBottom: 12,
         fontFamily: fontsFamilyType.fontRegular,
+        fontWeight: "bold",
     },
 
     noticeTitle: {

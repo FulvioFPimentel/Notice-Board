@@ -4,10 +4,11 @@ import { View, Text, ScrollView, ActivityIndicator } from "react-native";
 import { NoticeCard } from '../components/index';
 import { NoticeProps } from "../components/NoticeCard";
 import  { api } from "../services";
+import { theme } from "../styles";
 
 const Notice: React.FC = () => {
 
-const [ notices, setNotices  ] = useState([]);
+const [ notices, setNotices  ] = useState<NoticeProps[]>([]);
 const [ loading, setLoading ] = useState(false);
 
 async function fillNotices() {
@@ -22,14 +23,13 @@ useEffect(() => {
     fillNotices();
 },[])
     return (
-       <ScrollView>
-
+       <ScrollView style={theme.container}>
 
         { loading ? (
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="large" color="#9E9E9E" />
           ) :
             notices.map((notice) => (
-                <NoticeCard { ...notice as NoticeProps} />
+                <NoticeCard { ...notice}/>
        ))}
         </ScrollView>
     );

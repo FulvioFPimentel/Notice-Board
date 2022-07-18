@@ -29,6 +29,7 @@ public class Meeting implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String title;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
@@ -54,9 +55,10 @@ public class Meeting implements Serializable {
 	public Meeting() {
 	}
 
-	public Meeting(Long id, Instant date, Presidency presidency) {
+	public Meeting(Long id, String title, Instant date, Presidency presidency) {
 		super();
 		this.id = id;
+		this.title = title;
 		this.date = date;
 		this.presidency = presidency;
 	}
@@ -71,6 +73,14 @@ public class Meeting implements Serializable {
 
 	public Instant getDate() {
 		return date;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setDate(Instant date) {

@@ -15,6 +15,7 @@ public class MeetingSaveDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	private String title;
 	private Instant date;
 	private PresidencySaveDTO presidency;
 	
@@ -27,18 +28,21 @@ public class MeetingSaveDTO  implements Serializable{
 	public MeetingSaveDTO() {
 	}
 
-	public MeetingSaveDTO(Long id, Instant date, Set<SegmantationSaveDTO> segmentations) {
+	public MeetingSaveDTO(Long id, String title, Instant date, Set<SegmantationSaveDTO> segmentations) {
 		this.id = id;
+		this.title = title;
 		this.date = date;
 	}
 	
 	public MeetingSaveDTO(Meeting meeting) {
 		this.id = meeting.getId();
+		this.title = meeting.getTitle();
 		this.date = meeting.getDate();
 	}
 	
 	public MeetingSaveDTO(Meeting meeting, Presidency presidency) {
 		this.id = meeting.getId();
+		this.title = meeting.getTitle();
 		this.date = meeting.getDate();
 		this.presidency = new PresidencySaveDTO(presidency.getId());
 	}
@@ -49,6 +53,14 @@ public class MeetingSaveDTO  implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Instant getDate() {

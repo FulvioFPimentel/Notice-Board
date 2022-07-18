@@ -4,7 +4,11 @@ import { TouchableOpacity, Image, Text, View } from 'react-native'
 import menu from '../assets/icons/menu.png'
 import { nav } from '../styles'
 
-const NavBar: React.FC = () => {
+type titleScreen = {
+    screen: Function;
+}
+
+const NavBar: React.FC<titleScreen> = ({screen}) => {
 
     const [ show, setShow ] = useState(false);
 
@@ -19,18 +23,23 @@ const NavBar: React.FC = () => {
         setShow(false);
     }
 
+    function addScreen(page: string) {
+        screen(page);
+    }
+
+
     return (
         <TouchableOpacity activeOpacity={0.6} style={nav.drawer} onPress={() => setShow(!show)}>
             
             {
                 show ? (<View style={nav.options} >
 
-                    <TouchableOpacity style={nav.option} onPress={() => navigate("Notice")}>
+                    <TouchableOpacity style={nav.option} onPress={() => navigate("Notice")} onPressIn={() => (addScreen("Quadro de Anúncios"))}>
                         <Text style={[nav.textOption, route.name == "Notice"
                         ? nav.textActive : null ]}>Quadro de Anúncios</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={nav.option} onPress={() => navigate("Meetings")}>
+                    <TouchableOpacity style={nav.option} onPress={() => navigate("Meetings")} onPressIn={() => (addScreen("Reuniões"))}>
                         <Text style={[nav.textOption, route.name == "Meetings"
                         ? nav.textActive : null]}>Reuniões</Text>
                     </TouchableOpacity>

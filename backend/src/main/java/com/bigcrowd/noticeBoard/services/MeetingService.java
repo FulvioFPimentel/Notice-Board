@@ -171,6 +171,7 @@ public class MeetingService {
 		}
 		
 		meeting.setDate(dto.getDate());
+		meeting.setTitle(dto.getTitle());
 		meeting.setPresidency(presidency);
 		meeting = repository.saveAndFlush(meeting);
 		return new MeetingSaveDTO(meeting, presidency);
@@ -267,6 +268,7 @@ public class MeetingService {
 		}
 			
 		meeting.setDate(dto.getDate());
+		meeting.setTitle(dto.getTitle());
 		meeting = repository.saveAndFlush(meeting);
 		return new MeetingSaveDTO(meeting);
 	}
