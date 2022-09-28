@@ -1,10 +1,59 @@
-import react from 'react';
+import react, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { colors, text, theme } from '../styles';
 import { MeetingCard } from '../components';
+import { api } from '../services';
+
+export type MeetingType = {
+    id: number;
+    title: string;
+    date: string;
+    sessions:SessionType[];
+    presidency: PresidencyType;
+    canticles: CanticlesType[];
+    prayers: PrayersType[];
+}
+
+export type CanticlesType = {
+    id: number;
+    number: number;
+    title: string;
+}
+
+export type PrayersType = {
+    id: number;
+    moment: string;
+    designation: DesignationsType;
+}
+
+export type PresidencyType = {
+    designation: PersonType;
+}
+
+export type PersonType = {
+    person: string;
+}
+
+export type SessionType = {
+    id: number;
+    session: string;
+    subsessions: SubSessionType[];
+}
+
+export type SubSessionType = {
+    id: number;
+    subsession: string;
+    designations: DesignationsType[];
+}
+
+export type DesignationsType = {
+    id: number;
+    assignment: string;
+    person: string;
+}
 
 type navigateParam = {
     Notice: undefined;
@@ -16,31 +65,26 @@ const Meetings: React.FC = () => {
 
     const navigation = useNavigation<StackProp>();
 
-    const meetings = [
-        {
-            id: 1,
-            title: "1 SAMUEL 23-24",
-            subsession: "Como voce quer ser conhecido?",
-            date: "2022-01-30T19:30:00Z",
-            presidency: "Leandro Brito"
-        },
-        {
-            id: 2,
-            title: "Discurso Publico",
-            subsession: "Demonstre Amor",
-            date: "2022-02-05T19:30:00Z",
-            presidency: "Messias Pimentel"
-        },
+    const [ meeting, setMeeting ] = useState<MeetingType[]>([]);
 
-    ];
 
+    async function fillMeeting(){
+        const res = await api.get(`/meetings/page?direction=ASC&orderBy=date`)
+        setMeeting(res.data.content)
+    }
+
+     useEffect(() => {
+        fillMeeting();
+     }, [])
 
     return (
         <ScrollView style={theme.container}>
     
-            {meetings.map((meeting) => (
+            {meeting.map((meetings) => (
                 <Text>
-                    <MeetingCard { ...meeting}/>
+                    <MeetingCard { ...meetings}
+                    key={meetings.id}
+                    />
                 </Text>
                 
             ))}

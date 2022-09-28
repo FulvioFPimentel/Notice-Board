@@ -30,7 +30,7 @@ public class CanticleSaveDTO implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public int getNumber() {
 		return number;
 	}

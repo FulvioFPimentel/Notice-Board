@@ -37,17 +37,7 @@ const theme = StyleSheet.create({
     card: {
         justifyContent: "center",
         alignItems: "center",
-        width: "100%",
-        height: "100%",
-        backgroundColor: colors.white,
-        borderRadius: 8,
-        shadowColor: colors.black,
-        shadowOffset: {
-            width: 1,
-            height: 4,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        width: deviceWidth,
     },
 
     noticeContainer: {
@@ -80,11 +70,43 @@ const theme = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
 
-        padding: 15,
         marginHorizontal: 10,
         marginTop: 11,
         alignItems: "flex-start",
     },
+
+    MeetingTitle: {
+        width: "100%",
+        justifyContent: "space-between",
+        backgroundColor: colors.orange,
+        paddingHorizontal: 10,
+        paddingTop: 10,
+        borderTopLeftRadius:8,
+        borderTopRightRadius: 8,
+    },
+
+    TextMeetingTitle: {
+        marginBottom: 8,
+        fontFamily: fontsFamilyType.fontRegular,
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+
+    meetingDetails: {
+        width:"95%",
+        margin:10,
+        padding: 8,
+        borderRadius: 4,
+        backgroundColor: colors.cardDark,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems:"center",
+    },
+
+    detailsInfo:{
+        flexDirection:"row",
+    }
     
 });
 
@@ -150,7 +172,41 @@ const text = StyleSheet.create({
         fontFamily: fontsFamilyType.fontRegular,
         marginBottom: 10,
         fontSize: 14,
-    }
+    },
+
+    presidencyMeeting: {
+        paddingVertical: 7,
+        paddingLeft: 10
+    },
+
+    themeMeeting: {
+        marginBottom: 10,
+        color:colors.darkGray,
+        fontFamily: fontsFamilyType.fontRegular,
+        fontWeight: "bold",
+    },
+
+    infoType: {
+        fontFamily: fontsFamilyType.fontRegular,
+        color:colors.yellow,
+        fontSize:14,
+        fontWeight:"500", 
+        marginRight: 4, 
+    },
+
+    infoData: {
+        fontFamily: fontsFamilyType.fontRegular,
+        color:colors.white,
+        fontSize:14,
+        fontWeight:"500", 
+    },
+
+    infoTitle: {
+        fontFamily: fontsFamilyType.fontRegular,
+        color:colors.white,
+        fontSize:16,
+        fontWeight:"500", 
+    },
 })
 
 export { colors, theme, nav, text }

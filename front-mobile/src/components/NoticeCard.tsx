@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@react-navigation/native';
 import React from 'react';
 import { theme, text } from '../styles'
 import { View, Text } from 'react-native'

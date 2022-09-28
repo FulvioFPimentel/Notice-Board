@@ -81,12 +81,12 @@ INSERT INTO tb_canticle (number, title) VALUES (80, 'Provem e vejam que Jeová �
 INSERT INTO tb_canticle (number, title) VALUES (115, 'A paciência de Deus é salvação');
 INSERT INTO tb_canticle (number, title) VALUES (6, 'Os céus declaram a glória de Deus');
 
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (1, 1);
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (1, 2);
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (1, 3);
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (2, 4);
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (2, 5);
-INSERT INTO tb_meeting_canticle (meeting_id, canticle_id) VALUES (2, 6);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 1, 'Inicial');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 2, 'Meio');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 3, 'Final');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 4, 'Inicial');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 5, 'Meio');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 6, 'Final');
 
 INSERT INTO tb_assignment (task, field) VALUES ('Discurso', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Leitura', 'participação');

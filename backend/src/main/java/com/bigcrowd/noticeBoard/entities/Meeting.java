@@ -10,13 +10,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,11 +33,8 @@ public class Meeting implements Serializable {
 	@OneToOne(mappedBy = "meeting")
 	private Presidency presidency;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_meeting_canticle",
-		joinColumns = @JoinColumn(name = "meeting_id"),
-		inverseJoinColumns = @JoinColumn(name = "canticle_id"))
-	private Set<Canticle> canticles = new HashSet<>();
+	@OneToMany(mappedBy = "id.meeting")
+	private Set<CanticlesPerMeetings> canticlesPerMeetings = new HashSet<>();
 	
 	@OneToMany(mappedBy = "meeting")
 	private List<Prayer> prayers = new ArrayList<>();
@@ -102,11 +95,15 @@ public class Meeting implements Serializable {
 	public List<Support> getSupports() {
 		return supports;
 	}
-
-	public Set<Canticle> getCanticles() {
-		return canticles;
-	}
 	
+	public Set<CanticlesPerMeetings> getCanticlesPerMeetings() {
+		return canticlesPerMeetings;
+	}
+
+	public void setCanticlesPerMeetings(Set<CanticlesPerMeetings> canticlesPerMeetings) {
+		this.canticlesPerMeetings = canticlesPerMeetings;
+	}
+
 	public Set<Segmentation> getSegmentations() {
 		return segmentations;
 	}

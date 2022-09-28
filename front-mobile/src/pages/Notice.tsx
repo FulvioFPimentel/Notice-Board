@@ -29,7 +29,9 @@ useEffect(() => {
             <ActivityIndicator size="large" color="#9E9E9E" />
           ) :
             notices.map((notice) => (
-                <NoticeCard { ...notice}/>
+              <NoticeCard { ...notice}
+                key={notice.id}
+              />
        ))}
         </ScrollView>
     );

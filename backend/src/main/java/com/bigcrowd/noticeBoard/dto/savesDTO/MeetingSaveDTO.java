@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.bigcrowd.noticeBoard.dto.CanticlesPerMeetingsDTO;
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Presidency;
 
@@ -19,7 +20,7 @@ public class MeetingSaveDTO  implements Serializable{
 	private Instant date;
 	private PresidencySaveDTO presidency;
 	
-	private List<CanticleSaveDTO> canticles = new ArrayList<>();
+	private List<CanticlesPerMeetingsDTO> canticlesPerMeetings = new ArrayList<>();
 	private List<PrayerSaveDTO> prayers = new ArrayList<>();
 	private List<SessionSaveDTO> sessions = new ArrayList<>();
 	private Set<SubSessionSaveDTO> subsessions = new HashSet<>();
@@ -79,8 +80,8 @@ public class MeetingSaveDTO  implements Serializable{
 		this.presidency = presidency;
 	}
 
-	public List<CanticleSaveDTO> getCanticles() {
-		return canticles;
+	public List<CanticlesPerMeetingsDTO> getCanticlesPerMeetings() {
+		return canticlesPerMeetings;
 	}
 
 	public List<PrayerSaveDTO> getPrayers() {

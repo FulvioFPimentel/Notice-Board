@@ -36,6 +36,12 @@ public class MeetingController {
 		return ResponseEntity.ok().body(meetings);
 	}
 	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<MeetingDTO> findById(@PathVariable Long id){
+		MeetingDTO meeting = service.findById(id);
+		return ResponseEntity.ok().body(meeting);
+	}
+	
 	@GetMapping(value = "/page")
 	public ResponseEntity<Page<MeetingDTO>> findAllPaged(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,

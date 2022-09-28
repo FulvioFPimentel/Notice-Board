@@ -42,8 +42,6 @@
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.entities.Session"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Sort.Direction"/>
-    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
-    <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
     <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.services.exceptions.ControllerNotFoundException"/>
     <fullyQualifiedTypeName name="org.springframework.dao.DataIntegrityViolationException"/>
     <fullyQualifiedTypeName name="com.bigcrowd.noticeBoard.services.exceptions.DatabaseException"/>
+    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
+    <fullyQualifiedTypeName name="javax.persistence.Table"/>
 </qualifiedTypeNameHistroy>

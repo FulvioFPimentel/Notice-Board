@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bigcrowd.noticeBoard.dto.CanticlesPerMeetingsDTO;
 import com.bigcrowd.noticeBoard.dto.MeetingDTO;
-import com.bigcrowd.noticeBoard.dto.savesDTO.CanticleSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.DesignationSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.MeetingSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.PrayerSaveDTO;
@@ -19,6 +19,7 @@ import com.bigcrowd.noticeBoard.dto.savesDTO.SessionSaveDTO;
 import com.bigcrowd.noticeBoard.dto.savesDTO.SubSessionSaveDTO;
 import com.bigcrowd.noticeBoard.entities.Assignment;
 import com.bigcrowd.noticeBoard.entities.Canticle;
+import com.bigcrowd.noticeBoard.entities.CanticlesPerMeetings;
 import com.bigcrowd.noticeBoard.entities.Designation;
 import com.bigcrowd.noticeBoard.entities.Meeting;
 import com.bigcrowd.noticeBoard.entities.Person;
@@ -29,6 +30,7 @@ import com.bigcrowd.noticeBoard.entities.Session;
 import com.bigcrowd.noticeBoard.entities.SubSession;
 import com.bigcrowd.noticeBoard.entities.Support;
 import com.bigcrowd.noticeBoard.repositories.AssignmentRepository;
+import com.bigcrowd.noticeBoard.repositories.CanticlePerMeetingsRepository;
 import com.bigcrowd.noticeBoard.repositories.CanticleRepository;
 import com.bigcrowd.noticeBoard.repositories.DesignationRepository;
 import com.bigcrowd.noticeBoard.repositories.MeetingRepository;
@@ -71,6 +73,9 @@ public class MeetingService {
 	private SessionRepository sessionRepository;
 	
 	@Autowired
+	private CanticlePerMeetingsRepository canticlePerMeetingsRepository;
+	
+	@Autowired
 	private DesignationRepository designationRepository;
 	
 	@Autowired
@@ -82,13 +87,13 @@ public class MeetingService {
 	@Transactional(readOnly = true)
 	public List<MeetingDTO> findAllMeetings(){
 		List<Meeting> entity = repository.findAll();
-		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
+		return entity.stream().map(x -> new MeetingDTO(x, x.getCanticlesPerMeetings(), x.getPrayers(), x.getSegmentations())).collect(Collectors.toList());
 	}
 	
 	@Transactional(readOnly = true)
 	public Page<MeetingDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Meeting> meeting = repository.findAll(pageRequest);
-		return meeting.map(x -> new MeetingDTO(x, x.getCanticles(), x.getPrayers(), x.getSegmentations()));
+		return meeting.map(x -> new MeetingDTO(x, x.getCanticlesPerMeetings(), x.getPrayers(), x.getSegmentations()));
 	}
 	
 	@Transactional
@@ -108,9 +113,17 @@ public class MeetingService {
 		presidency.setMeeting(meeting);
 		presidency = presidencyRepository.saveAndFlush(presidency);
 		
-		for(CanticleSaveDTO cDto:  dto.getCanticles()) {
-			Canticle canticle = canticleRepository.getById(cDto.getId());
-			meeting.getCanticles().add(canticle);
+		for(CanticlesPerMeetingsDTO cDto:  dto.getCanticlesPerMeetings()) {
+			
+			CanticlesPerMeetings canticlePerMeetings = new CanticlesPerMeetings();
+			
+			Canticle canticle = canticleRepository.getById(cDto.getCanticle().getId());
+			
+			canticlePerMeetings.setMeeting(meeting);
+			canticlePerMeetings.setCanticle(canticle);
+			canticlePerMeetings.setMoment(cDto.getMoment());
+			
+			canticlePerMeetings = canticlePerMeetingsRepository.saveAndFlush(canticlePerMeetings); 
 		}
 		
 		for(PrayerSaveDTO pDto: dto.getPrayers()) {
@@ -127,6 +140,7 @@ public class MeetingService {
 			prayer.setMeeting(meeting);
 			prayer = prayerRepository.saveAndFlush(prayer);
 			meeting.getPrayers().add(prayer);
+			
 		}
 		
 		Session session;
@@ -197,11 +211,11 @@ public class MeetingService {
 		presidency.setDesignation(desigPresidency);
 		presidency = presidencyRepository.saveAndFlush(presidency);
 			
-		meeting.getCanticles().clear();
-		for(CanticleSaveDTO cDto:  dto.getCanticles()) {
-			Canticle canticle = canticleRepository.getById(cDto.getId());
-			canticle = canticleRepository.saveAndFlush(canticle);
-			meeting.getCanticles().add(canticle);
+		meeting.getCanticlesPerMeetings().clear();
+		for(CanticlesPerMeetingsDTO cDto:  dto.getCanticlesPerMeetings()) {
+			CanticlesPerMeetings canticlesPerMeetings = canticlePerMeetingsRepository.getById(cDto.getCanticle().getId());
+			canticlesPerMeetings = canticlePerMeetingsRepository.saveAndFlush(canticlesPerMeetings);
+			meeting.getCanticlesPerMeetings().add(canticlesPerMeetings);
 		}
 		
 		meeting.getPrayers().clear();
@@ -295,7 +309,7 @@ public class MeetingService {
 				designationRepository.deleteById(prayer.getDesignation().getId());
 				prayerRepository.deleteById(prayer.getId());
 			}
-			meeting.getCanticles().clear();
+			meeting.getCanticlesPerMeetings().clear();
 			meeting.getPrayers().clear();
 						
 			List<Segmentation> seg = segmentationRepository.findByMeeting(meeting);
@@ -316,5 +330,13 @@ public class MeetingService {
 			e.getMessage();
 		}
 		
+	}
+	
+	//Meeting meeting, Set<Canticle> canticles, List<Prayer> prayers, Set<Segmentation> Segmentations
+
+	@Transactional(readOnly = true)
+	public MeetingDTO findById(Long id) {
+		Meeting meeting = repository.getById(id);
+		return new MeetingDTO(meeting, meeting.getCanticlesPerMeetings(), meeting.getPrayers(), meeting.getSegmentations());
 	}	
 }
