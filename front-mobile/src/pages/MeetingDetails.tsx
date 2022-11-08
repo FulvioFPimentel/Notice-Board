@@ -40,10 +40,34 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
                     </View>
 
                     <Text style={text.infoTitle}>
-                        Cântico: 51
+                        Cântico: {meetingData?.canticlesPerMeetings.map(a => {
+                            if(a.moment === "Inicial") {
+                                return a.canticle.number
+                            }
+                        })}
                     </Text>
                 </View>
+                        {meetingData?.sessions.map(a => {
+                            if(a.id === 1){
+                                return <View> 
 
+                                <Text>
+                                    {a.session}
+                                </Text>
+
+                                
+                                    {a.subsessions.map(b => {
+                                        return <Text>
+                                                    {b.subsession}
+                                                    {b.designations.map(c => {
+                                                        return c.person
+                                                    })}
+                                             </Text>
+                                            })}
+                                </View>
+                            }
+                            
+                        })}
             </View>
         </ScrollView>
 

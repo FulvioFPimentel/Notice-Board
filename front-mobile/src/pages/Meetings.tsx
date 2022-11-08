@@ -13,14 +13,19 @@ export type MeetingType = {
     date: string;
     sessions:SessionType[];
     presidency: PresidencyType;
-    canticles: CanticlesType[];
+    canticlesPerMeetings: CanticlesType[];
     prayers: PrayersType[];
 }
 
 export type CanticlesType = {
-    id: number;
-    number: number;
-    title: string;
+    canticle: Canticle;
+    moment: string,
+}
+
+export type Canticle = {
+     id: number;
+     number: number;
+     title: string;
 }
 
 export type PrayersType = {
