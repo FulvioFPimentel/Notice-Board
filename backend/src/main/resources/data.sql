@@ -55,24 +55,24 @@ INSERT INTO tb_subsession (sub_session) VALUES ('Estudo biblico');
 INSERT INTO tb_subsession (sub_session) VALUES ('Como podemos encontrar forças para manter perceverar');
 INSERT INTO tb_subsession (sub_session) VALUES ('Mantenha a fé');
 
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,1 ,1);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,1 ,2);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,1 ,3);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,2 ,4);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,2 ,5);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,2 ,6);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,3 ,7);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (1 ,3 ,8);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,1 ,1 ,10 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,1 ,2 ,10 ,2);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,1 ,3 ,5 ,3);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,2 ,4 ,3 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,2 ,5 ,4 ,2);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,2 ,6 ,5 ,3);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,3 ,7 ,15 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (1 ,3 ,8 ,15 ,2);
 
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,1 ,9);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,1 ,2);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,1 ,3);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,2 ,4);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,2 ,10);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,2 ,11);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,3 ,12);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,3 ,13);
-INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id) VALUES (2 ,3 ,8);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,1 ,9 ,10 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,1 ,2 ,10 ,2);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,1 ,3 ,5 ,3);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,2 ,4 ,3 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,2 ,10 ,4 ,2);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,2 ,11 ,5 ,3);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,3 ,12 ,10 ,1);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,3 ,13 ,5 ,2);
+INSERT INTO tb_segmentation (meeting_id, session_id, subsession_id, time, moment) VALUES (2 ,3 ,8 ,15 ,3);
 
 INSERT INTO tb_canticle (number, title) VALUES (44, 'Oração de um servo aflito');
 INSERT INTO tb_canticle (number, title) VALUES (126, 'Sempre fortes, firmes e despertos');
@@ -81,12 +81,12 @@ INSERT INTO tb_canticle (number, title) VALUES (80, 'Provem e vejam que Jeová �
 INSERT INTO tb_canticle (number, title) VALUES (115, 'A paciência de Deus é salvação');
 INSERT INTO tb_canticle (number, title) VALUES (6, 'Os céus declaram a glória de Deus');
 
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 1, 'Inicial');
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 2, 'Meio');
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 3, 'Final');
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 4, 'Inicial');
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 5, 'Meio');
-INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 6, 'Final');
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 1, 1);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 2, 2);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (1, 3, 3);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 4, 1);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 5, 2);
+INSERT INTO tb_canticles_per_meetings (meeting_id, canticle_id, moment) VALUES (2, 6, 3);
 
 INSERT INTO tb_assignment (task, field) VALUES ('Discurso', 'participação');
 INSERT INTO tb_assignment (task, field) VALUES ('Leitura', 'participação');
@@ -169,10 +169,10 @@ INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 10);
 INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 11);
 INSERT INTO tb_support_designation (support_id, designation_id) VALUES (1, 17);
 
-INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 1, 13);
-INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 1, 14);
-INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Inicio', 2, 15);
-INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES ('Fim', 2, 16);
+INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES (1, 1, 13);
+INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES (2, 1, 14);
+INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES (1, 2, 15);
+INSERT INTO tb_prayer (moment, meeting_id, designation_id) VALUES (2, 2, 16);
 
 INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'Testemunhas de Jeová — Quem somos nós?', 'Mesmo vindo de centenas de grupos étnicos e falando centenas de idiomas, somos unidos pelos mesmos objetivos. Acima de tudo, queremos honrar a Jeová, o Deus da Bíblia e o Criador de todas as coisas. Fazemos o nosso melhor para imitar a Jesus Cristo e temos orgulho de ser chamados cristãos. Todos nós dedicamos tempo à obra de ensinar as pessoas sobre a Bíblia e o Reino de Deus. Visto que damos testemunho, ou falamos, sobre Jeová Deus e seu Reino, somos conhecidos como Testemunhas de Jeová.');
 INSERT INTO tb_news (date, title, news) VALUES (NOW(), 'CONGREGAÇÃO: AVANHANDAVA', 'É com prazer que lhes escrevo sobre a próxima visita que farei a vossa Congregação, nas datas de 12 a 17 de abril de 2022. Para que esta venha a ser mais uma semana espiritualmente reanimadora para todos, como diz Romanos 1: 11-12 “para nos encorajarmos mutuamente”, sugiro que cada irmão na Congregação observe os seguinteslembretes como incentivo, Seria apreciável que cada irmão considerasse a possibilidade de serem pioneiros auxiliares durante o mês da visita. Lembrando que poderão optar pelo requisito de 30 horas. Aqueles que puderem fazer arranjos nesse sentido serão uma fonte de estímulo para a Congregação e para nós durante a semana da visita.');

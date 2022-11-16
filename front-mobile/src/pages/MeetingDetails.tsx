@@ -1,7 +1,8 @@
 import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-
-import { View , Text, ScrollView } from 'react-native';
+import line from '../assets/icons/line.png'
+import ellipse from '../assets/icons/ellipse.png'
+import { View , Text, ScrollView, Image } from 'react-native';
 import { DetailsType } from '../components/MeetingCard';
 import { api } from '../services';
 import { text, theme } from '../styles';
@@ -32,7 +33,7 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
                         </Text>
                         <Text style={text.infoData}>
                             {meetingData?.prayers.map(a => {
-                                if(a.moment === "Inicio") {
+                                if(a.moment === 1) {
                                     return a.designation.person;
                                 }
                             })}
@@ -41,32 +42,47 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
 
                     <Text style={text.infoTitle}>
                         Cântico: {meetingData?.canticlesPerMeetings.map(a => {
-                            if(a.moment === "Inicial") {
+                            if(a.moment === 1) {
                                 return a.canticle.number
                             }
                         })}
                     </Text>
                 </View>
                         {meetingData?.sessions.map(a => {
-                            if(a.id === 1){
-                                return <View> 
-
-                                <Text>
-                                    {a.session}
-                                </Text>
-
+                            for (let index = 1; index <= meetingData.sessions.length; index++) {
                                 
-                                    {a.subsessions.map(b => {
-                                        return <Text>
-                                                    {b.subsession}
-                                                    {b.designations.map(c => {
-                                                        return c.person
-                                                    })}
-                                             </Text>
+                                if(a.id === index){
+                                    return <View style={theme.meetingsContainer}> 
+    
+                                    <Text style={text.titleDetailsMeeting}>
+                                        {a.session}
+                                    </Text>  
+                                    <Image source={line} />                 
+                                        {a.subsessions.map(b => {
+                                            return <View  style={theme.boxMeetingDetails}>
+                                                    <Text style={text.boxInfoTitle}>
+                                                       <Image source={ellipse} />  {b.subsession}
+                                                    </Text>
+                                                    <Text>
+                                                        {b.designations.map(c => {
+                                                            return (
+                                                                <View style={theme.boxDetailsInfo}>
+                                                                <Text style={text.infoType}>
+                                                                {c.assignment} :
+                                                                </Text>
+                                                                
+                                                                <Text style={text.infoData}>
+                                                                {c.person}
+                                                                </Text>
+                                                            </View> 
+                                                            )
+                                                        })}
+                                                    </Text>
+                                                </View>
                                             })}
-                                </View>
+                                        </View>
+                                }
                             }
-                            
                         })}
             </View>
         </ScrollView>

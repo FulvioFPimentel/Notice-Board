@@ -8,10 +8,10 @@ public class PrayerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private String moment;
+	private int moment;
 	private DesignationDTO designation;
 	
-	public PrayerDTO(String moment) {
+	public PrayerDTO(int moment) {
 		this.moment = moment;
 	}
 	
@@ -29,11 +29,11 @@ public class PrayerDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getMoment() {
+	public int getMoment() {
 		return moment;
 	}
 
-	public void setMoment(String moment) {
+	public void setMoment(int moment) {
 		this.moment = moment;
 	}
 

@@ -22,7 +22,7 @@ public class Prayer implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String moment;
+	private int moment;
 					
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "meeting_id")
@@ -35,7 +35,7 @@ public class Prayer implements Serializable{
 	public Prayer() {	
 	}
 
-	public Prayer(Long id, String moment, Meeting meeting, Designation designation) {
+	public Prayer(Long id, int moment, Meeting meeting, Designation designation) {
 		super();
 		this.id = id;
 		this.moment = moment;
@@ -51,11 +51,11 @@ public class Prayer implements Serializable{
 		this.id = id;
 	}
 
-	public String getMoment() {
+	public int getMoment() {
 		return moment;
 	}
 
-	public void setMoment(String moment) {
+	public void setMoment(int moment) {
 		this.moment = moment;
 	}
 

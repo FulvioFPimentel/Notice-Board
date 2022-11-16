@@ -19,7 +19,7 @@ export type MeetingType = {
 
 export type CanticlesType = {
     canticle: Canticle;
-    moment: string,
+    moment: number,
 }
 
 export type Canticle = {
@@ -30,7 +30,7 @@ export type Canticle = {
 
 export type PrayersType = {
     id: number;
-    moment: string;
+    moment: number;
     designation: DesignationsType;
 }
 

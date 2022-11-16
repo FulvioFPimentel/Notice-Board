@@ -106,7 +106,22 @@ const theme = StyleSheet.create({
 
     detailsInfo:{
         flexDirection:"row",
-    }
+    }, 
+
+    boxDetailsInfo:{
+        flexDirection:"row"
+    },
+
+    boxMeetingDetails: {
+        width:"100%",
+        marginVertical: 4,
+        padding: 8,
+        borderRadius: 4,
+        backgroundColor: colors.cardDark,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems:"flex-start",
+    },
     
 });
 
@@ -206,6 +221,21 @@ const text = StyleSheet.create({
         color:colors.white,
         fontSize:16,
         fontWeight:"500", 
+    },
+
+    titleDetailsMeeting: {
+        color:colors.mediumGray,
+        fontFamily: fontsFamilyType.fontRegular,
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+
+    boxInfoTitle: {
+        fontFamily: fontsFamilyType.fontRegular,
+        color:colors.white,
+        fontSize:15,
+        fontWeight:"500",
+        marginBottom: 4
     },
 })
 

@@ -14,11 +14,11 @@ public class CanticlesPerMeetings implements Serializable{
 	@EmbeddedId
 	private CanticlesPerMeetingsPK id = new CanticlesPerMeetingsPK();
 	
-	private String moment;
+	private int moment;
 	
 	public CanticlesPerMeetings() {}
 	
-	public CanticlesPerMeetings(Meeting meeting, Canticle canticle, String moment) {
+	public CanticlesPerMeetings(Meeting meeting, Canticle canticle, int moment) {
 		id.setMeeting(meeting);
 		id.setCanticle(canticle);
 		this.moment = moment;
@@ -32,7 +32,7 @@ public class CanticlesPerMeetings implements Serializable{
 		this.id = id;
 	}
 
-	public String getMoment() {
+	public int getMoment() {
 		return moment;
 	}
 
@@ -52,7 +52,7 @@ public class CanticlesPerMeetings implements Serializable{
 		return id.getCanticle();
 	}
 
-	public void setMoment(String moment) {
+	public void setMoment(int moment) {
 		this.moment = moment;
 	}
 

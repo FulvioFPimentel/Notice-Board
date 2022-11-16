@@ -7,11 +7,11 @@ public class CanticlesPerMeetingsDTO {
 	private MeetingDTO meeting;
 	private CanticleDTO canticle;
 	
-	private String moment;
+	private int moment;
 	
 	public CanticlesPerMeetingsDTO(){}
-	
-	public CanticlesPerMeetingsDTO(CanticlesPerMeetings canticlesPerMeetings, String moment) {
+		
+	public CanticlesPerMeetingsDTO(CanticlesPerMeetings canticlesPerMeetings, int moment) {
 		meeting = new MeetingDTO(canticlesPerMeetings.getMeeting());
 		canticle = new CanticleDTO(canticlesPerMeetings.getCanticle());
 		this.moment = moment; 
@@ -33,11 +33,11 @@ public class CanticlesPerMeetingsDTO {
 		this.canticle = canticle;
 	}
 
-	public String getMoment() {
+	public int getMoment() {
 		return moment;
 	}
 
-	public void setMoment(String moment) {
+	public void setMoment(int moment) {
 		this.moment = moment;
 	}
 	

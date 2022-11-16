@@ -15,15 +15,20 @@ public class Segmentation {
 	@EmbeddedId
 	private SegmentationPK id = new SegmentationPK();
 	
+	private int time;
+	private int moment;
+	
 	@ManyToMany(mappedBy = "segmentations")
 	private Set<Designation> designations = new LinkedHashSet<>();
 	
 	public Segmentation() {}
 
-	public Segmentation(Meeting meeting, Session session, SubSession subsession, Set<Designation> designations) {
+	public Segmentation(Meeting meeting, Session session, SubSession subsession, int time, int moment, Set<Designation> designations) {
 		id.setMeeting(meeting);
 		id.setSession(session);
 		id.setSubsession(subsession);
+		this.time = time;
+		this.moment = moment;
 		this.designations = designations;
 	}
 	
@@ -57,6 +62,22 @@ public class Segmentation {
 	
 	public void setId(SegmentationPK id) {
 		this.id = id;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+	public int getMoment() {
+		return moment;
+	}
+
+	public void setMoment(int moment) {
+		this.moment = moment;
 	}
 
 	public Set<Designation> getDesignations() {

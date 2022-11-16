@@ -7,7 +7,7 @@ import com.bigcrowd.noticeBoard.entities.Designation;
 public class DesignationsPreyerDTO extends ListDesignationDTO {
 	
 	private Instant date;
-	private String moment;
+	private int moment;
 	
 	public DesignationsPreyerDTO(Designation designations) {
 		super(designations);
@@ -23,11 +23,11 @@ public class DesignationsPreyerDTO extends ListDesignationDTO {
 		this.date = date;
 	}
 
-	public String getMoment() {
+	public int getMoment() {
 		return moment;
 	}
 
-	public void setMoment(String moment) {
+	public void setMoment(int moment) {
 		this.moment = moment;
 	}
 
