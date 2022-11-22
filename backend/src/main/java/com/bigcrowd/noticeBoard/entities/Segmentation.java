@@ -14,7 +14,6 @@ public class Segmentation {
 	
 	@EmbeddedId
 	private SegmentationPK id = new SegmentationPK();
-	
 	private int time;
 	private int moment;
 	

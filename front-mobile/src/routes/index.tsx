@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Text } from 'react-native'
-import { Notice, Meetings, NavBar, MeetingDetails } from '../pages';
+import { Notice, Meetings, NavBar, MeetingDetails, Support } from '../pages';
 import { colors, nav } from "../styles";
 
 
@@ -9,6 +9,7 @@ import { colors, nav } from "../styles";
     Notice: undefined;
     Meetings: undefined;
     MeetingDetails: {id: number};
+    Support: undefined;
  }
 
 const Stack = createNativeStackNavigator();
@@ -31,12 +32,13 @@ const Routes: React.FC = () => {
             },
             
             headerLeft: () => <HeaderText />,
-            headerRight: () => <NavBar />,
+            headerRight: () => <NavBar screen={setTitle} /> ,
             }}>
     
             <Stack.Screen name="Notice" component={Notice} />
             <Stack.Screen name="Meetings" component={Meetings} />
             <Stack.Screen name="MeetingDetails" component={MeetingDetails} />
+            <Stack.Screen name="Support" component={Support} />
         </Stack.Navigator>
     );
 }

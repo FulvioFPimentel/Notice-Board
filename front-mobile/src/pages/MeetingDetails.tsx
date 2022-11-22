@@ -2,20 +2,22 @@ import { useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import line from '../assets/icons/line.png'
 import ellipse from '../assets/icons/ellipse.png'
-import { View , Text, ScrollView, Image } from 'react-native';
+import { View , Text, ScrollView, Image, ActivityIndicator } from 'react-native';
 import { DetailsType } from '../components/MeetingCard';
 import { api } from '../services';
 import { text, theme } from '../styles';
-import { MeetingType } from './Meetings';
-
+import { MeetingType, SubSessionType } from './Meetings';
 
 const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
 
-    const [ meetingData, setMeetingDate ] = useState<MeetingType>();
-
+    const [ meetingData, setMeetingData ] = useState<MeetingType>();
+    const [ loading, setLoading ] = useState(false);
+    
     async function fillMeeting (){
+        setLoading(true)
         const res = await api.get(`/meetings/${id}`)
-        setMeetingDate(res.data);
+        setMeetingData(res.data);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -25,7 +27,13 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
     return(
 
         <ScrollView style={theme.container}>
-            <View style={theme.meetingsContainer}>
+           
+            {loading ? 
+            <View style={theme.loadingPosition}>
+                <ActivityIndicator size="large" color="#9E9E9E"/>
+            </View>
+            : (
+                <View style={theme.meetingsContainer}>
                 <View style={theme.meetingDetails}>
                     <View style={theme.detailsInfo}>
                         <Text style={text.infoType}>
@@ -48,46 +56,78 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
                         })}
                     </Text>
                 </View>
-                        {meetingData?.sessions.map(a => {
-                            for (let index = 1; index <= meetingData.sessions.length; index++) {
-                                
-                                if(a.id === index){
-                                    return <View style={theme.meetingsContainer}> 
-    
-                                    <Text style={text.titleDetailsMeeting}>
-                                        {a.session}
-                                    </Text>  
-                                    <Image source={line} />                 
-                                        {a.subsessions.map(b => {
-                                            return <View  style={theme.boxMeetingDetails}>
-                                                    <Text style={text.boxInfoTitle}>
-                                                       <Image source={ellipse} />  {b.subsession}
-                                                    </Text>
-                                                    <Text>
-                                                        {b.designations.map(c => {
-                                                            return (
-                                                                <View style={theme.boxDetailsInfo}>
-                                                                <Text style={text.infoType}>
-                                                                {c.assignment} :
-                                                                </Text>
-                                                                
-                                                                <Text style={text.infoData}>
-                                                                {c.person}
-                                                                </Text>
-                                                            </View> 
-                                                            )
-                                                        })}
-                                                    </Text>
-                                                </View>
+                {meetingData?.sessions.map(a => {
+                    
+                    for (let index = 1; index <= meetingData.sessions.length; index++) {
+                        
+                        if(a.id === index){
+
+                            const session = a.subsessions
+                            session.sort(function (a, b){
+                                return a.moment - b.moment;
+                            })
+
+                            return <View style={theme.meetingsContainer}> 
+
+                            <Text style={text.titleDetailsMeeting}>
+                                {a.session}
+                            </Text>  
+                            <Image source={line} style={theme.detailsLine} />
+                            
+                            {session.map(b => {
+
+                                return <View  style={theme.boxMeetingDetails}>
+                                            <Text style={text.boxInfoTitle}>
+                                                <Image source={ellipse} />  {b.subsession} - ({b.time} min)
+                                            </Text>
+                                        <Text>
+                                            {b.designations.map(c => {
+                                                return (
+                                                    <View style={theme.boxDetailsInfo}>
+                                                        <Text style={text.infoType}>
+                                                        {c.assignment} :
+                                                        </Text>
+                                                        
+                                                        <Text style={text.infoData}>
+                                                        {c.person}
+                                                        </Text>
+                                                    </View> 
+                                                )
                                             })}
-                                        </View>
+                                        </Text>
+                                    </View>
+                                })}
+                            </View>
+                        }
+                    }
+                })}
+
+                <View style={theme.meetingDetails}>
+                        <View style={theme.detailsInfo}>
+                            <Text style={text.infoType}>
+                                Oração:
+                            </Text>
+                            <Text style={text.infoData}>
+                                {meetingData?.prayers.map(a => {
+                                    if(a.moment === 2) {
+                                        return a.designation.person;
+                                    }
+                                })}
+                            </Text>
+                        </View>
+
+                        <Text style={text.infoTitle}>
+                            Cântico: {meetingData?.canticlesPerMeetings.map(a => {
+                                if(a.moment === 3) {
+                                    return a.canticle.number
                                 }
-                            }
-                        })}
-            </View>
+                            })}
+                        </Text>
+                    </View>
+                </View>
+            )}
+          
         </ScrollView>
-
-
     )
 }
 

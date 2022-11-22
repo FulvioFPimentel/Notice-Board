@@ -12,12 +12,13 @@ public class SubSessionSaveDTO implements Serializable {
 
 	private Long id;
 	private String subSession;
-	
+	private int moment;
+	private int time;
+		
 	private Set<SessionSaveDTO> sessions = new LinkedHashSet<>();
 	private Set<MeetingSaveDTO> meetings  = new LinkedHashSet<>();
 	
 	private Set<SegmantationSaveDTO> segmantations = new LinkedHashSet<>();
-	
 	private Set<DesignationSaveDTO> designations = new LinkedHashSet<>();
 		
 	public SubSessionSaveDTO() {
@@ -34,9 +35,11 @@ public class SubSessionSaveDTO implements Serializable {
 		subSession = subsession.getSubSession();
 	}
 	
-	public SubSessionSaveDTO(SubSession subsession, Set<Designation> designations) {
+	public SubSessionSaveDTO(SubSession subsession, int moment, int time, Set<Designation> designations) {
 		id = subsession.getId();
 		subSession = subsession.getSubSession();
+		this.moment = moment;
+		this.time = time;		
 		designations.forEach(x -> this.designations.add(new DesignationSaveDTO(x.getId(),x.getAssignment(), x.getPerson() )));
 	}
 
@@ -54,6 +57,22 @@ public class SubSessionSaveDTO implements Serializable {
 
 	public void setSubSession(String subSession) {
 		this.subSession = subSession;
+	}
+
+	public int getMoment() {
+		return moment;
+	}
+
+	public void setMoment(int moment) {
+		this.moment = moment;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 	public Set<SessionSaveDTO> getSessions() {

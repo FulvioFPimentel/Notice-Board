@@ -9,7 +9,7 @@ const colors = {
     mediumGray: "#7D7D7D",
     darkGray: "#4B4B4B",
     yellow:"#FFB800",
-    orange: "#FFAB6D",
+    orange: "#FFC6A6",
     red: "#F73737",
     white:"#FFFFFF",
     black: "#1A1A1A",
@@ -32,6 +32,7 @@ const theme = StyleSheet.create({
         width: deviceWidth,
         height: deviceHeight,
         backgroundColor: colors.bodyGray,
+        marginBottom:11,
     },
 
     card: {
@@ -71,7 +72,7 @@ const theme = StyleSheet.create({
         shadowRadius: 3.84,
 
         marginHorizontal: 10,
-        marginTop: 11,
+        marginTop: 10,
         alignItems: "flex-start",
     },
 
@@ -109,7 +110,8 @@ const theme = StyleSheet.create({
     }, 
 
     boxDetailsInfo:{
-        flexDirection:"row"
+        flexDirection:"row",
+        paddingRight:15
     },
 
     boxMeetingDetails: {
@@ -122,7 +124,15 @@ const theme = StyleSheet.create({
         justifyContent: "space-between",
         alignItems:"flex-start",
     },
-    
+
+    detailsLine: {
+        width:"100%",
+        marginVertical:3
+    },
+
+    loadingPosition: {
+        marginTop:"50%"
+    }
 });
 
 const nav = StyleSheet.create({
@@ -140,11 +150,13 @@ const nav = StyleSheet.create({
         fontFamily: fontsFamilyType.fontRegular,
         fontStyle: "normal",
         marginLeft: 5,
+        fontWeight: "bold",
     },
 
     textActive: {
         fontWeight: "bold",
-        color: colors.mediumGray
+        color: colors.mediumGray,
+        fontSize: 19
     },
 
     drawer: {
@@ -153,16 +165,17 @@ const nav = StyleSheet.create({
 
     options: {
         width: deviceWidth,
-        height: 140,
+        height: 160,
         backgroundColor: colors.darkBlue,
-        marginTop: 5,
-        marginRight: -20,
+        marginTop: 6,
+        marginRight: -22,
         padding: 20,
         justifyContent: "space-between",
     },
 
     option: {
         paddingVertical: 5,
+
     }
 })
 
@@ -191,7 +204,8 @@ const text = StyleSheet.create({
 
     presidencyMeeting: {
         paddingVertical: 7,
-        paddingLeft: 10
+        paddingLeft: 10,
+        fontSize: 15 
     },
 
     themeMeeting: {
@@ -199,6 +213,7 @@ const text = StyleSheet.create({
         color:colors.darkGray,
         fontFamily: fontsFamilyType.fontRegular,
         fontWeight: "bold",
+        fontSize: 17
     },
 
     infoType: {
@@ -206,7 +221,7 @@ const text = StyleSheet.create({
         color:colors.yellow,
         fontSize:14,
         fontWeight:"500", 
-        marginRight: 4, 
+        marginRight: 3, 
     },
 
     infoData: {

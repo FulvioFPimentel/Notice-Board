@@ -51,6 +51,8 @@ export type SessionType = {
 export type SubSessionType = {
     id: number;
     subsession: string;
+    moment: number;
+    time: number;
     designations: DesignationsType[];
 }
 

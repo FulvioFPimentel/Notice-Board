@@ -163,11 +163,13 @@ public class MeetingService {
 					subsession = subSessionRepository.getById(ssDto.getId());
 				}
 				
-					Segmentation segmantation = new Segmentation();
-					segmantation.setMeeting(meeting);
-					segmantation.setSession(session);
-					segmantation.setSubSession(subsession);
-					segmantation = segmentationRepository.saveAndFlush(segmantation);
+					Segmentation segmentation = new Segmentation();
+					segmentation.setMeeting(meeting);
+					segmentation.setSession(session);
+					segmentation.setSubSession(subsession);
+					segmentation.setMoment(ssDto.getMoment());
+					segmentation.setTime(ssDto.getTime());
+					segmentation = segmentationRepository.saveAndFlush(segmentation);
 					for(DesignationSaveDTO dDto: ssDto.getDesignations()) {
 						
 						Person subPerson = personRepository.getById(dDto.getPerson().getId());
@@ -176,11 +178,11 @@ public class MeetingService {
 						Designation subDesignation = new Designation();
 						subDesignation.setPerson(subPerson);
 						subDesignation.setAssignment(subAssignment);
-						subDesignation.getSegmentations().add(segmantation);
+						subDesignation.getSegmentations().add(segmentation);
 						subDesignation = designationRepository.saveAndFlush(subDesignation);		
 					}
 
-					meeting.getSegmentations().add(segmantation);
+					meeting.getSegmentations().add(segmentation);
 			}
 		}
 		

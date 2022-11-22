@@ -9,7 +9,7 @@ export type titleScreen = {
     screen: Function;
 }
 
-const NavBar: React.FC = () => {
+const NavBar = ({screen}: titleScreen) => {
 
     const [ show, setShow ] = useState(false);
 
@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
     }
 
     function addScreen(page: string) {
-
+        screen(page)
     }
 
 
@@ -40,15 +40,14 @@ const NavBar: React.FC = () => {
                         ? nav.textActive : null ]}>Quadro de Anúncios</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={nav.option} onPress={() => navigate("Meetings")}>
+                    <TouchableOpacity style={nav.option} onPress={() => navigate("Meetings")} onPressIn={() => (addScreen("Reuniões"))}>
                         <Text style={[nav.textOption, route.name == "Meetings"
                         ? nav.textActive : null]}>Reuniões</Text>
-                       
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={nav.option}>
-                        <Text style={[nav.textOption, route.name == "Details"
-                        ? nav.textActive : null]}>Atividades Mecanicas</Text>
+                    <TouchableOpacity style={nav.option} onPress={() => navigate("Support")} onPressIn={() => (addScreen("Atividades Mecânicas"))}>
+                        <Text style={[nav.textOption, route.name == "Support"
+                        ? nav.textActive : null]}>Atividades Mecânicas</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={nav.option}>

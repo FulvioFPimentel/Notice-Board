@@ -30,7 +30,7 @@ public class SessionDTO implements Serializable{
 			
 		for (Segmentation seg: segmentations) {
 			if(session.getId() == seg.getId().getSession().getId()) {
-				this.subsessions.add(new SubSessionDTO(seg.getId().getSubsession(), seg.getDesignations()));
+				this.subsessions.add(new SubSessionDTO(seg.getId().getSubsession(), seg.getDesignations(), seg));
 			}
 		}
 	}
