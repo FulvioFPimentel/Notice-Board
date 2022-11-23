@@ -14,10 +14,6 @@ import { colors, nav } from "../styles";
 
 const Stack = createNativeStackNavigator();
 
-interface TabBarProps {
-    screen: string;
-}
-
 const Routes: React.FC = () => {
 
     const [title, setTitle] = useState("Quadro de anuncio");

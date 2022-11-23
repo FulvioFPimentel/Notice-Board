@@ -62,6 +62,12 @@ export type DesignationsType = {
     person: string;
 }
 
+export type SupportType = {
+    id: number;
+    date: string,
+    designations: DesignationsType[];
+}
+
 type navigateParam = {
     Notice: undefined;
 }

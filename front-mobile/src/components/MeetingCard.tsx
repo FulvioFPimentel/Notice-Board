@@ -39,10 +39,10 @@ const MeetingCard: React.FC<MeetingType> = ({ id, title, date, sessions, preside
                 onPress={() => navigation.navigate("MeetingDetails", { id })}>
                 <View style={theme.MeetingTitle}>
                     <View style={theme.TextMeetingTitle}>
-                        <Text>
+                        <Text style={text.infoType}>
                             {title}
                         </Text>
-                        <Text>
+                        <Text style={text.supportPerson}>
                             {DateDay(date)} de {DateMonth(date)}
                         </Text>
                     </View>

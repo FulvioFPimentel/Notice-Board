@@ -79,7 +79,7 @@ const theme = StyleSheet.create({
     MeetingTitle: {
         width: "100%",
         justifyContent: "space-between",
-        backgroundColor: colors.orange,
+        backgroundColor: colors.cardDark,
         paddingHorizontal: 10,
         paddingTop: 10,
         borderTopLeftRadius:8,
@@ -132,6 +132,24 @@ const theme = StyleSheet.create({
 
     loadingPosition: {
         marginTop:"50%"
+    },
+
+    supportContainer: {
+        width: "95%",
+        backgroundColor: colors.white,
+        borderRadius: 8,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 1,
+            height: 4,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        marginHorizontal: 10,
+        marginTop: 10,
+        padding:11,
+        alignItems: "flex-start",
     }
 });
 
@@ -203,6 +221,8 @@ const text = StyleSheet.create({
     },
 
     presidencyMeeting: {
+        fontFamily: fontsFamilyType.fontRegular,
+        color:colors.black,
         paddingVertical: 7,
         paddingLeft: 10,
         fontSize: 15 
@@ -210,7 +230,7 @@ const text = StyleSheet.create({
 
     themeMeeting: {
         marginBottom: 10,
-        color:colors.darkGray,
+        color:colors.lightGray,
         fontFamily: fontsFamilyType.fontRegular,
         fontWeight: "bold",
         fontSize: 17
@@ -252,6 +272,22 @@ const text = StyleSheet.create({
         fontWeight:"500",
         marginBottom: 4
     },
+
+    supportAssignment: {
+        fontFamily: fontsFamilyType.fontRegular,
+        marginLeft: 4,
+        fontWeight:"500",
+        color:colors.yellow,
+
+    },
+
+    supportPerson: {
+        fontFamily: fontsFamilyType.fontRegular,
+        marginLeft: 4,
+        marginVertical: 2,
+        fontWeight:"500",
+        color:colors.lightGray    
+    }
 })
 
 export { colors, theme, nav, text }
