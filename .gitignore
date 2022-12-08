@@ -32,12 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-### Eclipse ###
-
-.metadata
-.metadata/
-
 ### Mac ### 
 
 .DS_Store
 
+.metadata
