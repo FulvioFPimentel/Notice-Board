@@ -50,9 +50,7 @@ const MeetingDetails: React.FC<DetailsType> = ({route:{params:{id}}}) => {
 
                     <Text style={text.infoTitle}>
                         Cântico: {meetingData?.canticlesPerMeetings.map(a => {
-                            if(a.moment === 1) {
-                                return a.canticle.number
-                            }
+                            if(a.moment === 1) return a.canticle.number
                         })}
                     </Text>
                 </View>
