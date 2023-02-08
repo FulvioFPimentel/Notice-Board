@@ -18,6 +18,7 @@ public class MeetingDTO implements Serializable {
 	private Long id;
 	private String title;
 	private Instant date;
+	private CongregationDTO congregation;
 	private PresidencyDTO presidency;
 	
 	private Set<CanticlesPerMeetingsDTO> canticlesPerMeetings = new HashSet<>();
@@ -37,6 +38,7 @@ public class MeetingDTO implements Serializable {
 		id = meeting.getId();
 		title = meeting.getTitle();
 		date = meeting.getDate();
+		congregation = new CongregationDTO(meeting.getCongregation());
 		presidency = new PresidencyDTO(meeting.getPresidency());	
 	}
 	
@@ -69,6 +71,14 @@ public class MeetingDTO implements Serializable {
 
 	public void setDate(Instant date) {
 		this.date = date;
+	}
+
+	public CongregationDTO getCongregation() {
+		return congregation;
+	}
+
+	public void setCongregation(CongregationDTO congregation) {
+		this.congregation = congregation;
 	}
 
 	public PresidencyDTO getPresidency() {

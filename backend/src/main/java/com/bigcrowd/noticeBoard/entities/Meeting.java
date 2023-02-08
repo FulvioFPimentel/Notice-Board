@@ -10,9 +10,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,6 +33,10 @@ public class Meeting implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "congragation_id")
+	private Congregation congregation;
+		
 	@OneToOne(mappedBy = "meeting")
 	private Presidency presidency;
 	
@@ -48,11 +55,12 @@ public class Meeting implements Serializable {
 	public Meeting() {
 	}
 
-	public Meeting(Long id, String title, Instant date, Presidency presidency) {
+	public Meeting(Long id, String title, Instant date, Congregation congregation, Presidency presidency) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.date = date;
+		this.congregation = congregation;
 		this.presidency = presidency;
 	}
 
@@ -78,6 +86,14 @@ public class Meeting implements Serializable {
 
 	public void setDate(Instant date) {
 		this.date = date;
+	}
+
+	public Congregation getCongregation() {
+		return congregation;
+	}
+
+	public void setCongregation(Congregation congregation) {
+		this.congregation = congregation;
 	}
 
 	public Presidency getPresidency() {

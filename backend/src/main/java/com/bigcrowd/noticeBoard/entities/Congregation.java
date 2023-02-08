@@ -1,29 +1,27 @@
 package com.bigcrowd.noticeBoard.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Congregation implements Serializable{
+@Table(name = "tb_congregation")
+public class Congregation implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	
 	private String name;
 	private String city;
 	
-	@OneToMany(mappedBy = "Congregation")
-	private List<Meeting> meetings = new ArrayList<>();
-	
+	public Congregation () {}
+		
 	public Congregation(long id, String name, String city) {
 		this.id = id;
 		this.name = name;
@@ -53,11 +51,7 @@ public class Congregation implements Serializable{
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-	public List<Meeting> getMeetings() {
-		return meetings;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

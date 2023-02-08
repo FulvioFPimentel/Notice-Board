@@ -34,8 +34,11 @@ INSERT INTO tb_person_role (person_id, role_id) VALUES (13, 1);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (14, 1);
 INSERT INTO tb_person_role (person_id, role_id) VALUES (15, 1);
 
-INSERT INTO tb_meeting (title, date) VALUES ('1 SAMUEL 23-24', TIMESTAMP WITH TIME ZONE '2022-01-30T19:30:00Z');
-INSERT INTO tb_meeting (title, date) VALUES ('Discurso Publico', TIMESTAMP WITH TIME ZONE '2022-02-07T19:00:00Z');
+INSERT INTO tb_congregation (name, city) VALUES ('Central', 'Avanhandava');
+INSERT INTO tb_congregation (name, city) VALUES ('Colina Verde', 'Penapolis');
+
+INSERT INTO tb_meeting (title, date, congragation_id) VALUES ('1 SAMUEL 23-24', TIMESTAMP WITH TIME ZONE '2022-01-30T19:30:00Z', 1);
+INSERT INTO tb_meeting (title, date, congragation_id) VALUES ('Discurso Publico', TIMESTAMP WITH TIME ZONE '2022-02-07T19:00:00Z', 1);
 
 INSERT INTO tb_session (session) VALUES ('TESOUROS DA PALAVRA DE DEUS');
 INSERT INTO tb_session (session) VALUES ('FAÇA SEU MELHOR NO MINISTERIO');
